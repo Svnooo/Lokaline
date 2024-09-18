@@ -1,6 +1,6 @@
 const Navbar = () => {
     return (
-        <h1>ini Navbar</h1>
+        <h1>uus anjg</h1>
     )
 }
 

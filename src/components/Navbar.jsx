@@ -85,7 +85,6 @@ function NavListMenu() {
       <a href="#" key={key}>
         <MenuItem className="flex items-center gap-3 rounded-lg">
           <div className="flex items-center justify-center rounded-lg !bg-blue-gray-50 p-2 ">
-            {" "}
             {React.createElement(icon, {
               strokeWidth: 2,
               className: "h-6 text-gray-900 w-6",
@@ -158,7 +157,7 @@ function NavListMenu() {
  
 function NavList() {
   return (
-    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
+    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 text-gray-900">
       <Typography
         as="a"
         href="#"
@@ -166,7 +165,7 @@ function NavList() {
         color="blue-gray"
         className="font-medium"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">Home</ListItem>
+        <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">Home</ListItem>
       </Typography>
       <NavListMenu />
       <Typography
@@ -176,7 +175,7 @@ function NavList() {
         color="blue-gray"
         className="font-medium"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
+        <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">
           Contact Us
         </ListItem>
       </Typography>
@@ -195,13 +194,13 @@ export function NavbarWithMegaMenu() {
   }, []);
  
   return (
-    <Navbar className="mx-auto max-w-screen-xl px-4 py-2">
-      <div className="flex items-center justify-between text-blue-gray-900">
+    <Navbar className="w-full px-4 py-2">
+      <div className="flex items-center justify-between text-blue-gray-900 w-full">
         <Typography
           as="a"
           href="#"
           variant="h6"
-          className="mr-4 cursor-pointer py-1.5 lg:ml-2"
+          className="mr-4 cursor-pointer py-1.5 lg:ml-2 text-gray-900"
         >
           Material Tailwind
         </Typography>

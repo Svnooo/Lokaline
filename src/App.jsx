@@ -10,6 +10,7 @@ import KontakdanLokasi from './pages/KontakdanLokasi/KontakdanLokasi';
 import Login from './pages/Login/Login';
 import PelatihandanWebinar from './pages/PelatihandanWebinar/PelatihandanWebinar';
 import ProfileUMKM from './pages/ProfileUMKM/ProfileUMKM';
+import Register from './pages/Register/Register';
 import Testimoni from './pages/Testimoni/Testimoni';
 
 function App() {
@@ -18,12 +19,13 @@ function App() {
       <NavbarWithMegaMenu />
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
         <Route path="/BantuandanDukungan" element={<BantuandanDukungan />} />
         <Route path="/BeritadanArtikel" element={<BeritadanArtikel />} />
         <Route path="/Catalog" element={<Catalog />} />
         <Route path="/ForumDiskusi" element={<ForumDiskusi />} />
         <Route path="/KontakdanLokasi" element={<KontakdanLokasi />} />
-        <Route path="/Login" element={<Login />} />
         <Route path="/PelatihandanWebinar" element={<PelatihandanWebinar />} />
         <Route path="/ProfileUMKM" element={<ProfileUMKM />} />
         <Route path="/Testimoni" element={<Testimoni />} />

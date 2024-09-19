@@ -1,17 +1,17 @@
-import Navbar from './components/Navbar'
-import Content from './components/Content'
-import Footer from './components/Footer'
-import Login from './components/Login'
+import Navbar from './components/Dassboard/Navbar';
+import Content from './components/Dassboard/Content';
+import Footer from './components/Dassboard/Footer';
+import Login from './components/Dassboard/Login';
+
 function App() {
-  
   return (
-    <>
-      <Navbar/>
-      <Content/>
-      <Footer/>
-       <Login/>
-    </>
-  )
+    <div>
+      <Navbar />
+      <Content />
+      <Footer />
+      <Login />
+    </div>
+  );
 }
 
-export default App
+export default App;

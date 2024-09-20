@@ -175,6 +175,20 @@ function NavList() {
 
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -185,7 +199,7 @@ export function NavbarWithMegaMenu() {
   }, []);
 
   return (
-    <Navbar className="w-full max-w-full px-4 py-2">
+    <Navbar className={`fixed top-0 w-full max-w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"}`}>
       <div className="flex items-center justify-between text-blue-gray-900 w-full">
         <Typography as={Link} to="/" variant="h6" className="mr-4 cursor-pointer py-1.5 lg:ml-2 text-gray-900">
           Material Tailwind

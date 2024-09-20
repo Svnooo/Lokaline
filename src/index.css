@@ -14,3 +14,8 @@ body {
     width: 100vw;
   }
   
+  .bg-login {
+    background-image: url('assets/IndLocaline.png'); /* Adjust the path as necessary */
+    background-size: cover;
+    background-position: center;
+  }

@@ -4,15 +4,14 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
+  AcademicCapIcon,
   Bars4Icon,
-  GlobeAmericasIcon,
+  ChatBubbleOvalLeftIcon,
+  InformationCircleIcon,
   NewspaperIcon,
   PhoneIcon,
-  RectangleGroupIcon,
-  SquaresPlusIcon,
-  SunIcon,
-  TagIcon,
   UserGroupIcon,
+  UserIcon
 } from "@heroicons/react/24/solid";
 import {
   Button,
@@ -28,86 +27,94 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 
 const navListMenuItems = [
   {
     title: "Bantuan dan Dukungan",
     description: "Find the perfect solution for your needs.",
-    icon: SquaresPlusIcon,
+    icon: InformationCircleIcon,
+    path: "/BantuandanDukungan",
   },
   {
     title: "Forum Diskusi",
     description: "Meet and learn about our dedication",
     icon: UserGroupIcon,
+    path: "/ForumDiskusi",
   },
   {
     title: "Catalog",
     description: "Find the perfect solution for your needs.",
     icon: Bars4Icon,
+    path: "/Catalog",
   },
   {
     title: "Pelatihan dan Webinar",
     description: "Learn how we can help you achieve your goals.",
-    icon: SunIcon,
+    icon: AcademicCapIcon,
+    path: "/PelatihandanWebinar",
   },
   {
     title: "Kontak dan Lokasi",
     description: "Reach out to us for assistance or inquiries",
-    icon: GlobeAmericasIcon,
+    icon: PhoneIcon,
+    path: "/KontakdanLokasi",
   },
   {
     title: "Berita dan Artikel",
     description: "Read insightful articles, tips, and expert opinions.",
     icon: NewspaperIcon,
-  },
-  {
-    title: "Platform E-Commerce",
-    description: "Find the perfect solution for your needs.",
-    icon: RectangleGroupIcon,
+    path: "/BeritadanArtikel",
   },
   {
     title: "Profile UMKM",
     description: "Explore limited-time deals and bundles",
-    icon: TagIcon,
+    icon: UserIcon,
+    path: "/ProfileUMKM",
   },
   {
     title: "Testimoni",
     description: "Find the perfect solution for your needs.",
-    icon: PhoneIcon,
+    icon: ChatBubbleOvalLeftIcon,
+    path: "/Testimoni",
   },
 ];
 
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const navigate = useNavigate();
+
   const renderItems = navListMenuItems.map(
-    ({ icon, title, description }, key) => (
-      <a href="#" key={key}>
-        <MenuItem className="flex items-center gap-3 rounded-lg">
-          <div className="flex items-center justify-center rounded-lg !bg-blue-gray-50 p-2 ">
-            {React.createElement(icon, {
-              strokeWidth: 2,
-              className: "h-6 text-gray-900 w-6",
-            })}
-          </div>
-          <div>
-            <Typography
-              variant="h6"
-              color="blue-gray"
-              className="flex items-center text-sm font-bold"
-            >
-              {title}
-            </Typography>
-            <Typography
-              variant="paragraph"
-              className="text-xs !font-medium text-blue-gray-500"
-            >
-              {description}
-            </Typography>
-          </div>
-        </MenuItem>
-      </a>
+    ({ icon, title, description, path }, key) => (
+      <MenuItem
+        key={key}
+        className="flex items-center gap-3 rounded-lg cursor-pointer"
+        onClick={() => navigate(path)}
+      >
+        <div className="flex items-center justify-center rounded-lg !bg-blue-gray-50 p-2 ">
+          {React.createElement(icon, {
+            strokeWidth: 2,
+            className: "h-6 text-gray-900 w-6",
+          })}
+        </div>
+        <div>
+          <Typography
+            variant="h6"
+            color="blue-gray"
+            className="flex items-center text-sm font-bold"
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="paragraph"
+            className="text-xs !font-medium text-blue-gray-500"
+          >
+            {description}
+          </Typography>
+        </div>
+      </MenuItem>
     ),
   );
 
@@ -130,13 +137,11 @@ function NavListMenu() {
               Resources
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
-                  }`}
+                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""}`}
               />
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
-                  }`}
+                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""}`}
               />
             </ListItem>
           </Typography>
@@ -157,26 +162,12 @@ function NavListMenu() {
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 text-gray-900">
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="blue-gray"
-        className="font-medium"
-      >
+      <Typography as={Link} to="/" variant="small" color="blue-gray" className="font-medium">
         <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">Home</ListItem>
       </Typography>
       <NavListMenu />
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="blue-gray"
-        className="font-medium"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">
-          Contact Us
-        </ListItem>
+      <Typography as={Link} to="/KontakdanLokasi" variant="small" color="blue-gray" className="font-medium">
+        <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">Contact Us</ListItem>
       </Typography>
     </List>
   );
@@ -186,40 +177,28 @@ export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false),
-    );
+    const handleResize = () => {
+      if (window.innerWidth >= 960) setOpenNav(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <Navbar className="w-full max-w-full px-4 py-2">
       <div className="flex items-center justify-between text-blue-gray-900 w-full">
-        <Typography
-          as="a"
-          href="#"
-          variant="h6"
-          className="mr-4 cursor-pointer py-1.5 lg:ml-2 text-gray-900"
-        >
+        <Typography as={Link} to="/" variant="h6" className="mr-4 cursor-pointer py-1.5 lg:ml-2 text-gray-900">
           Material Tailwind
         </Typography>
         <div className="hidden lg:block">
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Button variant="text" size="sm" color="blue-gray">
-            Log In
-          </Button>
           <Button variant="gradient" size="sm">
-            Sign In
+            <Link to="/Login">Log In</Link>
           </Button>
         </div>
-        <IconButton
-          variant="text"
-          color="blue-gray"
-          className="lg:hidden"
-          onClick={() => setOpenNav(!openNav)}
-        >
+        <IconButton variant="text" color="blue-gray" className="lg:hidden" onClick={() => setOpenNav(!openNav)}>
           {openNav ? (
             <XMarkIcon className="h-6 w-6" strokeWidth={2} />
           ) : (
@@ -230,11 +209,8 @@ export function NavbarWithMegaMenu() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-            Log In
-          </Button>
           <Button variant="gradient" size="sm" fullWidth>
-            Sign In
+            <Link to="/Login">Log In</Link>
           </Button>
         </div>
       </Collapse>

@@ -29,55 +29,55 @@ import {
 } from "@material-tailwind/react";
 import React from "react";
 import "../index.css";
- 
+
 const navListMenuItems = [
   {
-    title: "Products",
+    title: "Bantuan dan Dukungan",
     description: "Find the perfect solution for your needs.",
     icon: SquaresPlusIcon,
   },
   {
-    title: "About Us",
+    title: "Forum Diskusi",
     description: "Meet and learn about our dedication",
     icon: UserGroupIcon,
   },
   {
-    title: "Blog",
+    title: "Catalog",
     description: "Find the perfect solution for your needs.",
     icon: Bars4Icon,
   },
   {
-    title: "Services",
+    title: "Pelatihan dan Webinar",
     description: "Learn how we can help you achieve your goals.",
     icon: SunIcon,
   },
   {
-    title: "Support",
+    title: "Kontak dan Lokasi",
     description: "Reach out to us for assistance or inquiries",
     icon: GlobeAmericasIcon,
   },
   {
-    title: "Contact",
-    description: "Find the perfect solution for your needs.",
-    icon: PhoneIcon,
-  },
-  {
-    title: "News",
+    title: "Berita dan Artikel",
     description: "Read insightful articles, tips, and expert opinions.",
     icon: NewspaperIcon,
   },
   {
-    title: "Products",
+    title: "Platform E-Commerce",
     description: "Find the perfect solution for your needs.",
     icon: RectangleGroupIcon,
   },
   {
-    title: "Special Offers",
+    title: "Profile UMKM",
     description: "Explore limited-time deals and bundles",
     icon: TagIcon,
   },
+  {
+    title: "Testimoni",
+    description: "Find the perfect solution for your needs.",
+    icon: PhoneIcon,
+  },
 ];
- 
+
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -110,7 +110,7 @@ function NavListMenu() {
       </a>
     ),
   );
- 
+
   return (
     <React.Fragment>
       <Menu
@@ -130,15 +130,13 @@ function NavListMenu() {
               Resources
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`hidden h-3 w-3 transition-transform lg:block ${
-                  isMenuOpen ? "rotate-180" : ""
-                }`}
+                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
+                  }`}
               />
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`block h-3 w-3 transition-transform lg:hidden ${
-                  isMobileMenuOpen ? "rotate-180" : ""
-                }`}
+                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
+                  }`}
               />
             </ListItem>
           </Typography>
@@ -155,7 +153,7 @@ function NavListMenu() {
     </React.Fragment>
   );
 }
- 
+
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 text-gray-900">
@@ -183,17 +181,17 @@ function NavList() {
     </List>
   );
 }
- 
+
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
- 
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false),
     );
   }, []);
- 
+
   return (
     <Navbar className="w-full max-w-full px-4 py-2">
       <div className="flex items-center justify-between text-blue-gray-900 w-full">

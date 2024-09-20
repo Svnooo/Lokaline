@@ -1,7 +1,7 @@
 
 const Catalog = () => { 
     return (
-     <p>test</p>
+     <p>Catalog</p>
     )
 }
 

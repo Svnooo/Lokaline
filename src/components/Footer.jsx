@@ -41,9 +41,11 @@ export default function FooterComponent() {
             </div>
           </div>
         </div>
+        <br />
         <Footer.Divider />
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <Footer.Copyright href="#" by="Localine™" year={2024} />
+          <br />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             <Footer.Icon href="#" icon={BsFacebook} />
             <Footer.Icon href="#" icon={BsInstagram} />

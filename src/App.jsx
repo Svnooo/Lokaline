@@ -1,19 +1,19 @@
-import React from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { NavbarWithMegaMenu } from './components/Navbar';
-import BantuandanDukungan from './pages/BantuandanDukungan/BantuandanDukungan';
-import BeritadanArtikel from './pages/BeritadanArtikel/BeritadanArtikel';
-import Catalog from './pages/Catalog/Catalog';
-import Dashboard from './pages/Dashboard/Dashboard';
-import ForumDiskusi from './pages/ForumDiskusi/ForumDiskusi';
-import KontakdanLokasi from './pages/KontakdanLokasi/KontakdanLokasi';
-import Login from './pages/Login/Login';
-import PelatihandanWebinar from './pages/PelatihandanWebinar/PelatihandanWebinar';
-import ProfileUMKM from './pages/ProfileUMKM/ProfileUMKM';
-import Register from './pages/Register/Register';
-import Testimoni from './pages/Testimoni/Testimoni';
-import Footer from './components/Footer';
-import './App.css';
+import React from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { NavbarWithMegaMenu } from "./components/Navbar";
+import BantuandanDukungan from "./pages/BantuandanDukungan/BantuandanDukungan";
+import BeritadanArtikel from "./pages/BeritadanArtikel/BeritadanArtikel";
+import Catalog from "./pages/Catalog/Catalog";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import ForumDiskusi from "./pages/ForumDiskusi/ForumDiskusi";
+import KontakdanLokasi from "./pages/KontakdanLokasi/KontakdanLokasi";
+import Login from "./pages/Login/Login";
+import PelatihandanWebinar from "./pages/PelatihandanWebinar/PelatihandanWebinar";
+import ProfileUMKM from "./pages/ProfileUMKM/ProfileUMKM";
+import Register from "./pages/Register/Register";
+import Testimoni from "./pages/Testimoni/Testimoni";
+import Footer from "./components/Footer";
+import './App.css'; 
 
 function App() {
   return (

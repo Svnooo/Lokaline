@@ -141,27 +141,27 @@ const ForumDiskusi = () => {
         {/* Kategori Card */}
         {[
           {
-            imgSrc: "src/assets/Tentang Bisnis.png",
+            imgSrc: "assets/Tentang Bisnis.png",
             title: "Tanya tentang bisnis Anda",
             bgColor: "#FFEFE6",
           },
           {
-            imgSrc: "src/assets/Saran.png",
+            imgSrc: "assets/Saran.png",
             title: "Saran untuk ruang usaha Anda",
             bgColor: "#FFF5EB",
           },
           {
-            imgSrc: "src/assets/Dukungan.png",
+            imgSrc: "assets/Dukungan.png",
             title: "Dukungan untuk pemesanan",
             bgColor: "#F7F8D4",
           },
           {
-            imgSrc: "src/assets/Bantuin.png",
+            imgSrc: "assets/Bantuin.png",
             title: "Bantuan untuk bisnis Anda",
             bgColor: "#E6F7F8",
           },
           {
-            imgSrc: "src/assets/Lingkaran UMKM.png",
+            imgSrc: "assets/Lingkaran UMKM.png",
             title: "Lingkaran UMKM",
             bgColor: "#FFF8E1",
           },

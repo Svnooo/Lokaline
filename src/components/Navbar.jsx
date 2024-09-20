@@ -28,6 +28,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import React from "react";
+import "../index.css";
  
 const navListMenuItems = [
   {
@@ -194,7 +195,7 @@ export function NavbarWithMegaMenu() {
   }, []);
  
   return (
-    <Navbar className="w-full px-4 py-2">
+    <Navbar className="w-full max-w-full px-4 py-2">
       <div className="flex items-center justify-between text-blue-gray-900 w-full">
         <Typography
           as="a"

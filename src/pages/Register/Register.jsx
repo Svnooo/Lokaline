@@ -1,7 +1,6 @@
 import React from "react";
 
 const Register = ({ isOpen, onClose }) => {
-    
     if (!isOpen) return null;
 
     return (

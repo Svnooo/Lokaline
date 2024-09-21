@@ -1,102 +1,56 @@
-import React, { useState } from "react";
-import BgPict from "../../components/BgPict";
+import { Button, Checkbox, Input } from "@material-tailwind/react";
 
-const Login = () => {
-  const [isOpen, setIsOpen] = useState(false); // State to control modal visibility
-
-  const handleModalOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsOpen(false);
-  };
+const Login = ({ isOpen, onClose, openRegister }) => {
+  if (!isOpen) return null;
 
   return (
-    <div>
-      {/* Navbar with Login Button */}
-      <nav className="bg-gray-800 p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="text-white font-bold text-lg">Logo</div>
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full relative">
+        <button
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+          onClick={onClose}
+        >
+          ✕
+        </button>
+
+        <form className="space-y-4">
+          <div className="text-center">
+            <img src="/assets/Logo-Localine.png" alt="Logo Localine" className="mx-auto w-24 h-18" />
+            <h1 className="text-2xl font-bold mt-2">Localine</h1>
+          </div>
           <div>
-            <button
-              className="text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700"
-              onClick={handleModalOpen}
-            >
-              Login
-            </button>
+            <label className="block mb-1 text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <Input type="email" placeholder="email" className="input input-bordered w-full" />
           </div>
-        </div>
-      </nav>
-
-      {/* Background Image */}
-      <BgPict />
-
-      {/* Modal for Login form */}
-      {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="card bg-base-100 max-w-4xl w-full mx-4 lg:mx-0 lg:w-2/3 shadow-2xl relative">
-            {/* Close button */}
-            <button
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-              onClick={handleModalClose}
-            >
-              ✕
-            </button>
-
-            <form className="card-body p-8">
-              <div className="form-control items-center mb-6">
-                <img
-                  src="/assets/Logo-Localine.png"
-                  alt="Logo Localine"
-                  className="w-32 h-24"
-                />
-                <h1 className="text-3xl font-bold">Localine</h1>
-              </div>
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="email"
-                  className="input input-bordered w-full"
-                  required
-                />
-              </div>
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="password"
-                  className="input input-bordered w-full"
-                  required
-                />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary w-full">Login</button>
-              </div>
-              <div className="label mt-4 text-center">
-                <a
-                  href="/Register"
-                  className="label-text-alt link link-hover text-blue-600"
-                >
-                  Belum Punya Akun? Daftar Sekarang!
-                </a>
-              </div>
-            </form>
+          <div>
+            <label className="block mb-1 text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <Input type="password" placeholder="password" className="input input-bordered w-full" />
           </div>
-        </div>
-      )}
+          <div className="flex justify-between items-center">
+            <Checkbox label="Remember me" />
+            <a href="#" className="text-sm text-blue-600 hover:underline">Forgot password?</a>
+          </div>
+          <Button type="submit" fullWidth variant="gradient">
+            Login
+          </Button>
+          <div className="text-center mt-4">
+            <a href="#" className="text-sm text-blue-600 hover:underline" onClick={(e) => {
+              e.preventDefault();
+              onClose();
+              openRegister();
+            }}>
+              Belum Punya Akun? Daftar Sekarang!
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
+
   );
-};
+}
 
 export default Login;

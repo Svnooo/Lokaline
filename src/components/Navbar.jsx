@@ -1,14 +1,23 @@
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Bars3Icon,
   ChevronDownIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
+  AcademicCapIcon,
+  Bars4Icon,
+  ChatBubbleOvalLeftIcon,
+  InformationCircleIcon,
+  NewspaperIcon,
+  PhoneIcon,
+  UserGroupIcon,
+  UserIcon,
+} from "@heroicons/react/24/solid";
+import {
   Button,
-  Checkbox,
-  Collapse,
   IconButton,
-  Input,
   List,
   ListItem,
   Menu,
@@ -17,59 +26,66 @@ import {
   MenuList,
   Navbar,
   Typography,
+  Collapse,
 } from "@material-tailwind/react";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../index.css";
+import SearchForm from "./SearchBar"; // Make sure SearchForm is imported
 
 // NavListMenu Component
 function NavListMenu() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-
   const navListMenuItems = [
     {
       title: "Bantuan dan Dukungan",
       description: "Find the perfect solution for your needs.",
+      icon: InformationCircleIcon,
       path: "/BantuandanDukungan",
     },
     {
       title: "Forum Diskusi",
       description: "Meet and learn about our dedication",
+      icon: UserGroupIcon,
       path: "/ForumDiskusi",
     },
     {
       title: "Catalog",
       description: "Find the perfect solution for your needs.",
+      icon: Bars4Icon,
       path: "/Catalog",
     },
     {
       title: "Pelatihan dan Webinar",
       description: "Learn how we can help you achieve your goals.",
+      icon: AcademicCapIcon,
       path: "/PelatihandanWebinar",
     },
     {
       title: "Kontak dan Lokasi",
       description: "Reach out to us for assistance or inquiries",
+      icon: PhoneIcon,
       path: "/KontakdanLokasi",
     },
     {
       title: "Berita dan Artikel",
       description: "Read insightful articles, tips, and expert opinions.",
+      icon: NewspaperIcon,
       path: "/BeritadanArtikel",
     },
     {
       title: "Profile UMKM",
       description: "Explore limited-time deals and bundles",
+      icon: UserIcon,
       path: "/ProfileUMKM",
     },
     {
       title: "Testimoni",
       description: "Find the perfect solution for your needs.",
+      icon: ChatBubbleOvalLeftIcon,
       path: "/Testimoni",
     },
   ];
+
 
   const renderItems = navListMenuItems.map(({ title, description, path }, key) => (
     <MenuItem
@@ -144,35 +160,41 @@ function NavListMenu() {
 // NavList Component
 function NavList() {
   return (
-    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 text-gray-900">
-      <Typography
-        as={Link}
-        to="/"
-        variant="small"
-        color="blue-gray"
-        className="font-medium"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">
-          Home
-        </ListItem>
-      </Typography>
-      <NavListMenu />
-      <Typography
-        as={Link}
-        to="/KontakdanLokasi"
-        variant="small"
-        color="blue-gray"
-        className="font-medium"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">
-          Contact Us
-        </ListItem>
-      </Typography>
-    </List>
+    <div className="flex items-center justify-between w-full">
+      <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 text-gray-900">
+        <Typography
+          as={Link}
+          to="/"
+          variant="small"
+          color="blue-gray"
+          className="font-medium"
+        >
+          <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">
+            Home
+          </ListItem>
+        </Typography>
+        <NavListMenu />
+        <Typography
+          as={Link}
+          to="/KontakdanLokasi"
+          variant="small"
+          color="blue-gray"
+          className="font-medium"
+        >
+          <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">
+            Contact Us
+          </ListItem>
+        </Typography>
+      </List>
+      <div className="ml-auto mr-0 w-full lg:w-1/2">
+        <SearchForm />
+      </div>
+
+    </div>
   );
 }
 
-// Login Modal Component
+
 function LoginModal({ isOpen, onClose, openRegister }) {
   if (!isOpen) return null;
 
@@ -331,7 +353,7 @@ export function NavbarWithMegaMenu() {
   return (
     <>
       <Navbar
-        className={`fixed top-0 w-full max-w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"
+        className={`sticky top-0 w-full max-w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"
           } !rounded-none`}
       >
         <div className="flex items-center justify-between text-blue-gray-900 w-full">
@@ -371,10 +393,10 @@ export function NavbarWithMegaMenu() {
         <Collapse open={openNav}>
           <NavList />
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-            <Button variant="gradient" size="sm" fullWidth onClick={openLoginModal}>
+            <Button variant="gradient" size="md" fullWidth onClick={openLoginModal}>
               Log In
             </Button>
-            <Button variant="outlined" size="sm" fullWidth onClick={openRegisterModal}>
+            <Button variant="outlined" size="md" fullWidth onClick={openRegisterModal}>
               Register
             </Button>
           </div>

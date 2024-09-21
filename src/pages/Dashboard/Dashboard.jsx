@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBag, Users, Star, ArrowRight, Sun, Moon } from 'lucide-react';
+import { ArrowRight, Moon, ShoppingBag, Star, Sun, Users } from 'lucide-react';
+import React, { useState } from 'react';
 
 
 const FeatureCard = ({ icon, title, description }) => (
@@ -51,7 +51,7 @@ const UMKMLandingPage = () => {
 
         <main>
           <section id="beranda" className="relative py-20 text-white">
-            <video autoPlay muted loop className="absolute inset-0 w-full h-full object-cover z-0">
+            <video autoPlay muted loop className="absolute inset-0 w-screen h-screen object-cover z-0">
               <source src="/public/Video Backround Localine.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>

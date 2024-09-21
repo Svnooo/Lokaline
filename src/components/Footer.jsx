@@ -1,7 +1,7 @@
 // src/components/Footer.jsx
 "use client";
-import React from "react";
 import { Footer } from "flowbite-react";
+import React from "react";
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
 
 export default function FooterComponent() {
@@ -11,9 +11,9 @@ export default function FooterComponent() {
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div>
             <Footer.Brand
-              href="https://flowbite.com"
-              src="https://flowbite.com/docs/images/logo.svg"
-              alt="Flowbite Logo"
+              href="/"
+              src="assets/Logo-Localine.png"
+              alt="Localine Logo"
               name="LOCALINE"
             />
           </div>

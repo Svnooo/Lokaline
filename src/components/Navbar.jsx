@@ -201,8 +201,11 @@ export function NavbarWithMegaMenu() {
   return (
     <Navbar className={`fixed top-0 w-full max-w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"}`}>
       <div className="flex items-center justify-between text-blue-gray-900 w-full">
-        <Typography as={Link} to="/" variant="h6" className="mr-4 cursor-pointer py-1.5 lg:ml-2 text-gray-900">
-          Material Tailwind
+        <Typography as={Link} to="/" variant="h6" className="mr-4 cursor-pointer py-1.5 lg:ml-2">
+          <div className="flex items-center">
+            <img src="assets/Logo-Localine.png" alt="Logo Localine" className="h-18 w-20" />
+            <span className="ml-4 text-lg font-semibold text-black">LOCALINE</span>
+          </div>
         </Typography>
         <div className="hidden lg:block">
           <NavList />

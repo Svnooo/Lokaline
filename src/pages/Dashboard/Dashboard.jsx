@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 
 
 const FeatureCard = ({ icon, title, description }) => (
-  <motion.div 
+  <motion.div
     className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
     whileHover={{ y: -5, boxShadow: '0 10px 30px -15px rgba(0, 0, 0, 0.3)' }}
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
   >
     <div className="text-indigo-600 dark:text-indigo-400 mb-4">{icon}</div>
@@ -18,11 +18,11 @@ const FeatureCard = ({ icon, title, description }) => (
 );
 
 const TestimonialCard = ({ name, role, content }) => (
-  <motion.div 
+  <motion.div
     className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
     whileHover={{ scale: 1.05 }}
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
   >
     <p className="text-gray-600 dark:text-gray-300 mb-4">"{content}"</p>
@@ -52,12 +52,12 @@ const UMKMLandingPage = () => {
         <main>
           <section id="beranda" className="relative py-20 text-white">
             <video autoPlay muted loop className="absolute inset-0 w-screen h-screen object-cover z-0">
-              <source src="/public/Video Backround Localine.mp4" type="video/mp4" />
+              <source src="/Video Backround Localine.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div className="relative z-10 container mx-auto px-6 text-center">
               <div className="bg-black bg-opacity-50 p-6 rounded-lg">
-                <motion.h1 
+                <motion.h1
                   className="text-5xl font-bold mb-6"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ const UMKMLandingPage = () => {
                 >
                   Wujudkan Potensi UMKM Anda
                 </motion.h1>
-                <motion.p 
+                <motion.p
                   className="text-xl mb-12 max-w-2xl mx-auto"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -73,8 +73,8 @@ const UMKMLandingPage = () => {
                 >
                   Dashboard intuitif untuk memantau dan mengembangkan bisnis UMKM Anda dengan mudah dan efisien.
                 </motion.p>
-                <motion.a 
-                  href="#" 
+                <motion.a
+                  href="#"
                   className="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold text-lg inline-flex items-center hover:bg-gray-100 transition-colors duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -87,7 +87,7 @@ const UMKMLandingPage = () => {
 
           <section id="fitur" className="py-20">
             <div className="container mx-auto px-6">
-              <motion.h2 
+              <motion.h2
                 className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-white"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -96,17 +96,17 @@ const UMKMLandingPage = () => {
                 Fitur Unggulan
               </motion.h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <FeatureCard 
+                <FeatureCard
                   icon={<ShoppingBag className="w-10 h-10" />}
                   title="Manajemen Produk"
                   description="Kelola inventaris dan katalog produk Anda dengan mudah dan efisien."
                 />
-                <FeatureCard 
+                <FeatureCard
                   icon={<Users className="w-10 h-10" />}
                   title="Analisis Pelanggan"
                   description="Pahami pelanggan Anda lebih baik dengan analisis data yang mendalam."
                 />
-                <FeatureCard 
+                <FeatureCard
                   icon={<Star className="w-10 h-10" />}
                   title="Laporan Kinerja"
                   description="Pantau kinerja bisnis Anda dengan laporan visual yang informatif."
@@ -117,7 +117,7 @@ const UMKMLandingPage = () => {
 
           <section id="testimoni" className="py-20 bg-gray-200 dark:bg-gray-800">
             <div className="container mx-auto px-6">
-              <motion.h2 
+              <motion.h2
                 className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-white"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -126,17 +126,17 @@ const UMKMLandingPage = () => {
                 Apa Kata Mereka
               </motion.h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <TestimonialCard 
+                <TestimonialCard
                   name="Rina Wati"
                   role="Pemilik Batik Canting Emas"
                   content="Dashboard UMKM ini sangat membantu saya dalam mengelola penjualan batik online. Sangat mudah digunakan!"
                 />
-                <TestimonialCard 
+                <TestimonialCard
                   name="Budi Santoso"
                   role="Pengrajin Kayu Jepara"
                   content="Berkat fitur analisis pelanggan, saya bisa memahami tren pasar dan meningkatkan penjualan produk saya."
                 />
-                <TestimonialCard 
+                <TestimonialCard
                   name="Siti Aminah"
                   role="Pemilik Warung Sambel Mercon"
                   content="Laporan kinerja yang detail membantu saya mengambil keputusan bisnis dengan lebih percaya diri."
@@ -146,28 +146,28 @@ const UMKMLandingPage = () => {
           </section>
 
           <section id="kontak" className="py-20">
-  <div className="container mx-auto px-6 text-center">
-    <motion.h2 
-      className="text-3xl font-bold mb-8 text-gray-800 dark:text-white"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      Siap Memulai?
-    </motion.h2>
-    <p className="text-xl mb-12 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-      Bergabunglah dengan ribuan UMKM yang telah merasakan manfaat dari dashboard kami. Hubungi kami sekarang untuk demo gratis!
-    </p>
-    <motion.a 
-      href="#" 
-      className="bg-indigo-600 text-white px-10 py-4 rounded-full font-semibold text-lg inline-flex items-center hover:bg-indigo-700 transition-colors duration-300 shadow-lg transform hover:scale-105"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      Mulai Perjalanan Anda Hari Ini! <ArrowRight className="ml-2" />
-    </motion.a>
-  </div>
-</section>
+            <div className="container mx-auto px-6 text-center">
+              <motion.h2
+                className="text-3xl font-bold mb-8 text-gray-800 dark:text-white"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                Siap Memulai?
+              </motion.h2>
+              <p className="text-xl mb-12 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Bergabunglah dengan ribuan UMKM yang telah merasakan manfaat dari dashboard kami. Hubungi kami sekarang untuk demo gratis!
+              </p>
+              <motion.a
+                href="#"
+                className="bg-indigo-600 text-white px-10 py-4 rounded-full font-semibold text-lg inline-flex items-center hover:bg-indigo-700 transition-colors duration-300 shadow-lg transform hover:scale-105"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Mulai Perjalanan Anda Hari Ini! <ArrowRight className="ml-2" />
+              </motion.a>
+            </div>
+          </section>
 
         </main>
       </div>

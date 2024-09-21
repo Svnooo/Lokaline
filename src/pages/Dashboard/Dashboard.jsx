@@ -1,74 +1,108 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ShoppingBag, Star, Users } from 'lucide-react';
-import React from 'react';
+import { ArrowRight, ShoppingBag, Star, Users, Sun, Moon } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 
 const FeatureCard = ({ icon, title, description }) => (
   <motion.div
-    className="bg-white p-6 rounded-lg shadow-lg"
+    className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
     whileHover={{ y: -5, boxShadow: '0 10px 30px -15px rgba(0, 0, 0, 0.3)' }}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
   >
-    <div className="text-indigo-600 mb-4">{icon}</div>
-    <h3 className="text-xl font-semibold mb-2 text-gray-800">{title}</h3>
-    <p className="text-gray-600">{description}</p>
+    <div className="text-indigo-600 dark:text-indigo-400 mb-4">{icon}</div>
+    <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">{title}</h3>
+    <p className="text-gray-600 dark:text-gray-300">{description}</p>
   </motion.div>
 );
 
 const TestimonialCard = ({ name, role, content }) => (
   <motion.div
-    className="bg-white p-6 rounded-lg shadow-lg"
+    className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
     whileHover={{ scale: 1.05 }}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}
   >
-    <p className="text-gray-600 mb-4">"{content}"</p>
-    <div className="font-semibold text-gray-800">{name}</div>
-    <div className="text-sm text-gray-500">{role}</div>
+    <p className="text-gray-600 dark:text-gray-300 mb-4">"{content}"</p>
+    <div className="font-semibold text-gray-800 dark:text-white">{name}</div>
+    <div className="text-sm text-gray-500 dark:text-gray-400">{role}</div>
   </motion.div>
 );
 
 const UMKMLandingPage = () => {
+  // State untuk dark mode
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Mengatur kelas body berdasarkan mode
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  // Fungsi toggle dark mode
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+
   return (
     <div>
-      <div className="min-h-screen bg-gray-100">
-        <header className="bg-white shadow-md">
-          <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div className="text-2xl font-bold text-indigo-600">UMKM Dashboard</div>
-          </div>
-        </header>
-
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
         <main>
-          <section id="beranda" className="relative py-20 text-white bg-indigo-600">
-            <div className="relative z-10 container mx-auto px-6 text-center">
-              <div className="p-6 rounded-lg">
-                <motion.h1
-                  className="text-5xl font-bold mb-6"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
+          {/* Beranda Section with Video */}
+          <section id="beranda" className="relative py-20 text-white">
+            {/* Bagian konten yang berada di atas video */}
+            <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center">
+              {/* Tombol Dark Mode di atas tulisan */}
+              <div className="mb-4">
+                <button
+                  onClick={toggleDarkMode}
+                  className="text-gray-800 dark:text-gray-200 p-2 rounded-full focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                 >
-                  Wujudkan Potensi UMKM Anda
-                </motion.h1>
-                <motion.p
-                  className="text-xl mb-12 max-w-2xl mx-auto"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  Dashboard intuitif untuk memantau dan mengembangkan bisnis UMKM Anda dengan mudah dan efisien.
-                </motion.p>
-                <motion.a
-                  href="#"
-                  className="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold text-lg inline-flex items-center hover:bg-gray-100 transition-colors duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Mulai Sekarang <ArrowRight className="ml-2" />
-                </motion.a>
+                  {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+                </button>
               </div>
+
+              {/* Teks dan Tombol Mulai Sekarang */}
+              <motion.h1
+                className="text-5xl font-bold mb-6"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                Wujudkan Potensi UMKM Anda
+              </motion.h1>
+              <motion.p
+                className="text-xl mb-12 max-w-2xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                Dashboard intuitif untuk memantau dan mengembangkan bisnis UMKM Anda dengan mudah dan efisien.
+              </motion.p>
+              <motion.a
+                href="#"
+                className="bg-white dark:bg-gray-700 text-indigo-600 dark:text-white px-8 py-3 rounded-full font-semibold text-lg inline-flex items-center hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Mulai Sekarang <ArrowRight className="ml-2" />
+              </motion.a>
+            </div>
+
+            {/* Video background yang dimodifikasi agar naik ke atas */}
+            <div className="relative z-0 w-full h-screen overflow-hidden">
+              <video
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ transform: 'translateY(-50px)' }}
+                autoPlay
+                loop
+                muted
+              >
+                <source src="/public/gara2us.mp4" type="video/mp4" />
+                Browser Anda tidak mendukung video.
+              </video>
             </div>
           </section>
 
@@ -76,7 +110,7 @@ const UMKMLandingPage = () => {
           <section id="fitur" className="py-20">
             <div className="container mx-auto px-6">
               <motion.h2
-                className="text-3xl font-bold mb-12 text-center text-gray-800"
+                className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-white"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -103,49 +137,18 @@ const UMKMLandingPage = () => {
             </div>
           </section>
 
-          {/* Section Testimoni */}
-          <section id="testimoni" className="py-20 bg-gray-200">
-            <div className="container mx-auto px-6">
-              <motion.h2
-                className="text-3xl font-bold mb-12 text-center text-gray-800"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                Apa Kata Mereka
-              </motion.h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <TestimonialCard
-                  name="Rina Wati"
-                  role="Pemilik Batik Canting Emas"
-                  content="Dashboard UMKM ini sangat membantu saya dalam mengelola penjualan batik online. Sangat mudah digunakan!"
-                />
-                <TestimonialCard
-                  name="Budi Santoso"
-                  role="Pengrajin Kayu Jepara"
-                  content="Berkat fitur analisis pelanggan, saya bisa memahami tren pasar dan meningkatkan penjualan produk saya."
-                />
-                <TestimonialCard
-                  name="Siti Aminah"
-                  role="Pemilik Warung Sambel Mercon"
-                  content="Laporan kinerja yang detail membantu saya mengambil keputusan bisnis dengan lebih percaya diri."
-                />
-              </div>
-            </div>
-          </section>
-
           {/* Section Kontak */}
           <section id="kontak" className="py-20">
             <div className="container mx-auto px-6 text-center">
               <motion.h2
-                className="text-3xl font-bold mb-8 text-gray-800"
+                className="text-3xl font-bold mb-8 text-gray-800 dark:text-white"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
                 Siap Memulai?
               </motion.h2>
-              <p className="text-xl mb-12 text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl mb-12 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                 Bergabunglah dengan ribuan UMKM yang telah merasakan manfaat dari dashboard kami. Hubungi kami sekarang untuk demo gratis!
               </p>
               <motion.a

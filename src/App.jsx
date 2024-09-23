@@ -14,6 +14,8 @@ import Register from "./pages/Register/Register";
 import Testimoni from "./pages/Testimoni/Testimoni";
 import Footer from "./components/Footer";
 import './App.css'; 
+import 'leaflet/dist/leaflet.css';
+
 
 function App() {
   return (

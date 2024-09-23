@@ -179,7 +179,7 @@ const ContactLocationPage = () => {
       <BatikBackground />
       <div className={`max-w-7xl mx-auto transition-opacity duration-1000 ${showPage ? 'opacity-100' : 'opacity-0'}`}>
         <h2 className="text-5xl font-extrabold text-center mb-12 text-yellow-600 drop-shadow-lg">
-          UMKM Yogyakarta
+       
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="space-y-12 transform hover:scale-105 transition-transform duration-300">

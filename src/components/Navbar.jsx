@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
 import {
   Bars3Icon,
   ChevronDownIcon,
-  XMarkIcon,
   ShoppingBagIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
   AcademicCapIcon,
@@ -28,16 +27,13 @@ import {
   MenuItem,
   MenuList,
   Navbar,
-  Typography,
-  Select,
-  Option
+  Typography
 } from "@material-tailwind/react";
-import { Link, useNavigate } from "react-router-dom";
-import SearchForm from "./SearchBar";
-import { ThemeContext } from './Themecontext';
-import { LanguageContext } from './Languagecontext';
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import DarkModeToggle from './DarkModeToggle';
-
+import { LanguageContext } from './Languagecontext';
+import { ThemeContext } from './Themecontext';
 
 
 // NavListMenu Component
@@ -45,77 +41,80 @@ function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { isDarkMode } = useContext(ThemeContext);
+  const { translateText } = useContext(LanguageContext);
+
   const navListMenuItems = [
     {
-      title: "Bantuan dan Dukungan",
-      description: "Find the perfect solution for your needs.",
+      title: translateText("Help and Support", "Bantuan dan Dukungan"),
+      description: translateText("Find the perfect solution for your needs.", "Temukan solusi sempurna untuk kebutuhan Anda."),
       icon: InformationCircleIcon,
       path: "/BantuandanDukungan",
     },
     {
-      title: "Forum Diskusi",
-      description: "Meet and learn about our dedication",
-      icon: UserGroupIcon,
-      path: "/ForumDiskusi",
-    },
-    {
-      title: "Catalog",
-      description: "Find the perfect solution for your needs.",
-      icon: Bars4Icon,
-      path: "/Catalog",
-    },
-    {
-      title: "Pelatihan dan Webinar",
-      description: "Learn how we can help you achieve your goals.",
-      icon: AcademicCapIcon,
-      path: "/PelatihandanWebinar",
-    },
-    {
-      title: "Kontak dan Lokasi",
-      description: "Reach out to us for assistance or inquiries",
-      icon: PhoneIcon,
-      path: "/KontakdanLokasi",
-    },
-    {
-      title: "Berita dan Artikel",
-      description: "Read insightful articles, tips, and expert opinions.",
+      title: translateText("News and Articles", "Berita dan Artikel"),
+      description: translateText("Read insightful articles, tips, and expert opinions.", "Baca artikel berwawasan, tips, dan pendapat ahli."),
       icon: NewspaperIcon,
       path: "/BeritadanArtikel",
     },
     {
-      title: "Profile UMKM",
-      description: "Explore limited-time deals and bundles",
+      title: translateText("Catalog", "Katalog"),
+      description: translateText("Find the perfect solution for your needs.", "Temukan solusi sempurna untuk kebutuhan Anda."),
+      icon: Bars4Icon,
+      path: "/Catalog",
+    },
+    {
+      title: translateText("Discussion Forum", "Forum Diskusi"),
+      description: translateText("Meet and learn about our dedication", "Bertemu dan pelajari tentang dedikasi kami"),
+      icon: UserGroupIcon,
+      path: "/ForumDiskusi",
+    },
+    {
+      title: translateText("Contact and Location", "Kontak dan Lokasi"),
+      description: translateText("Reach out to us for assistance or inquiries", "Hubungi kami untuk bantuan atau pertanyaan"),
+      icon: PhoneIcon,
+      path: "/KontakdanLokasi",
+    },
+    {
+      title: translateText("Training and Webinars", "Pelatihan dan Webinar"),
+      description: translateText("Learn how we can help you achieve your goals.", "Pelajari bagaimana kami dapat membantu Anda mencapai tujuan Anda."),
+      icon: AcademicCapIcon,
+      path: "/PelatihandanWebinar",
+    },
+    {
+      title: translateText("UMKM Profile", "Profil UMKM"),
+      description: translateText("Explore limited-time deals and bundles", "Jelajahi penawaran dan paket terbatas waktu"),
       icon: UserIcon,
       path: "/ProfileUMKM",
     },
     {
-      title: "Testimoni",
-      description: "Find the perfect solution for your needs.",
+      title: translateText("Testimonials", "Testimoni"),
+      description: translateText("Find the perfect solution for your needs.", "Temukan solusi sempurna untuk kebutuhan Anda."),
       icon: ChatBubbleOvalLeftIcon,
       path: "/Testimoni",
     },
   ];
 
-  const renderItems = navListMenuItems.map(({ title, description, path }, key) => (
+  const renderItems = navListMenuItems.map(({ icon: Icon, title, description, path }, key) => (
     <MenuItem
       key={key}
-      className="flex items-center gap-3 cursor-pointer"
+      className={`flex items-center gap-3 cursor-pointer ${isDarkMode ? 'text-white' : ''}`}
       onClick={() => navigate(path)}
     >
-      <div className="flex items-center justify-center rounded-lg !bg-blue-gray-50 p-2 ">
-        <ChevronDownIcon className="h-6 text-gray-900 w-6" />
+      <div className={`flex items-center justify-center rounded-lg p-2 ${isDarkMode ? 'bg-blue-gray-800' : '!bg-blue-gray-50'}`}>
+        <Icon className={`h-6 w-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} />
       </div>
       <div>
         <Typography
           variant="h6"
-          color="blue-gray"
+          color={isDarkMode ? "white" : "blue-gray"}
           className="flex items-center text-sm font-bold"
         >
           {title}
         </Typography>
         <Typography
           variant="paragraph"
-          className="text-xs !font-medium text-blue-gray-500"
+          className={`text-xs !font-medium ${isDarkMode ? 'text-blue-gray-200' : 'text-blue-gray-500'}`}
         >
           {description}
         </Typography>
@@ -133,27 +132,25 @@ function NavListMenu() {
         allowHover={true}
       >
         <MenuHandler>
-          <Typography as="div" variant="small" className="font-medium">
+          <Typography as="div" variant="small" className="font-small">
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900"
+              className={`flex items-center gap-2 py-2 pr-4 font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
-              Resources
+              {translateText("Resources", "Sumber Daya")}
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
-                  }`}
+                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""}`}
               />
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
-                  }`}
+                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""}`}
               />
             </ListItem>
           </Typography>
         </MenuHandler>
-        <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
+        <MenuList className={`hidden max-w-screen-xl rounded-xl lg:block ${isDarkMode ? 'bg-gray-800' : ''}`}>
           <ul className="grid grid-cols-3 gap-y-2 outline-none outline-0">
             {renderItems}
           </ul>
@@ -167,21 +164,21 @@ function NavListMenu() {
 }
 
 // NavList Component
-// NavList Component
 function NavList() {
   const { translateText } = useContext(LanguageContext);
+  const { isDarkMode } = useContext(ThemeContext);
 
   return (
     <div className="flex items-center justify-between w-full">
-      <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 text-gray-900">
+      <List className={`mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
         <Typography
           as={Link}
           to="/"
           variant="small"
-          color="blue-gray"
+          color={isDarkMode ? "white" : "blue-gray"}
           className="font-medium"
         >
-          <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">
+          <ListItem className={`flex items-center gap-2 py-2 pr-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             {translateText("Home", "Beranda")}
           </ListItem>
         </Typography>
@@ -190,21 +187,19 @@ function NavList() {
           as={Link}
           to="/KontakdanLokasi"
           variant="small"
-          color="blue-gray"
+          color={isDarkMode ? "white" : "blue-gray"}
           className="font-medium"
         >
-          <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">
+          <ListItem className={`flex items-center gap-2 py-2 pr-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             {translateText("Contact Us", "Hubungi Kami")}
           </ListItem>
         </Typography>
       </List>
-
-      <div className="flex-grow max-w-xs">
-        <SearchForm />
-      </div>
     </div>
   )
 }
+
+
 
 
 
@@ -325,19 +320,19 @@ function RegisterModal({ isOpen, onClose, openLogin }) {
   );
 }
 
-// Main NavbarWithMegaMenu Component
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const { isDarkMode } = useContext(ThemeContext);
-  const { translateText } = useContext(LanguageContext);
+  const { selectedLanguage, setSelectedLanguage, translateText } = useContext(LanguageContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 150) {
+      if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -370,67 +365,138 @@ export function NavbarWithMegaMenu() {
     navigate("/cart");
   };
 
+  const showCartIcon = ['/Catalog', '/cart', '/payment'].includes(location.pathname);
+
   return (
     <>
       <Navbar
-        className={`sticky top-0 w-full max-w-full z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white shadow-lg" : "bg-transparent"
-        } !rounded-none ${isDarkMode ? "bg-gray-900 text-white" : ""}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-transparent'
+          } shadow-none !rounded-none`}
       >
-        <div className="flex items-center justify-between text-blue-gray-900 w-full">
-          <Typography as={Link} to="/" variant="h6" className="mr-4 cursor-pointer py-1.5 lg:ml-2">
+        <div className="container mx-auto flex items-center justify-between">
+          {/* Logo */}
+          <Typography
+            as={Link}
+            to="/"
+            variant="h6"
+            className={`cursor-pointer py-1.5 ${isDarkMode ? 'text-white' : 'text-black'
+              }`}
+          >
             <div className="flex items-center">
               <img
                 src="/assets/Logo-Localine.png"
                 alt="Logo Localine"
                 className="h-18 w-20"
               />
-              <span className="ml-4 text-lg font-semibold text-black">
+              <span className={`ml-4 text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-black'
+                }`}>
                 Localine
               </span>
             </div>
           </Typography>
-          <div className="hidden lg:block flex-grow">
+
+          {/* Center nav items */}
+          <div className="hidden lg:flex items-center justify-center">
             <NavList />
           </div>
+
+          {/* Right side items */}
           <div className="hidden lg:flex items-center space-x-4">
-            <IconButton
+            {/* Language switch button */}
+            <Button
               variant="text"
-              color="blue-gray"
-              onClick={handleCartClick}
+              size="sm"
+              onClick={() => setSelectedLanguage(selectedLanguage === 'en' ? 'id' : 'en')}
+              className={`${isDarkMode ? 'text-white' : 'text-black'
+                }`}
             >
-              <ShoppingBagIcon className="w-6 h-6 text-gray-900" />
-            </IconButton>
+              {selectedLanguage === 'en' ? 'ID' : 'EN'}
+            </Button>
+
+            {showCartIcon && (
+              <IconButton
+                variant="text"
+                color={isDarkMode ? "white" : "black"}
+                onClick={handleCartClick}
+              >
+                <ShoppingBagIcon className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-black'
+                  }`} />
+              </IconButton>
+            )}
             <DarkModeToggle />
-            <Button variant="gradient" size="sm" onClick={openLoginModal}>
+            <Button
+              variant={isScrolled ? "gradient" : "outlined"}
+              size="sm"
+              onClick={openLoginModal}
+              className={`${isDarkMode
+                  ? 'border-white text-white hover:bg-white hover:text-black'
+                  : isScrolled
+                    ? 'bg-black text-white hover:bg-white hover:text-black'
+                    : 'border-black text-black hover:bg-black hover:text-white'
+                }`}
+            >
               {translateText("Log In", "Masuk")}
             </Button>
+
           </div>
+
+          {/* Mobile menu button */}
           <IconButton
             variant="text"
-            color="blue-gray"
+            color={isDarkMode ? "white" : "black"}
             className="lg:hidden"
             onClick={() => setOpenNav(!openNav)}
           >
             {openNav ? (
-              <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+              <XMarkIcon className={`h-6 w-6 ${isDarkMode ? 'text-white' : 'text-black'
+                }`} strokeWidth={2} />
             ) : (
-              <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+              <Bars3Icon className={`h-6 w-6 ${isDarkMode ? 'text-white' : 'text-black'
+                }`} strokeWidth={2} />
             )}
           </IconButton>
         </div>
+
+        {/* Mobile menu */}
         <Collapse open={openNav}>
           <NavList />
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-            <Button variant="gradient" size="md" fullWidth onClick={openLoginModal}>
+            {/* Language switch button for mobile */}
+            <Button
+              variant="text"
+              size="sm"
+              onClick={() => setSelectedLanguage(selectedLanguage === 'en' ? 'id' : 'en')}
+              className={`${isDarkMode ? 'text-white' : 'text-black'
+                } w-full`}
+            >
+              {selectedLanguage === 'en' ? 'Switch to Bahasa Indonesia' : 'Ganti ke Bahasa Inggris'}
+            </Button>
+            <Button
+              variant="gradient"
+              size="md"
+              fullWidth
+              onClick={openLoginModal}
+              className={isDarkMode ? 'text-white' : 'text-black'}
+            >
               {translateText("Log In", "Masuk")}
             </Button>
-            <Button variant="outlined" size="md" fullWidth onClick={openRegisterModal}>
+            <Button
+              variant="outlined"
+              size="md"
+              fullWidth
+              onClick={openRegisterModal}
+              className={`${isDarkMode
+                  ? 'border-white text-white hover:bg-white hover:text-black'
+                  : 'border-black text-black hover:bg-black hover:text-white'
+                }`}
+            >
               {translateText("Register", "Daftar")}
             </Button>
           </div>
         </Collapse>
       </Navbar>
+
+      {/* <div className="h-16"></div>  */}
 
       {/* Login Modal */}
       <LoginModal

@@ -17,7 +17,7 @@ export default function SearchForm() {
                     type="button"
                     className="flex-shrink-0 z-10 inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-e-0 border-gray-300 dark:border-gray-700 dark:text-white rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
                 >
-                    All categories
+                    Semua Kategori
                     <svg
                         className="w-2.5 h-2.5 ml-2.5"
                         aria-hidden="true"
@@ -45,7 +45,7 @@ export default function SearchForm() {
                                 href="#"
                                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             >
-                                Shopping
+                                Baju
                             </a>
                         </li>
                         <li>
@@ -53,7 +53,7 @@ export default function SearchForm() {
                                 href="#"
                                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             >
-                                Images
+                                Rok
                             </a>
                         </li>
                         <li>
@@ -61,7 +61,7 @@ export default function SearchForm() {
                                 href="#"
                                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             >
-                                News
+                                Kain
                             </a>
                         </li>
                         <li>
@@ -69,7 +69,31 @@ export default function SearchForm() {
                                 href="#"
                                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                             >
-                                Finance
+                                Batik
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            >
+                                Tenun
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            >
+                                Sepatu
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                            >
+                                Aksesoris
                             </a>
                         </li>
                     </ul>
@@ -80,11 +104,11 @@ export default function SearchForm() {
                         type="search"
                         id="search-dropdown"
                         className="block p-3 pl-10 w-full text-base text-gray-900 bg-gray-50 rounded-r-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                        placeholder="Search"
+                        placeholder="Cari"
                         required
                     />
                     <button
-                        type="submit"
+                        type="Cari"
                         className="absolute top-0 right-0 p-3 h-full text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                         <svg

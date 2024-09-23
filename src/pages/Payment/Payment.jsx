@@ -6,14 +6,13 @@ const Payment = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-  // Add logos for each payment method
   const paymentMethods = [
-    { id: 'bca', name: 'Bank Transfer (BCA)', logo: '/assets/BCA.png' },
-    { id: 'mandiri', name: 'Bank Transfer (Mandiri)', logo: '/assets/mandiri.png' },
-    { id: 'credit_card', name: 'Kartu Kredit', logo: '/assets/Kreditcard.png' },
-    { id: 'gopay', name: 'GoPay', logo: '/assets/gopay.png' },
-    { id: 'ovo', name: 'OVO', logo: '/assets/ovo.png' },
-    { id: 'dana', name: 'DANA', logo: '/assets/DANA.png' },
+    { id: 'bca', name: 'Bank Transfer (BCA)', logo: '/assets/BCA.png', description: 'Proses cepat dalam 1 menit' },
+    { id: 'mandiri', name: 'Bank Transfer (Mandiri)', logo: '/assets/mandiri.png', description: 'Terhubung langsung dengan Mandiri Online' },
+    { id: 'credit_card', name: 'Kartu Kredit', logo: '/assets/Kreditcard.png', description: 'Dukung Visa & MasterCard' },
+    { id: 'gopay', name: 'GoPay', logo: '/assets/gopay.png', description: 'Pembayaran cepat dan mudah' },
+    { id: 'ovo', name: 'OVO', logo: '/assets/ovo.png', description: 'Cashback menarik untuk OVO' },
+    { id: 'dana', name: 'DANA', logo: '/assets/DANA.png', description: 'Aman dengan DANA Protection' },
   ];
 
   const handlePaymentSubmit = (e) => {
@@ -28,20 +27,20 @@ const Payment = () => {
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6">Pembayaran</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">Pembayaran</h1>
 
       {cartItems.length === 0 ? (
         <p className="text-gray-600">Keranjang Anda kosong.</p>
       ) : (
         <div>
-          <h2 className="text-xl font-semibold mb-4">Produk di Keranjang</h2>
+          <h2 className="text-2xl font-semibold mb-4">Produk di Keranjang</h2>
           <div className="border-b pb-4 mb-4">
             {cartItems.map((item, index) => (
               <div key={index} className="flex justify-between items-center border-b py-2">
                 <div className="flex items-center">
                   <img src={item.image} alt={item.name} className="w-16 h-16 object-cover mr-4" />
                   <div>
-                    <h3 className="text-lg">{item.name} ({item.variant})</h3>
+                    <h3 className="text-lg font-bold">{item.name} ({item.variant})</h3>
                     <p className="text-gray-600">Qty: {item.quantity}</p>
                   </div>
                 </div>
@@ -53,33 +52,32 @@ const Payment = () => {
           <h2 className="text-xl font-bold mb-4">Total: ${totalPrice}</h2>
 
           <form onSubmit={handlePaymentSubmit}>
-            <h3 className="text-lg font-semibold mb-2">Pilih Metode Pembayaran:</h3>
-            <div className="mb-4">
+            <h3 className="text-xl font-semibold mb-4">Pilih Metode Pembayaran:</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {paymentMethods.map((method) => (
-                <div key={method.id} className="flex items-center mb-2">
-                  <input
-                    type="radio"
-                    id={method.id}
-                    name="payment"
-                    value={method.name}
-                    onChange={(e) => setSelectedPaymentMethod(e.target.value)}
-                    className="mr-2"
-                  />
-                  <label htmlFor={method.id} className="flex items-center">
+                <div
+                  key={method.id}
+                  className={`p-4 border rounded-lg cursor-pointer transition-all ${selectedPaymentMethod === method.name ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}`}
+                  onClick={() => setSelectedPaymentMethod(method.name)}
+                >
+                  <div className="flex items-center">
                     <img
                       src={method.logo}
                       alt={method.name}
-                      className="w-8 h-8 object-contain mr-2" // Add styling for the logo
+                      className="w-10 h-10 object-contain mr-4"
                     />
-                    {method.name}
-                  </label>
+                    <div>
+                      <h4 className="text-lg font-semibold">{method.name}</h4>
+                      <p className="text-sm text-gray-500">{method.description}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
 
             <button
               type="submit"
-              className="bg-green-600 text-white px-6 py-3 rounded-lg mt-4"
+              className="bg-green-600 text-white px-6 py-3 rounded-lg mt-6 w-full hover:bg-green-700 transition-all"
             >
               Bayar Sekarang
             </button>

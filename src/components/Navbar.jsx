@@ -1,36 +1,35 @@
-import {
-  Bars3Icon,
-  ChevronDownIcon,
-  ShoppingBagIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-  AcademicCapIcon,
-  Bars4Icon,
-  ChatBubbleOvalLeftIcon,
-  InformationCircleIcon,
-  NewspaperIcon,
-  PhoneIcon,
-  UserGroupIcon,
-  UserIcon,
-} from "@heroicons/react/24/solid";
-import {
-  Button,
-  Checkbox,
-  Collapse,
-  IconButton,
-  Input,
-  List,
-  ListItem,
-  Menu,
-  MenuHandler,
-  MenuItem,
-  MenuList,
-  Navbar,
-  Typography
-} from "@material-tailwind/react";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import "../index.css"
+import {
+  Navbar,
+  Typography,
+  Button,
+  IconButton,
+  Collapse,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  List,
+  ListItem,
+} from "@material-tailwind/react";
+import {
+  ChevronDownIcon,
+  Bars3Icon,
+  XMarkIcon,
+  ShoppingBagIcon,
+} from "@heroicons/react/24/outline";
+import {
+  InformationCircleIcon,
+  NewspaperIcon,
+  Bars4Icon,
+  UserGroupIcon,
+  PhoneIcon,
+  AcademicCapIcon,
+  UserIcon,
+  ChatBubbleOvalLeftIcon,
+} from "@heroicons/react/24/solid";
 import DarkModeToggle from './DarkModeToggle';
 import { LanguageContext } from './Languagecontext';
 import { ThemeContext } from './Themecontext';
@@ -169,7 +168,7 @@ function NavList() {
   const { isDarkMode } = useContext(ThemeContext);
 
   return (
-    <div className="flex items-center justify-between w-full">
+    <div className="flex items-center justify-center w-full">
       <List className={`mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
         <Typography
           as={Link}
@@ -198,7 +197,6 @@ function NavList() {
     </div>
   )
 }
-
 
 
 
@@ -322,6 +320,7 @@ function RegisterModal({ isOpen, onClose, openLogin }) {
 
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = useState(false);
+  const [isWhite, setIsWhite] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
@@ -332,24 +331,32 @@ export function NavbarWithMegaMenu() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      const scrollPercentage = (window.scrollY / document.documentElement.scrollHeight) * 100;
+
+      // Jika scroll lebih dari 10%, atur navbar dengan border dan warna teks
+      setIsScrolled(scrollPercentage > 5);
+
+      // Atur gaya berdasarkan posisi scroll
+      const contentStart = document.querySelector('.content-start');
+      if (contentStart) {
+        const contentStartPosition = contentStart.getBoundingClientRect().top;
+        setIsWhite(contentStartPosition <= 0);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 960) setOpenNav(false);
     };
+
+    window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
 
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
@@ -370,8 +377,14 @@ export function NavbarWithMegaMenu() {
   return (
     <>
       <Navbar
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-transparent'
-          } shadow-none !rounded-none`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+            ? isDarkMode
+              ? 'navbar-dark-scrolled'
+              : 'navbar-light-scrolled'
+            : isWhite
+              ? 'navbar-white'
+              : 'navbar-transparent'
+          }`}
       >
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
@@ -379,36 +392,33 @@ export function NavbarWithMegaMenu() {
             as={Link}
             to="/"
             variant="h6"
-            className={`cursor-pointer py-1.5 ${isDarkMode ? 'text-white' : 'text-black'
-              }`}
+            className="cursor-pointer py-1.5 flex-shrink-0"
           >
             <div className="flex items-center">
               <img
                 src="/assets/Logo-Localine.png"
                 alt="Logo Localine"
-                className="h-18 w-20"
+                className="h-12 w-16 sm:h-14 sm:w-18"
               />
-              <span className={`ml-4 text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-black'
-                }`}>
+              <span className="ml-2 text-base sm:text-lg font-semibold localine-text">
                 Localine
               </span>
             </div>
           </Typography>
 
-          {/* Center nav items */}
-          <div className="hidden lg:flex items-center justify-center">
-            <NavList />
+          {/* Center nav items - hidden on mobile, visible on larger screens */}
+          <div className="hidden lg:flex items-center justify-center flex-grow">
+            <NavList isWhite={isWhite} />
           </div>
 
           {/* Right side items */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
             {/* Language switch button */}
             <Button
               variant="text"
               size="sm"
               onClick={() => setSelectedLanguage(selectedLanguage === 'en' ? 'id' : 'en')}
-              className={`${isDarkMode ? 'text-white' : 'text-black'
-                }`}
+              className="locale-text text-xs sm:text-sm"
             >
               {selectedLanguage === 'en' ? 'ID' : 'EN'}
             </Button>
@@ -416,78 +426,74 @@ export function NavbarWithMegaMenu() {
             {showCartIcon && (
               <IconButton
                 variant="text"
-                color={isDarkMode ? "white" : "black"}
+                color={isWhite ? "black" : "white"}
                 onClick={handleCartClick}
+                className="p-1 sm:p-2"
               >
-                <ShoppingBagIcon className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-black'
-                  }`} />
+                <ShoppingBagIcon className={`w-4 h-4 sm:w-6 sm:h-6 ${isWhite ? 'text-black' : 'text-white'}`} />
               </IconButton>
             )}
+
             <DarkModeToggle />
+
+            {/* Login button - hidden on mobile, visible on larger screens */}
             <Button
-              variant={isScrolled ? "gradient" : "outlined"}
+              variant={isWhite ? "gradient" : "outlined"}
               size="sm"
               onClick={openLoginModal}
-              className={`${isDarkMode
-                  ? 'border-white text-white hover:bg-white hover:text-black'
-                  : isScrolled
-                    ? 'bg-black text-white hover:bg-white hover:text-black'
-                    : 'border-black text-black hover:bg-black hover:text-white'
+              className={`hidden sm:inline-block login-button ${isWhite
+                  ? 'bg-black text-white hover:bg-white hover:text-black'
+                  : 'border-white text-white hover:bg-white hover:text-black'
                 }`}
             >
               {translateText("Log In", "Masuk")}
             </Button>
 
+            {/* Mobile menu button */}
+            <IconButton
+              variant="text"
+              color={isWhite ? "black" : "white"}
+              className="lg:hidden"
+              onClick={() => setOpenNav(!openNav)}
+            >
+              {openNav ? (
+                <XMarkIcon className={`h-6 w-6 ${isWhite ? 'text-black' : 'text-white'}`} strokeWidth={2} />
+              ) : (
+                <Bars3Icon className={`h-6 w-6 ${isWhite ? 'text-black' : 'text-white'}`} strokeWidth={2} />
+              )}
+            </IconButton>
           </div>
-
-          {/* Mobile menu button */}
-          <IconButton
-            variant="text"
-            color={isDarkMode ? "white" : "black"}
-            className="lg:hidden"
-            onClick={() => setOpenNav(!openNav)}
-          >
-            {openNav ? (
-              <XMarkIcon className={`h-6 w-6 ${isDarkMode ? 'text-white' : 'text-black'
-                }`} strokeWidth={2} />
-            ) : (
-              <Bars3Icon className={`h-6 w-6 ${isDarkMode ? 'text-white' : 'text-black'
-                }`} strokeWidth={2} />
-            )}
-          </IconButton>
         </div>
 
         {/* Mobile menu */}
         <Collapse open={openNav}>
-          <NavList />
-          <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-            {/* Language switch button for mobile */}
+          <NavList isWhite={isWhite} />
+          <div className="flex flex-col w-full items-center gap-2 lg:hidden">
             <Button
               variant="text"
               size="sm"
               onClick={() => setSelectedLanguage(selectedLanguage === 'en' ? 'id' : 'en')}
-              className={`${isDarkMode ? 'text-white' : 'text-black'
-                } w-full`}
+              className="locale-text w-full"
             >
               {selectedLanguage === 'en' ? 'Switch to Bahasa Indonesia' : 'Ganti ke Bahasa Inggris'}
             </Button>
             <Button
               variant="gradient"
-              size="md"
+              size="sm"
               fullWidth
               onClick={openLoginModal}
-              className={isDarkMode ? 'text-white' : 'text-black'}
+              className="login-button"
             >
               {translateText("Log In", "Masuk")}
             </Button>
             <Button
               variant="outlined"
-              size="md"
+              size="sm"
               fullWidth
               onClick={openRegisterModal}
-              className={`${isDarkMode
-                  ? 'border-white text-white hover:bg-white hover:text-black'
-                  : 'border-black text-black hover:bg-black hover:text-white'
+              className={`${isWhite
+                  ? 'border-black text-black hover:bg-black hover:text-white'
+                  : 'border-white text-white hover:bg-white hover:text-black'
                 }`}
             >
               {translateText("Register", "Daftar")}
@@ -495,8 +501,6 @@ export function NavbarWithMegaMenu() {
           </div>
         </Collapse>
       </Navbar>
-
-      {/* <div className="h-16"></div>  */}
 
       {/* Login Modal */}
       <LoginModal

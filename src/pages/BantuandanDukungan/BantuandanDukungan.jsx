@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BatikBackground = () => (
-  <div className="absolute inset-0 z-0 opacity-10">
+  <div className="fixed inset-0 z-0 opacity-10">
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
       <defs>
         <pattern id="batik" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
@@ -21,7 +21,7 @@ const BatikBackground = () => (
 
 const HelpAndSupport = () => {
   return (
-    <div className="relative min-h-screen py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div className="relative min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <BatikBackground />
       <div className="relative max-w-7xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-xl p-8 border-2 border-yellow-500">
         <h1 className="text-5xl font-bold text-center text-gray-900 mb-8">Bantuan dan Dukungan</h1>

@@ -127,3 +127,101 @@ html.dark {
   background-color: var(--bg-dark);
   color: var(--text-dark);
 }
+
+/* NavbarStyles.css */
+
+.navbar-transparent,
+.navbar-white,
+.navbar-light-scrolled,
+.navbar-dark-scrolled {
+  transition: all 0.5s ease;
+  border-radius: 0 !important;
+}
+
+.navbar-transparent {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.navbar-white {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.navbar-transparent .container,
+.navbar-white .container,
+.navbar-light-scrolled .container,
+.navbar-dark-scrolled .container {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 640px) {
+  .navbar-transparent .container,
+  .navbar-white .container,
+  .navbar-light-scrolled .container,
+  .navbar-dark-scrolled .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Override any default styles that might add background or shadow */
+.navbar-transparent,
+.navbar-transparent.scrolled,
+.dark .navbar-transparent {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+/* Ensure text is visible against any background */
+.navbar-transparent .text-black,
+.navbar-white .text-black,
+.navbar-light-scrolled .text-black,
+.navbar-dark-scrolled .text-white {
+  color: currentColor;
+  transition: color 0.5s ease;
+}
+
+/* Gaya setelah discroll pada light mode */
+.navbar-light-scrolled {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.95) !important;
+  color: black !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Gaya setelah discroll pada dark mode */
+.navbar-dark-scrolled {
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.95) !important;
+  color: white !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.navbar-light-scrolled .text-black,
+.navbar-dark-scrolled .text-white {
+  color: currentColor !important;
+}
+
+/* New styles for login button and locale text */
+.navbar-transparent .login-button,
+.navbar-transparent .locale-text,
+.navbar-dark-scrolled .login-button,
+.navbar-dark-scrolled .locale-text {
+  color: white !important;
+  transition: color 0.5s ease;
+}
+
+.navbar-white .login-button,
+.navbar-white .locale-text,
+.navbar-light-scrolled .login-button,
+.navbar-light-scrolled .locale-text {
+  color: black !important;
+  transition: color 0.5s ease;
+}

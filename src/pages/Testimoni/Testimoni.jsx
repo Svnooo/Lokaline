@@ -35,7 +35,7 @@ const initialTestimonials = [
 ];
 
 const TestimonialCard = ({ name, role, content, rating, image, icon: Icon, color, isActive, onClick }) => (
-  <div 
+  <div
     className={`relative cursor-pointer transition-all duration-500 ${isActive ? 'z-10' : 'z-0 blur-sm scale-75'}`}
     onClick={onClick}
   >
@@ -82,7 +82,7 @@ const TestimonialForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white bg-opacity-95 backdrop-filter backdrop-blur-lg p-6 rounded-lg shadow-xl">
+    <form onSubmit={handleSubmit} className="bg-white bg-opacity-95 backdrop-filter backdrop-blur-lg pt-6 rounded-lg shadow-xl">
       <h3 className="text-2xl font-bold mb-4 text-gray-800">Tambahkan Testimoni Anda</h3>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
@@ -182,7 +182,7 @@ const TestimonialSection = () => {
       id: testimonials.length + 1,
       image: "/api/placeholder/150/150",
       icon: UserPlus,
-      color: `#${Math.floor(Math.random()*16777215).toString(16)}`
+      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`
     };
     setTestimonials([...testimonials, testimonial]);
     setShowForm(false);
@@ -190,7 +190,7 @@ const TestimonialSection = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-100 via-gray-300 to-gray-500 min-h-screen flex items-center justify-center p-8">
+    <div className="bg-gradient-to-br from-gray-100 via-gray-300 to-gray-500 min-h-screen flex items-center justify-center pt-20">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-5xl font-extrabold text-center mb-12 text-gray-800 drop-shadow-lg">
           Kisah Sukses Pelanggan Kami
@@ -210,9 +210,8 @@ const TestimonialSection = () => {
             <button
               key={index}
               onClick={() => handleCardClick(index)}
-              className={`h-3 w-3 rounded-full mx-2 transition-all duration-300 ${
-                index === activeIndex ? 'bg-gray-800 scale-125' : 'bg-gray-400 hover:bg-gray-600'
-              }`}
+              className={`h-3 w-3 rounded-full mx-2 transition-all duration-300 ${index === activeIndex ? 'bg-gray-800 scale-125' : 'bg-gray-400 hover:bg-gray-600'
+                }`}
             />
           ))}
         </div>

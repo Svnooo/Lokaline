@@ -68,7 +68,7 @@ const UMKMProfile = () => {
   ];
 
   return (
-    <div className="container mx-auto p-4 bg-gradient-to-br from-yellow-50 to-amber-100 min-h-screen">
+    <div className="container mx-auto p-4 bg-gradient-to-br from-yellow-50 to-amber-100 min-h-screen pt-20"> {/* Added pt-20 here */}
       <motion.h1 
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}

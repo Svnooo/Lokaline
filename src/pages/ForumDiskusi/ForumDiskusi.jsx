@@ -120,12 +120,17 @@ const ForumDiskusi = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <strong style={{ fontSize: "45px" }}>
+    <div style={{ 
+      textAlign: "center", 
+      padding: "20px", 
+      paddingTop: "80px", // Add top padding to prevent content from being covered by navbar
+      maxWidth: "1200px", // Add max-width for better responsiveness
+      margin: "0 auto" // Center the content
+    }}>
+      <strong style={{ fontSize: "45px", display: "block", marginBottom: "20px" }}>
         Temukan dan Bertumbuh Bersama Pelaku UMKM seperti Anda
       </strong>
-      <br />
-      <strong style={{ fontSize: "26px" }}>
+      <strong style={{ fontSize: "26px", display: "block", marginBottom: "40px" }}>
         Terlibatlah dalam forum resmi pelaku UMKM.
       </strong>
 
@@ -134,8 +139,9 @@ const ForumDiskusi = () => {
         style={{
           display: "flex",
           justifyContent: "center",
+          flexWrap: "wrap", // Allow wrapping for better responsiveness
           gap: "20px",
-          marginTop: "40px",
+          marginBottom: "40px",
         }}
       >
         {/* Kategori Card */}
@@ -173,11 +179,13 @@ const ForumDiskusi = () => {
               padding: "20px",
               borderRadius: "10px",
               width: "180px",
+              flexGrow: 1,
+              flexBasis: "calc(20% - 20px)", // Adjust for 5 items per row on larger screens
+              minWidth: "150px", // Minimum width for smaller screens
             }}
           >
-            <img src={item.imgSrc} alt={`Icon${index + 1}`} style={{ width: "50px" }} />
-            <br />
-            <strong>{item.title}</strong>
+            <img src={item.imgSrc} alt={`Icon${index + 1}`} style={{ width: "50px", marginBottom: "10px" }} />
+            <strong style={{ display: "block" }}>{item.title}</strong>
           </div>
         ))}
       </div>
@@ -186,13 +194,14 @@ const ForumDiskusi = () => {
       <MoreToolsSection />
 
       {/* Bagian Diskusi Unggulan */}
-      <h2 style={{ marginTop: "40px" }}>Diskusi Unggulan</h2>
+      <h2 style={{ marginTop: "40px", marginBottom: "20px" }}>Diskusi Unggulan</h2>
       <div
         style={{
           display: "flex",
           justifyContent: "center",
+          flexWrap: "wrap", // Allow wrapping for better responsiveness
           gap: "20px",
-          marginTop: "20px",
+          marginBottom: "40px",
         }}
       >
         {[
@@ -218,20 +227,23 @@ const ForumDiskusi = () => {
               padding: "20px",
               borderRadius: "10px",
               width: "300px",
+              flexGrow: 1,
+              flexBasis: "calc(50% - 20px)", // Adjust for 2 items per row on larger screens
+              minWidth: "250px", // Minimum width for smaller screens
             }}
           >
             <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-              <img src={discussion.imgSrc} alt="User" style={{ width: "40px", borderRadius: "50%" }} />
+              <img src={discussion.imgSrc} alt="User" style={{ width: "40px", height: "40px", borderRadius: "50%" }} />
               <div style={{ marginLeft: "10px" }}>
-                <a href="#" style={{ fontWeight: "bold", color: "#333" }}>
+                <a href="#" style={{ fontWeight: "bold", color: "#333", textDecoration: "none" }}>
                   {discussion.user}
                 </a>
-                <span style={{ fontSize: "12px", color: "#888" }}> {discussion.userStatus}</span>
+                <span style={{ fontSize: "12px", color: "#888", display: "block" }}>{discussion.userStatus}</span>
               </div>
             </div>
-            <h3>{discussion.title}</h3>
-            <p>{discussion.content}</p>
-            <a href="#" style={{ color: "#0066c0" }}>
+            <h3 style={{ marginBottom: "10px" }}>{discussion.title}</h3>
+            <p style={{ marginBottom: "10px" }}>{discussion.content}</p>
+            <a href="#" style={{ color: "#0066c0", textDecoration: "none" }}>
               Balasan Terakhir
             </a>
           </div>
@@ -239,27 +251,26 @@ const ForumDiskusi = () => {
       </div>
 
       {/* Bagian What Hosts are Saying */}
-      <h2 style={{ marginTop: "40px" }}>Apa Kata Tuan Rumah</h2>
-      <div style={{ marginTop: "20px" }}>
+      <h2 style={{ marginTop: "40px", marginBottom: "20px" }}>Apa Kata Tuan Rumah</h2>
+      <div style={{ marginBottom: "40px" }}>
         {/* Panggil konten dengan data */}
         <div
           style={{
             backgroundColor: "#F9F9F9",
             padding: "20px",
             borderRadius: "10px",
-            marginBottom: "20px",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img src="path/to/user-avatar.png" alt="User" style={{ width: "50px", borderRadius: "50%" }} />
-            <div style={{ marginLeft: "10px", textAlign: "left" }}>
-              <a href="#" style={{ fontWeight: "bold", color: "#333" }}>
+          <div style={{ display: "flex", alignItems: "flex-start" }}>
+            <img src="path/to/user-avatar.png" alt="User" style={{ width: "50px", height: "50px", borderRadius: "50%" }} />
+            <div style={{ marginLeft: "20px", textAlign: "left", flex: 1 }}>
+              <a href="#" style={{ fontWeight: "bold", color: "#333", textDecoration: "none" }}>
                 Support with your bookings
               </a>
-              <h3>
+              <h3 style={{ marginTop: "10px", marginBottom: "10px" }}>
                 Bagaimana Anda menangani situasi saat tamu menyebabkan kerusakan pada properti Anda?
               </h3>
-              <p>
+              <p style={{ marginBottom: "10px" }}>
                 Kepada tuan rumah, saya pernah beberapa kali mengalami kerusakan, tetapi saya selalu mendapatkan ulasan yang sangat baik dari tamu setelahnya...
               </p>
               <div
@@ -268,9 +279,10 @@ const ForumDiskusi = () => {
                   justifyContent: "space-between",
                   fontSize: "12px",
                   color: "#888",
+                  flexWrap: "wrap",
                 }}
               >
-                <span>
+                <span style={{ marginBottom: "5px" }}>
                   Ema3296 • Level 6 • Sarajevo, Bosnia and Herzegovina
                 </span>
                 <span>Rabu • 8 Balasan • 8 Suka</span>
@@ -283,9 +295,9 @@ const ForumDiskusi = () => {
       {/* Pagination */}
       <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
         <nav>
-          <ul style={{ display: "flex", listStyleType: "none", padding: 0 }}>
+          <ul style={{ display: "flex", listStyleType: "none", padding: 0, flexWrap: "wrap", justifyContent: "center" }}>
             {[...Array(totalPages)].map((_, index) => (
-              <li key={index} style={{ margin: "0 5px" }}>
+              <li key={index} style={{ margin: "5px" }}>
                 <button
                   onClick={() => handlePageChange(index + 1)}
                   style={{
@@ -294,6 +306,7 @@ const ForumDiskusi = () => {
                     color: currentPage === index + 1 ? "#fff" : "#000",
                     border: "1px solid #000",
                     cursor: "pointer",
+                    minWidth: "40px",
                   }}
                 >
                   {index + 1}

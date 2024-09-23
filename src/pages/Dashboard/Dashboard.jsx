@@ -68,24 +68,26 @@ const LandingPage = () => {
         </div>
 
         {/* Teks di dalam video */}
-        {showText && ( // Teks muncul jika showText true
-          <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-4">
-            <h1 className="text-5xl sm:text-7xl font-extrabold mb-6 drop-shadow-lg shadow-black leading-tight font-serif">
-              Sentuhan Nusantara<br />di Ujung Jari Anda
-            </h1>
-            <p className="text-2xl sm:text-3xl mb-12 drop-shadow-lg shadow-black font-light max-w-3xl mx-auto italic">
-              Jelajahi keindahan warisan Indonesia melalui ribuan produk UMKM yang unik dan autentik
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-[#886b4c] transition-all duration-300 transform hover:scale-105 shadow-lg w-64">
-                Mulai Petualangan
-              </button>
-            </div>
-            <div className="mt-16">
-              <ChevronDown size={48} className="mx-auto animate-bounce" />
-            </div>
-          </div>
-        )}
+       {/* Teks di dalam video */}
+{showText && ( // Teks muncul jika showText true
+  <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-4" style={{ paddingTop: '15%' }}>
+    <h1 className="text-3xl sm:text-5xl font-extrabold mb-6 drop-shadow-lg shadow-black leading-tight font-serif">
+      Sentuhan Nusantara<br />di Ujung Jari Anda
+    </h1>
+    <p className="text-xl sm:text-2xl mb-12 drop-shadow-lg shadow-black font-light max-w-3xl mx-auto italic">
+      Jelajahi keindahan warisan Indonesia melalui ribuan produk UMKM yang unik dan autentik
+    </p>
+    <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+      <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-[#886b4c] transition-all duration-300 transform hover:scale-105 shadow-lg w-64">
+        Mulai Petualangan
+      </button>
+    </div>
+    <div className="mt-16">
+      <ChevronDown size={48} className="mx-auto animate-bounce" />
+    </div>
+  </div>
+)}
+
       </section>
 
       {/* UMKM Information Section */}

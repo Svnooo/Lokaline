@@ -90,7 +90,7 @@ const UMKMProfile = () => {
             <motion.div 
               className="w-full h-full"
               style={{
-                backgroundImage: "url('/public/peta.jpg')",
+                backgroundImage: "url('/public/assets/Localine Map.svg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
               }}

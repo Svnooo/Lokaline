@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Bars3Icon,
   ChevronDownIcon,
   XMarkIcon,
+  ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
 import {
   AcademicCapIcon,
@@ -17,7 +17,10 @@ import {
 } from "@heroicons/react/24/solid";
 import {
   Button,
+  Checkbox,
+  Collapse,
   IconButton,
+  Input,
   List,
   ListItem,
   Menu,
@@ -26,9 +29,16 @@ import {
   MenuList,
   Navbar,
   Typography,
-  Collapse,
+  Select,
+  Option
 } from "@material-tailwind/react";
-import SearchForm from "./SearchBar"; // Make sure SearchForm is imported
+import { Link, useNavigate } from "react-router-dom";
+import SearchForm from "./SearchBar";
+import { ThemeContext } from './Themecontext';
+import { LanguageContext } from './Languagecontext';
+import DarkModeToggle from './DarkModeToggle';
+
+
 
 // NavListMenu Component
 function NavListMenu() {
@@ -85,7 +95,6 @@ function NavListMenu() {
       path: "/Testimoni",
     },
   ];
-
 
   const renderItems = navListMenuItems.map(({ title, description, path }, key) => (
     <MenuItem
@@ -158,7 +167,10 @@ function NavListMenu() {
 }
 
 // NavList Component
+// NavList Component
 function NavList() {
+  const { translateText } = useContext(LanguageContext);
+
   return (
     <div className="flex items-center justify-between w-full">
       <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 text-gray-900">
@@ -170,7 +182,7 @@ function NavList() {
           className="font-medium"
         >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">
-            Home
+            {translateText("Home", "Beranda")}
           </ListItem>
         </Typography>
         <NavListMenu />
@@ -182,17 +194,18 @@ function NavList() {
           className="font-medium"
         >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900">
-            Contact Us
+            {translateText("Contact Us", "Hubungi Kami")}
           </ListItem>
         </Typography>
       </List>
-      <div className="ml-auto mr-0 w-full lg:w-1/2">
+
+      <div className="flex-grow max-w-xs">
         <SearchForm />
       </div>
-
     </div>
-  );
+  )
 }
+
 
 
 function LoginModal({ isOpen, onClose, openRegister }) {
@@ -318,10 +331,13 @@ export function NavbarWithMegaMenu() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const { isDarkMode } = useContext(ThemeContext);
+  const { translateText } = useContext(LanguageContext);
+  const navigate = useNavigate();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 150) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -332,7 +348,7 @@ export function NavbarWithMegaMenu() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 960) setOpenNav(false);
     };
@@ -350,11 +366,16 @@ export function NavbarWithMegaMenu() {
     setIsLoginModalOpen(false);
   };
 
+  const handleCartClick = () => {
+    navigate("/cart");
+  };
+
   return (
     <>
       <Navbar
-        className={`sticky top-0 w-full max-w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"
-          } !rounded-none`}
+        className={`sticky top-0 w-full max-w-full z-50 transition-all duration-300 ${
+          isScrolled ? "bg-white shadow-lg" : "bg-transparent"
+        } !rounded-none ${isDarkMode ? "bg-gray-900 text-white" : ""}`}
       >
         <div className="flex items-center justify-between text-blue-gray-900 w-full">
           <Typography as={Link} to="/" variant="h6" className="mr-4 cursor-pointer py-1.5 lg:ml-2">
@@ -369,12 +390,20 @@ export function NavbarWithMegaMenu() {
               </span>
             </div>
           </Typography>
-          <div className="hidden lg:block">
+          <div className="hidden lg:block flex-grow">
             <NavList />
           </div>
-          <div className="hidden gap-2 lg:flex">
+          <div className="hidden lg:flex items-center space-x-4">
+            <IconButton
+              variant="text"
+              color="blue-gray"
+              onClick={handleCartClick}
+            >
+              <ShoppingBagIcon className="w-6 h-6 text-gray-900" />
+            </IconButton>
+            <DarkModeToggle />
             <Button variant="gradient" size="sm" onClick={openLoginModal}>
-              Log In
+              {translateText("Log In", "Masuk")}
             </Button>
           </div>
           <IconButton
@@ -394,10 +423,10 @@ export function NavbarWithMegaMenu() {
           <NavList />
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
             <Button variant="gradient" size="md" fullWidth onClick={openLoginModal}>
-              Log In
+              {translateText("Log In", "Masuk")}
             </Button>
             <Button variant="outlined" size="md" fullWidth onClick={openRegisterModal}>
-              Register
+              {translateText("Register", "Daftar")}
             </Button>
           </div>
         </Collapse>

@@ -387,13 +387,12 @@ export function NavbarWithMegaMenu() {
   return (
     <>
       <Navbar
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-0 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-0 ${isScrolled
             ? 'navbar-light-scrolled'
             : isWhite
               ? 'navbar-white'
               : 'navbar-transparent'
-        }`}
+          }`}
       >
         <div className="container mx-auto flex items-center justify-between px-4 max-w-full">
           {/* Logo */}
@@ -437,23 +436,24 @@ export function NavbarWithMegaMenu() {
                 onClick={handleCartClick}
                 className="p-1 sm:p-2"
               >
-                <ShoppingBagIcon className={`w-4 h-4 sm:w-6 sm:h-6 ${isWhite ? 'text-black' : 'text-white'}`} />
+                <ShoppingBagIcon className="w-4 h-4 sm:w-6 sm:h-6" style={{ color: 'black' }} />
               </IconButton>
             )}
 
             {/* Login button - hidden on mobile, visible on larger screens */}
             <Button
-              variant={isWhite ? "gradient" : "outlined"}
-              size="sm"
-              onClick={openLoginModal}
-              className={`hidden sm:inline-block login-button ${
-                isWhite
-                  ? 'bg-black text-white hover:bg-white hover:text-black'
-                  : 'border-white text-white hover:bg-white hover:text-black'
-              }`}
-            >
-              {translateText("Log In", "Masuk")}
-            </Button>
+  variant={isWhite ? "outlined" : "filled"}
+  size="sm"
+  fullWidth
+  onClick={openLoginModal}
+  className={`login-button ${
+    isWhite
+      ? 'bg-transparent text-[#B49B6C] border-[#B49B6C] hover:bg-[#B49B6C] hover:text-white'
+      : 'bg-[#B49B6C] text-white hover:bg-[#a08a5f]'
+  }`}
+>
+  {translateText("Log In", "Masuk")}
+</Button>
 
             {/* Mobile menu button */}
             <IconButton
@@ -497,11 +497,10 @@ export function NavbarWithMegaMenu() {
               size="sm"
               fullWidth
               onClick={openRegisterModal}
-              className={`${
-                isWhite
+              className={`${isWhite
                   ? 'border-black text-black hover:bg-black hover:text-white'
                   : 'border-white text-white hover:bg-white hover:text-black'
-              }`}
+                }`}
             >
               {translateText("Register", "Daftar")}
             </Button>

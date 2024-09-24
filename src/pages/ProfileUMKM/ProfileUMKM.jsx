@@ -75,6 +75,8 @@ const UMKMProfile = () => {
         transition={{ duration: 0.5 }}
         className="text-5xl font-bold text-center mb-8 text-yellow-800 glow-text"
       >
+        <br />
+        <br />
         Keajaiban UMKM Indonesia
       </motion.h1>
       

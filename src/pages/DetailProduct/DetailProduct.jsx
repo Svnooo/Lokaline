@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CartContext } from '../../components/CartContext';
 
 const ProductDetail = () => {
@@ -114,7 +114,9 @@ const ProductDetail = () => {
     };
 
     return (
+        
         <div className="container mx-auto py-10 mt-16 animate-fade-in">
+            <br />
             {/* Breadcrumb Navigation */}
             <nav className="text-sm mb-6">
                 <a href="/" className="text-blue-600 hover:underline">Home</a> /
@@ -123,6 +125,8 @@ const ProductDetail = () => {
             </nav>
 
             {/* Product Detail Section */}
+            <br />
+            <br />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Product Image with Zoom Effect */}
                 <div className="flex flex-col items-center">

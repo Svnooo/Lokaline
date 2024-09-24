@@ -192,6 +192,9 @@ const TestimonialSection = () => {
   return (
     <div className="bg-gradient-to-br from-gray-100 via-gray-300 to-gray-500 min-h-screen flex items-center justify-center pt-20">
       <div className="max-w-6xl mx-auto">
+        <br />
+        <br />
+        <br />
         <h2 className="text-5xl font-extrabold text-center mb-12 text-gray-800 drop-shadow-lg">
           Kisah Sukses Pelanggan Kami
         </h2>

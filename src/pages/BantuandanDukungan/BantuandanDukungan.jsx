@@ -23,6 +23,8 @@ const HelpAndSupport = () => {
   return (
     <div className="relative min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <BatikBackground />
+      <br />
+      <br />
       <div className="relative max-w-7xl mx-auto bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-xl p-8 border-2 border-yellow-500">
         <h1 className="text-5xl font-bold text-center text-gray-900 mb-8">Bantuan dan Dukungan</h1>
         <p className="text-lg text-gray-700 text-center mb-10">

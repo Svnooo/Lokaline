@@ -26,14 +26,18 @@ const Payment = () => {
   };
 
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">Pembayaran</h1>
+    <div className="container mx-auto py-10 mt-24">
+      <center>
+        <h1 className="text-3xl font-bold mb-6 text-gray-800">Pembayaran</h1>
+      </center>
+      <br />
+      <br />
 
       {cartItems.length === 0 ? (
         <p className="text-gray-600">Keranjang Anda kosong.</p>
       ) : (
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Produk di Keranjang</h2>
+          <h2 className="text-2xl font-semibold mb-4">Produk di Keranjang : </h2>
           <div className="border-b pb-4 mb-4">
             {cartItems.map((item, index) => (
               <div key={index} className="flex justify-between items-center border-b py-2">
@@ -41,7 +45,7 @@ const Payment = () => {
                   <img src={item.image} alt={item.name} className="w-16 h-16 object-cover mr-4" />
                   <div>
                     <h3 className="text-lg font-bold">{item.name} ({item.variant})</h3>
-                    <p className="text-gray-600">Qty: {item.quantity}</p>
+                    <p className="text-gray-600">Jumlah : {item.quantity}</p>
                   </div>
                 </div>
                 <span className="text-lg font-bold">${item.price * item.quantity}</span>
@@ -50,6 +54,7 @@ const Payment = () => {
           </div>
 
           <h2 className="text-xl font-bold mb-4">Total: ${totalPrice}</h2>
+          <br />
 
           <form onSubmit={handlePaymentSubmit}>
             <h3 className="text-xl font-semibold mb-4">Pilih Metode Pembayaran:</h3>

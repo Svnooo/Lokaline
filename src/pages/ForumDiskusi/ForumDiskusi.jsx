@@ -127,6 +127,8 @@ const ForumDiskusi = () => {
       maxWidth: "1200px", // Add max-width for better responsiveness
       margin: "0 auto" // Center the content
     }}>
+      <br />
+      <br />
       <strong style={{ fontSize: "45px", display: "block", marginBottom: "20px" }}>
         Temukan dan Bertumbuh Bersama Pelaku UMKM seperti Anda
       </strong>

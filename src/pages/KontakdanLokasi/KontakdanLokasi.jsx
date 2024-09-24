@@ -24,6 +24,7 @@ const ContactForm = () => {
   };
 
   return (
+    
     <form onSubmit={handleSubmit} className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-xl p-8 transition-all duration-300 hover:shadow-2xl border-2 border-yellow-500">
       <h3 className="text-3xl font-bold mb-6 text-gray-800 border-b-2 border-yellow-500 pb-2">Hubungi Kami</h3>
       <div className="mb-6">

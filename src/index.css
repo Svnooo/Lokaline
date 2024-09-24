@@ -224,3 +224,8 @@ html.dark {
   width: 250px !important;
   height: auto !important;
 }
+
+.hover\:glow-effect:hover {
+  text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  transition: text-shadow 0.3s ease-in-out;
+}

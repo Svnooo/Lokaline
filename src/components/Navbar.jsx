@@ -179,7 +179,7 @@ function NavList() {
           color={isDarkMode ? "white" : "blue-gray"}
           className="font-medium"
         >
-          <ListItem className={`flex items-center gap-2 py-2 pr-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          <ListItem className={`flex items-center gap-2 py-2 pr-4 ${isDarkMode ? 'text-white' : 'text-gray-900'} hover:glow-effect`}>
             {translateText("Home", "Beranda")}
           </ListItem>
         </Typography>
@@ -191,7 +191,7 @@ function NavList() {
           color={isDarkMode ? "white" : "blue-gray"}
           className="font-medium"
         >
-          <ListItem className={`flex items-center gap-2 py-2 pr-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          <ListItem className={`flex items-center gap-2 py-2 pr-4 ${isDarkMode ? 'text-white' : 'text-gray-900'} hover:glow-effect`}>
             {translateText("Contact Us", "Hubungi Kami")}
           </ListItem>
         </Typography>
@@ -199,6 +199,7 @@ function NavList() {
     </div>
   )
 }
+
 
 
 

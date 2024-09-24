@@ -44,7 +44,7 @@ const BeritadanArtikel = () => {
   return (
     <div className="bg-gradient-to-br from-yellow-50 to-yellow-200 min-h-screen">
       {/* Header */}
-      <header className="relative bg-gradient-to-r from-yellow-600 to-yellow-700 text-white py-32 px-4 sm:px-6 lg:px-8">
+      <header className="relative bg-cover bg-center text-white py-32 px-4 sm:px-6 lg:px-8" style={{ backgroundImage: "url('/assets/Berita dan Artikel.png')" }}>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 max-w-7xl mx-auto text-center">
           <h1 className="text-5xl font-extrabold sm:text-6xl md:text-7xl mb-4">
@@ -57,9 +57,11 @@ const BeritadanArtikel = () => {
             <input
               type="text"
               placeholder="Cari artikel..."
-              className="px-6 py-3 w-full max-w-md text-gray-900 rounded-l-full focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              className="px-6 py-3 w-full max-w-md text-gray-900 rounded-l-full focus:outline-none focus:ring-2 focus:focus:ring-[#b49b6c]"
             />
-            <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-r-full transition duration-300">
+            
+            <button className="bg-[#b49b6c] hover:bg-[#b49b6c] text-white px-6 py-3 rounded-r-full transition duration-300">
+
               <Search className="w-6 h-6" />
             </button>
           </div>

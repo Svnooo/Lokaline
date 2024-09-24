@@ -7,85 +7,98 @@ import {
     Typography,
     Button,
 } from "@material-tailwind/react";
+import { ShoppingBagIcon, StarIcon } from '@heroicons/react/24/outline';
 
 const cards = [
     {
         id: 1,
         image: "https://images.unsplash.com/photo-1513708920014-5e6a27ed98c7",
-        title: "Laptop",
-        price: "$1200",
-        description: "High-performance laptop with Intel i7 processor and 16GB RAM.",
+        title: "Batik Pekalongan",
+        price: "Rp 350.000",
+        description: "Pekalongan",
+        rating: 4.8,
     },
     {
         id: 2,
         image: "https://images.unsplash.com/photo-1574169208507-843761648e97",
-        title: "Gaming Headset",
-        price: "$150",
-        description: "Surround sound gaming headset with noise cancellation.",
+        title: "Kopi Gayo",
+        price: "Rp 200.000",
+        description: "Aceh",
+        rating: 4.9,
     },
     {
         id: 3,
         image: "https://images.unsplash.com/photo-1574169208507-843761648e97",
-        title: "Gaming Headset",
-        price: "$150",
-        description: "Surround sound gaming headset with noise cancellation.",
+        title: "Kerajinan Rotan",
+        price: "Rp 180.000",
+        description: "Cirebon",
+        rating: 4.7,
     },
     {
         id: 4,
         image: "https://images.unsplash.com/photo-1574169208507-843761648e97",
-        title: "Gaming Headset",
-        price: "$150",
-        description: "Surround sound gaming headset with noise cancellation.",
+        title: "Tenun Ikat",
+        price: "Rp 500.000",
+        description: "Sumba",
+        rating: 4.9,
     },
-    {
-        id: 5,
-        image: "https://images.unsplash.com/photo-1574169208507-843761648e97",
-        title: "Gaming Headset",
-        price: "$150",
-        description: "Surround sound gaming headset with noise cancellation.",
-    },
-    // Tambahkan produk lainnya
+    // Add more products as needed
 ];
 
 const CardCatalog = () => {
     return (
-        <div className="flex justify-center items-center min-h-screen">
-            <div className="container mx-auto max-w-7xl px-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-10">
+        <section className="py-16 px-4 bg-[#ffffff]">
+            <div className="max-w-7xl mx-auto">
+                <h2 className="text-4xl font-bold text-center mb-12 text-[#5c4933] font-serif">
+                    Produk UMKM Unggulan
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {cards.map((card, index) => (
-                        <Card className="w-full max-w-xs mx-auto" key={index}>
-                            <CardHeader shadow={false} floated={false} className="h-64">
+                        <Card
+                            key={index}
+                            className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
+                        >
+                            <CardHeader shadow={false} floated={false} className="h-48 p-0">
                                 <img
                                     src={card.image}
-                                    alt={`card-image-${index}`}
-                                    className="h-full w-full object-cover"
+                                    alt={card.title}
+                                    className="w-full h-full object-cover"
                                 />
                             </CardHeader>
-                            <CardBody>
-                                <div className="mb-2 flex items-center justify-between">
-                                    <Typography color="blue-gray" className="font-medium">
-                                        {card.title}
-                                    </Typography>
-                                    <Typography color="blue-gray" className="font-medium">
-                                        {card.price}
-                                    </Typography>
-                                </div>
+                            <CardBody className="p-4">
+                                <Typography
+                                    variant="h6"
+                                    className="font-bold text-lg mb-1 text-[#5c4933]"
+                                >
+                                    {card.title}
+                                </Typography>
                                 <Typography
                                     variant="small"
-                                    color="gray"
-                                    className="font-normal opacity-75"
+                                    className="text-[#886b4c] text-md mb-2"
                                 >
                                     {card.description}
                                 </Typography>
+                                <div className="flex justify-between items-center mb-2">
+                                    <Typography className="font-bold text-lg text-[#886b4c]">
+                                        {card.price}
+                                    </Typography>
+                                    <div className="flex items-center">
+                                        <StarIcon className="w-5 h-5 text-yellow-400" />
+                                        <Typography className="ml-1 text-[#5c4933]">
+                                            {card.rating}
+                                        </Typography>
+                                    </div>
+                                </div>
                             </CardBody>
                             <CardFooter className="pt-0">
                                 <Link to={`/product/${card.id}`}>
                                     <Button
                                         ripple={false}
                                         fullWidth={true}
-                                        className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+                                        className="bg-[#886b4c] text-white p-2 rounded-full hover:bg-[#5c4933] transition flex items-center justify-center"
                                     >
-                                        View Details
+                                        <ShoppingBagIcon className="w-5 h-5 mr-2" />
+                                        Beli Sekarang
                                     </Button>
                                 </Link>
                             </CardFooter>
@@ -93,7 +106,7 @@ const CardCatalog = () => {
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

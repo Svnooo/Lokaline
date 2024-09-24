@@ -1,109 +1,102 @@
-import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import { Icon } from 'leaflet';
+
+const customMapIcon = new Icon({
+  iconUrl: '/public/assets/location-icon.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
 
 const MapInteractive = () => {
-  const [selectedIsland, setSelectedIsland] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
-  const handlePulauClick = (pulau) => {
-    setSelectedIsland(pulau);
-  };
-
-  const closeModal = () => {
-    setSelectedIsland(null);
-  };
-
-  const islands = [
-    { name: 'Jawa', top: '68%', left: '40%', width: '15%', height: '10%' },
-    { name: 'Bali', top: '70%', left: '50%', width: '5%', height: '5%' },
-    { name: 'Sumatra', top: '50%', left: '22%', width: '15%', height: '20%' },
-    { name: 'Kalimantan', top: '50%', left: '42%', width: '15%', height: '15%' },
-    { name: 'Sulawesi', top: '54%', left: '57%', width: '10%', height: '15%' },
-    { name: 'Papua', top: '60%', left: '90%', width: '10%', height: '15%' },
-    { name: 'Maluku', top: '65%', left: '75%', width: '10%', height: '10%' },
-    { name: 'NTT', top: '75%', left: '60%', width: '10%', height: '5%' },
+  const locations = [
+    { lat: -6.1751, lng: 106.8650, name: 'Jakarta', products: ['Batik', 'Kerajinan Rotan'] },
+    { lat: -8.6095, lng: 115.1139, name: 'Bali', products: ['Ukiran Kayu', 'Keramik'] },
+    { lat: -7.7958, lng: 110.3695, name: 'Yogyakarta', products: ['Batik', 'Perak'] },
+    { lat: 2.9199, lng: 99.0722, name: 'Medan', products: ['Kopi Gayo', 'Ulos'] },
+    { lat: -2.5223, lng: 140.7111, name: 'Papua', products: ['Noken', 'Kayu Cendana'] },
+    { lat: -5.1443, lng: 119.4213, name: 'Makassar', products: ['Phinisi', 'Tapis'] },
+    { lat: -3.6909, lng: 128.1855, name: 'Ambon', products: ['Tenun Ikat', 'Kerajinan Kulit'] },
+    { lat: -0.7893, lng: 113.9213, name: 'Palangkaraya', products: ['Anyaman Rotan', 'Kain Sasirangan'] },
+    { lat: -5.3464, lng: 105.2551, name: 'Lampung', products: ['Kopi Lampung', 'Keramik Lampung'] },
+    { lat: -0.0235, lng: 109.3375, name: 'Pontianak', products: ['Batik Megamendung', 'Tenun Ikat'] },
   ];
 
-  // Mock UMKM data for each island
-  const umkmData = {
-    Jawa: [
-      { name: 'Batik Pekalongan', type: 'Kerajinan', location: 'Pekalongan' },
-      { name: 'Tahu Sumedang', type: 'Kuliner', location: 'Sumedang' },
-      { name: 'Keris Surakarta', type: 'Kerajinan', location: 'Surakarta' },
-    ],
-    Bali: [
-      { name: 'Kopi Kintamani', type: 'Pertanian', location: 'Kintamani' },
-      { name: 'Tenun Endek', type: 'Kerajinan', location: 'Klungkung' },
-    ],
-    Sumatra: [
-      { name: 'Kopi Gayo', type: 'Pertanian', location: 'Aceh' },
-      { name: 'Ulos Batak', type: 'Kerajinan', location: 'Tapanuli' },
-    ],
-    Kalimantan: [
-      { name: 'Amplang', type: 'Kuliner', location: 'Samarinda' },
-      { name: 'Manik-manik Dayak', type: 'Kerajinan', location: 'Pontianak' },
-    ],
-    Sulawesi: [
-      { name: 'Kain Sutera', type: 'Kerajinan', location: 'Makassar' },
-      { name: 'Kopi Toraja', type: 'Pertanian', location: 'Toraja' },
-    ],
-    Papua: [
-      { name: 'Noken', type: 'Kerajinan', location: 'Jayapura' },
-      { name: 'Sagu', type: 'Pertanian', location: 'Merauke' },
-    ],
-    Maluku: [
-      { name: 'Pala', type: 'Pertanian', location: 'Banda' },
-      { name: 'Kerajinan Kerang', type: 'Kerajinan', location: 'Ambon' },
-    ],
-    NTT: [
-      { name: 'Tenun Ikat', type: 'Kerajinan', location: 'Sumba' },
-      { name: 'Moke', type: 'Minuman', location: 'Flores' },
-    ],
-  };
-
   return (
-    <div className="relative mx-auto w-full max-w-6xl mt-[-200px] ml-[-30px]">
-      <img
-        src="/assets/Localine Map.svg"
-        alt="Peta Indonesia"
-        className="w-full h-auto"
-        style={{ transform: 'scale(1.1)', transformOrigin: 'top left' }}
-      />
-      
-      {islands.map((island) => (
-        <div
-          key={island.name}
-          className="absolute cursor-pointer"
-          style={{
-            top: island.top,
-            left: island.left,
-            width: island.width,
-            height: island.height,
-          }}
-          onClick={() => handlePulauClick(island.name)}
+    <div style={{ position: 'relative', height: '400px' }}>
+      <MapContainer
+        center={[-2.548926, 118.0148634]}
+        zoom={5}
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-      ))}
 
-      {selectedIsland && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold text-[#5c4933]">UMKM di {selectedIsland}</h2>
-              <button onClick={closeModal} className="text-[#886b4c] hover:text-[#5c4933]">
-                <X size={24} />
+        {locations.map((location, index) => (
+          <Marker
+            key={index}
+            position={[location.lat, location.lng]}
+            icon={customMapIcon}
+            eventHandlers={{
+              click: () => {
+                setSelectedLocation(location);
+              },
+            }}
+          >
+            <Popup>
+              <div>
+                <h3 className="font-bold text-xl text-[#5c4933] mb-2">{location.name}</h3>
+                <p className="text-gray-600 mb-4">Produk UMKM:</p>
+                <ul className="list-disc pl-4">
+                  {location.products.map((product, index) => (
+                    <li key={index} className="text-[#886b4c]">
+                      {product}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex justify-end mt-4">
+                  <button className="bg-[#886b4c] text-white px-4 py-2 rounded-full hover:bg-[#5c4933] transition">
+                    Lihat Lebih Banyak
+                  </button>
+                </div>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+
+        {selectedLocation && (
+          <div
+            className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 z-10"
+            style={{
+              position: 'absolute',
+              top: '4rem',
+              left: '4rem',
+              zIndex: 10,
+            }}
+          >
+            <h3 className="font-bold text-xl text-[#5c4933] mb-2">{selectedLocation.name}</h3>
+            <p className="text-gray-600 mb-4">Produk UMKM:</p>
+            <ul className="list-disc pl-4">
+              {selectedLocation.products.map((product, index) => (
+                <li key={index} className="text-[#886b4c]">
+                  {product}
+                </li>
+              ))}
+            </ul>
+            <div className="flex justify-end mt-4">
+              <button className="bg-[#886b4c] text-white px-4 py-2 rounded-full hover:bg-[#5c4933] transition">
+                Lihat Lebih Banyak
               </button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {umkmData[selectedIsland].map((umkm, index) => (
-                <div key={index} className="card"> {/* Gunakan kelas card */}
-                  <h3 className="card-title">{umkm.name}</h3> {/* Judul */}
-                  <p className="card-type">Jenis: {umkm.type}</p> {/* Jenis */}
-                  <p className="card-location">Lokasi: {umkm.location}</p> {/* Lokasi */}
-                </div>
-              ))}
-            </div>
           </div>
-        </div>
-      )}
+        )}
+      </MapContainer>
     </div>
   );
 };

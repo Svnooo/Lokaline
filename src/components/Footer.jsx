@@ -9,14 +9,14 @@ export default function FooterComponent() {
     <Footer container>
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
-          <div>
-            <Footer.Brand
-              href="/"
-              src="assets/Logo-Localine.png"
-              alt="Localine Logo"
-              name="Localine"
-            />
-          </div>
+        <div className="flex justify-start"> {/* Wrapping div to control layout */}
+  <img
+    src="assets/Logo-Localine.png"
+    alt="Localine Logo"
+    style={{ width: '150px', height: 'auto' }} // Ensure size is set here
+  />
+</div>
+
           <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
             <div>
               <Footer.Title title="About" />

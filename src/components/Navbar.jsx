@@ -1,35 +1,37 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import "../index.css"
 import {
-  Navbar,
-  Typography,
-  Button,
-  IconButton,
-  Collapse,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  List,
-  ListItem,
-} from "@material-tailwind/react";
-import {
-  ChevronDownIcon,
   Bars3Icon,
-  XMarkIcon,
+  ChevronDownIcon,
   ShoppingBagIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
+  AcademicCapIcon,
+  Bars4Icon,
+  ChatBubbleOvalLeftIcon,
   InformationCircleIcon,
   NewspaperIcon,
-  Bars4Icon,
-  UserGroupIcon,
   PhoneIcon,
-  AcademicCapIcon,
+  UserGroupIcon,
   UserIcon,
-  ChatBubbleOvalLeftIcon,
 } from "@heroicons/react/24/solid";
+import {
+  Button,
+  Collapse,
+  IconButton,
+  List,
+  ListItem,
+  Menu,
+  MenuHandler,
+  MenuItem,
+  MenuList,
+  Navbar,
+  Typography,
+  Input,
+  Checkbox
+} from "@material-tailwind/react";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "../index.css";
 import DarkModeToggle from './DarkModeToggle';
 import { LanguageContext } from './Languagecontext';
 import { ThemeContext } from './Themecontext';
@@ -221,7 +223,6 @@ function LoginModal({ isOpen, onClose, openRegister }) {
               alt="Logo Localine"
               className="mx-auto w-24 h-18"
             />
-            <h1 className="text-2xl font-bold mt-2">Localine</h1>
           </div>
           <div>
             <label className="block mb-1 text-sm font-medium text-gray-700">
@@ -261,7 +262,23 @@ function LoginModal({ isOpen, onClose, openRegister }) {
 
 // Register Modal Component
 function RegisterModal({ isOpen, onClose, openLogin }) {
+  const [shouldNavigateToLogin, setShouldNavigateToLogin] = useState(false);
+
   if (!isOpen) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically handle the registration logic
+    // For now, we'll just set the state to navigate to login
+    setShouldNavigateToLogin(true);
+  };
+
+  if (shouldNavigateToLogin) {
+    // Close the register modal and open the login modal
+    onClose();
+    openLogin();
+    return null;
+  }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -273,14 +290,13 @@ function RegisterModal({ isOpen, onClose, openLogin }) {
           ✕
         </button>
 
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="text-center">
             <img
               src="/assets/Logo-Localine.png"
               alt="Logo Localine"
               className="mx-auto w-24 h-18"
             />
-            <h1 className="text-2xl font-bold mt-2">Localine</h1>
           </div>
           <div>
             <label className="block mb-1 text-sm font-medium text-gray-700">
@@ -318,12 +334,14 @@ function RegisterModal({ isOpen, onClose, openLogin }) {
   );
 }
 
+
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = useState(false);
   const [isWhite, setIsWhite] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
   const { isDarkMode } = useContext(ThemeContext);
   const { selectedLanguage, setSelectedLanguage, translateText } = useContext(LanguageContext);
   const navigate = useNavigate();
@@ -393,19 +411,17 @@ export function NavbarWithMegaMenu() {
             to="/"
             variant="h6"
             className="cursor-pointer py-1.5 flex-shrink-0"
+            onMouseEnter={() => setIsLogoHovered(true)}
+            onMouseLeave={() => setIsLogoHovered(false)}
           >
             <div className="flex items-center">
               <img
-                src="/assets/Logo-Localine.png"
+                src={isLogoHovered ? "/assets/Logo-Localine-Glow.png" : "/assets/Logo-Localine.png"}
                 alt="Logo Localine"
-                className="h-12 w-16 sm:h-14 sm:w-18"
+                className="h-40 w-40 sm:h-20 sm:w-24 transition-opacity duration-300"
               />
-              <span className="ml-2 text-base sm:text-lg font-semibold localine-text">
-                Localine
-              </span>
             </div>
           </Typography>
-
           {/* Center nav items - hidden on mobile, visible on larger screens */}
           <div className="hidden lg:flex items-center justify-center flex-grow">
             <NavList isWhite={isWhite} />
@@ -442,8 +458,8 @@ export function NavbarWithMegaMenu() {
               size="sm"
               onClick={openLoginModal}
               className={`hidden sm:inline-block login-button ${isWhite
-                  ? 'bg-black text-white hover:bg-white hover:text-black'
-                  : 'border-white text-white hover:bg-white hover:text-black'
+                ? 'bg-black text-white hover:bg-white hover:text-black'
+                : 'border-white text-white hover:bg-white hover:text-black'
                 }`}
             >
               {translateText("Log In", "Masuk")}
@@ -492,8 +508,8 @@ export function NavbarWithMegaMenu() {
               fullWidth
               onClick={openRegisterModal}
               className={`${isWhite
-                  ? 'border-black text-black hover:bg-black hover:text-white'
-                  : 'border-white text-white hover:bg-white hover:text-black'
+                ? 'border-black text-black hover:bg-black hover:text-white'
+                : 'border-white text-white hover:bg-white hover:text-black'
                 }`}
             >
               {translateText("Register", "Daftar")}

@@ -2,72 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    overflow-x: hidden;
-  }
-  
-  .navbar-fullwidth {
-    width: 100vw;
-  }
-  
-  .bg-login {
-    background-image: url('assets/IndLocaline.png'); /* Adjust the path as necessary */
-    background-size: cover;
-    background-position: center;
-  }
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+}
 
-  /* CardCatalog.css */
+.navbar-fullwidth {
+  width: 100vw;
+}
+
+.bg-login {
+  background-image: url('assets/IndLocaline.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* CardCatalog.css */
 .container {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1280px; /* Sesuai dengan max-w-7xl di Tailwind */
-  padding-left: 1rem; /* Sesuai dengan px-4 di Tailwind */
+  max-width: 1280px;
+  padding-left: 1rem;
   padding-right: 1rem;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 2.5rem; /* 10px = 2.5rem */
+  gap: 2.5rem;
 }
 
 @media (min-width: 640px) {
   .grid {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 768px) {
   .grid {
-      grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (min-width: 1024px) {
   .grid {
-      grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (min-width: 1280px) {
   .grid {
-      grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
 .card {
   width: 100%;
-  max-width: 20rem; /* Sesuai dengan max-w-xs di Tailwind */
+  max-width: 20rem;
   margin-left: auto;
   margin-right: auto;
 }
 
 .card-header {
-  height: 16rem; /* Sesuai dengan h-64 di Tailwind */
+  height: 16rem;
 }
 
 .card-image {
@@ -77,8 +76,8 @@ body {
 }
 
 .button {
-  background-color: rgba(38, 38, 38, 0.1); /* bg-blue-gray-900/10 */
-  color: #263238; /* text-blue-gray-900 */
+  background-color: rgba(38, 38, 38, 0.1);
+  color: #263238;
   width: 100%;
   transition: transform 0.3s;
 }
@@ -98,6 +97,8 @@ body {
 
 .nav-logo {
   filter: brightness(0);
+  width: 200px; /* Increase the width to make the logo bigger */
+  height: auto; /* This will maintain the aspect ratio */
 }
 
 /* Dark Mode Styles */
@@ -129,7 +130,6 @@ html.dark {
 }
 
 /* NavbarStyles.css */
-
 .navbar-transparent,
 .navbar-white,
 .navbar-light-scrolled,
@@ -169,7 +169,6 @@ html.dark {
   }
 }
 
-/* Override any default styles that might add background or shadow */
 .navbar-transparent,
 .navbar-transparent.scrolled,
 .dark .navbar-transparent {
@@ -179,7 +178,6 @@ html.dark {
   box-shadow: none !important;
 }
 
-/* Ensure text is visible against any background */
 .navbar-transparent .text-black,
 .navbar-white .text-black,
 .navbar-light-scrolled .text-black,
@@ -188,7 +186,6 @@ html.dark {
   transition: color 0.5s ease;
 }
 
-/* Gaya setelah discroll pada light mode */
 .navbar-light-scrolled {
   background-color: rgba(255, 255, 255, 0.95) !important;
   border-bottom: 2px solid rgba(255, 255, 255, 0.95) !important;
@@ -196,7 +193,6 @@ html.dark {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Gaya setelah discroll pada dark mode */
 .navbar-dark-scrolled {
   background-color: rgba(0, 0, 0, 0.95) !important;
   border-bottom: 2px solid rgba(0, 0, 0, 0.95) !important;
@@ -209,7 +205,6 @@ html.dark {
   color: currentColor !important;
 }
 
-/* New styles for login button and locale text */
 .navbar-transparent .login-button,
 .navbar-transparent .locale-text,
 .navbar-dark-scrolled .login-button,
@@ -224,4 +219,8 @@ html.dark {
 .navbar-light-scrolled .locale-text {
   color: black !important;
   transition: color 0.5s ease;
+}
+.footer-logo {
+  width: 250px !important;
+  height: auto !important;
 }

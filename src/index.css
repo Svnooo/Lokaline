@@ -82,7 +82,8 @@ body {
   transition: transform 0.3s;
 }
 
-.button:hover, .button:focus {
+.button:hover,
+.button:focus {
   transform: scale(1.05);
 }
 
@@ -90,43 +91,17 @@ body {
   transform: scale(1);
 }
 
-/* Default Light Mode Styles */
+/* Navigation Styles */
 .nav-link {
-  color: black;
+  color: white;
+  transition: color 0.5s ease;
 }
 
 .nav-logo {
-  filter: brightness(0);
-  width: 200px; /* Increase the width to make the logo bigger */
-  height: auto; /* This will maintain the aspect ratio */
-}
-
-/* Dark Mode Styles */
-@media (prefers-color-scheme: dark) {
-  .nav-link {
-    color: white;
-  }
-
-  .nav-logo {
-    filter: brightness(10);
-  }
-}
-
-:root {
-  --bg-light: #ffffff;
-  --bg-dark: #1a202c;
-  --text-light: #000000;
-  --text-dark: #ffffff;
-}
-
-html {
-  background-color: var(--bg-light);
-  color: var(--text-light);
-}
-
-html.dark {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
+  filter: brightness(0) invert(1);
+  width: 200px;
+  height: auto;
+  transition: filter 0.5s ease;
 }
 
 /* NavbarStyles.css */
@@ -170,8 +145,7 @@ html.dark {
 }
 
 .navbar-transparent,
-.navbar-transparent.scrolled,
-.dark .navbar-transparent {
+.navbar-transparent.scrolled {
   background-color: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -194,8 +168,8 @@ html.dark {
 }
 
 .navbar-dark-scrolled {
-  background-color: rgba(0, 0, 0, 0.95) !important;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.95) !important;
+  background-color: #1f2937 !important;
+  border-bottom: 2px solid #1f2937 !important;
   color: white !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
 }
@@ -205,21 +179,39 @@ html.dark {
   color: currentColor !important;
 }
 
+/* New styles for navbar text color */
+.navbar-transparent .nav-link,
 .navbar-transparent .login-button,
-.navbar-transparent .locale-text,
-.navbar-dark-scrolled .login-button,
-.navbar-dark-scrolled .locale-text {
+.navbar-transparent .locale-text {
   color: white !important;
-  transition: color 0.5s ease;
 }
 
+.navbar-white .nav-link,
 .navbar-white .login-button,
 .navbar-white .locale-text,
+.navbar-light-scrolled .nav-link,
 .navbar-light-scrolled .login-button,
 .navbar-light-scrolled .locale-text {
   color: black !important;
-  transition: color 0.5s ease;
 }
+
+.navbar-dark-scrolled .nav-link,
+.navbar-dark-scrolled .login-button,
+.navbar-dark-scrolled .locale-text {
+  color: white !important;
+}
+
+/* Adjust logo color */
+.navbar-transparent .nav-logo,
+.navbar-dark-scrolled .nav-logo {
+  filter: brightness(0) invert(1);
+}
+
+.navbar-white .nav-logo,
+.navbar-light-scrolled .nav-logo {
+  filter: brightness(0);
+}
+
 .footer-logo {
   width: 250px !important;
   height: auto !important;

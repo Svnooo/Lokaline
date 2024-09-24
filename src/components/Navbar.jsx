@@ -32,17 +32,14 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../index.css";
-import DarkModeToggle from './DarkModeToggle';
 import { LanguageContext } from './Languagecontext';
 import { ThemeContext } from './Themecontext';
-
 
 // NavListMenu Component
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { isDarkMode } = useContext(ThemeContext);
   const { translateText } = useContext(LanguageContext);
 
   const navListMenuItems = [
@@ -99,23 +96,23 @@ function NavListMenu() {
   const renderItems = navListMenuItems.map(({ icon: Icon, title, description, path }, key) => (
     <MenuItem
       key={key}
-      className={`flex items-center gap-3 cursor-pointer ${isDarkMode ? 'text-white' : ''}`}
+      className="flex items-center gap-3 cursor-pointer"
       onClick={() => navigate(path)}
     >
-      <div className={`flex items-center justify-center rounded-lg p-2 ${isDarkMode ? 'bg-blue-gray-800' : '!bg-blue-gray-50'}`}>
-        <Icon className={`h-6 w-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`} />
+      <div className="flex items-center justify-center rounded-lg p-2 bg-blue-gray-50">
+        <Icon className="h-6 w-6 text-gray-900" />
       </div>
       <div>
         <Typography
           variant="h6"
-          color={isDarkMode ? "white" : "blue-gray"}
+          color="blue-gray"
           className="flex items-center text-sm font-bold"
         >
           {title}
         </Typography>
         <Typography
           variant="paragraph"
-          className={`text-xs !font-medium ${isDarkMode ? 'text-blue-gray-200' : 'text-blue-gray-500'}`}
+          className="text-xs !font-medium text-blue-gray-500"
         >
           {description}
         </Typography>
@@ -135,7 +132,7 @@ function NavListMenu() {
         <MenuHandler>
           <Typography as="div" variant="small" className="font-small">
             <ListItem
-              className={`flex items-center gap-2 py-2 pr-4 font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
+              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900"
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
@@ -151,7 +148,7 @@ function NavListMenu() {
             </ListItem>
           </Typography>
         </MenuHandler>
-        <MenuList className={`hidden max-w-screen-xl rounded-xl lg:block ${isDarkMode ? 'bg-gray-800' : ''}`}>
+        <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
           <ul className="grid grid-cols-3 gap-y-2 outline-none outline-0">
             {renderItems}
           </ul>
@@ -167,19 +164,18 @@ function NavListMenu() {
 // NavList Component
 function NavList() {
   const { translateText } = useContext(LanguageContext);
-  const { isDarkMode } = useContext(ThemeContext);
 
   return (
     <div className="flex items-center justify-center w-full">
-      <List className={`mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+      <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 text-gray-900">
         <Typography
           as={Link}
           to="/"
           variant="small"
-          color={isDarkMode ? "white" : "blue-gray"}
+          color="blue-gray"
           className="font-medium"
         >
-          <ListItem className={`flex items-center gap-2 py-2 pr-4 ${isDarkMode ? 'text-white' : 'text-gray-900'} hover:glow-effect`}>
+          <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900 hover:glow-effect">
             {translateText("Home", "Beranda")}
           </ListItem>
         </Typography>
@@ -188,10 +184,10 @@ function NavList() {
           as={Link}
           to="/KontakdanLokasi"
           variant="small"
-          color={isDarkMode ? "white" : "blue-gray"}
+          color="blue-gray"
           className="font-medium"
         >
-          <ListItem className={`flex items-center gap-2 py-2 pr-4 ${isDarkMode ? 'text-white' : 'text-gray-900'} hover:glow-effect`}>
+          <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900 hover:glow-effect">
             {translateText("Contact Us", "Hubungi Kami")}
           </ListItem>
         </Typography>
@@ -199,10 +195,6 @@ function NavList() {
     </div>
   )
 }
-
-
-
-
 
 function LoginModal({ isOpen, onClose, openRegister }) {
   if (!isOpen) return null;
@@ -343,7 +335,6 @@ export function NavbarWithMegaMenu() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
-  const { isDarkMode } = useContext(ThemeContext);
   const { selectedLanguage, setSelectedLanguage, translateText } = useContext(LanguageContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -352,14 +343,14 @@ export function NavbarWithMegaMenu() {
     const handleScroll = () => {
       const scrollPercentage = (window.scrollY / document.documentElement.scrollHeight) * 100;
 
-      // Jika scroll lebih dari 10%, atur navbar dengan border dan warna teks
+      // If scroll is more than 5%, set navbar with border and text color
       setIsScrolled(scrollPercentage > 5);
 
-      // Atur gaya berdasarkan posisi scroll
+      // Set style based on scroll position
       const contentStart = document.querySelector('.content-start');
       if (contentStart) {
         const contentStartPosition = contentStart.getBoundingClientRect().top;
-        setIsWhite(contentStartPosition <= 0);
+        setIsWhite(contentStartPosition <= 0 || scrollPercentage > 5);
       }
     };
 
@@ -396,16 +387,15 @@ export function NavbarWithMegaMenu() {
   return (
     <>
       <Navbar
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-            ? isDarkMode
-              ? 'navbar-dark-scrolled'
-              : 'navbar-light-scrolled'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-0 ${
+          isScrolled
+            ? 'navbar-light-scrolled'
             : isWhite
               ? 'navbar-white'
               : 'navbar-transparent'
-          }`}
+        }`}
       >
-        <div className="container mx-auto flex items-center justify-between">
+        <div className="container mx-auto flex items-center justify-between px-4 max-w-full">
           {/* Logo */}
           <Typography
             as={Link}
@@ -435,7 +425,7 @@ export function NavbarWithMegaMenu() {
               variant="text"
               size="sm"
               onClick={() => setSelectedLanguage(selectedLanguage === 'en' ? 'id' : 'en')}
-              className="locale-text text-xs sm:text-sm"
+              className={`locale-text text-xs sm:text-sm ${isWhite ? 'text-black' : 'text-white'}`}
             >
               {selectedLanguage === 'en' ? 'ID' : 'EN'}
             </Button>
@@ -451,17 +441,16 @@ export function NavbarWithMegaMenu() {
               </IconButton>
             )}
 
-            <DarkModeToggle />
-
             {/* Login button - hidden on mobile, visible on larger screens */}
             <Button
               variant={isWhite ? "gradient" : "outlined"}
               size="sm"
               onClick={openLoginModal}
-              className={`hidden sm:inline-block login-button ${isWhite
-                ? 'bg-black text-white hover:bg-white hover:text-black'
-                : 'border-white text-white hover:bg-white hover:text-black'
-                }`}
+              className={`hidden sm:inline-block login-button ${
+                isWhite
+                  ? 'bg-black text-white hover:bg-white hover:text-black'
+                  : 'border-white text-white hover:bg-white hover:text-black'
+              }`}
             >
               {translateText("Log In", "Masuk")}
             </Button>
@@ -490,7 +479,7 @@ export function NavbarWithMegaMenu() {
               variant="text"
               size="sm"
               onClick={() => setSelectedLanguage(selectedLanguage === 'en' ? 'id' : 'en')}
-              className="locale-text w-full"
+              className={`locale-text w-full ${isWhite ? 'text-black' : 'text-white'}`}
             >
               {selectedLanguage === 'en' ? 'Switch to Bahasa Indonesia' : 'Ganti ke Bahasa Inggris'}
             </Button>
@@ -508,10 +497,11 @@ export function NavbarWithMegaMenu() {
               size="sm"
               fullWidth
               onClick={openRegisterModal}
-              className={`${isWhite
-                ? 'border-black text-black hover:bg-black hover:text-white'
-                : 'border-white text-white hover:bg-white hover:text-black'
-                }`}
+              className={`${
+                isWhite
+                  ? 'border-black text-black hover:bg-black hover:text-white'
+                  : 'border-white text-white hover:bg-white hover:text-black'
+              }`}
             >
               {translateText("Register", "Daftar")}
             </Button>

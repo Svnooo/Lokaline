@@ -19,13 +19,11 @@ import PelatihandanWebinar from "./pages/PelatihandanWebinar/PelatihandanWebinar
 import ProfileUMKM from "./pages/ProfileUMKM/ProfileUMKM";
 import Register from "./pages/Register/Register";
 import Testimoni from "./pages/Testimoni/Testimoni";
-import { ThemeProvider } from './components/Themecontext';
 import { LanguageProvider } from './components/Languagecontext';
 
 function App() {
   return (
     <CartProvider>
-      <ThemeProvider>
         <LanguageProvider>
           <Router>
             <div id="root">
@@ -52,7 +50,6 @@ function App() {
             </div>
           </Router>
         </LanguageProvider>
-      </ThemeProvider>
     </CartProvider>
   );
 }

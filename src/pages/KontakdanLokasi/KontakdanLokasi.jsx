@@ -24,7 +24,7 @@ const Contact = () => {
                   <label htmlFor="message" className="block text-[#5c4933] mb-2">Pesan</label>
                   <textarea id="message" name="message" rows="4" className="w-full px-3 py-2 border border-[#886b4c] rounded-md focus:outline-none focus:ring-2 focus:ring-[#886b4c]" required></textarea>
                 </div>
-                <button type="submit" className="bg-[#886b4c] text-white px-6 py-3 rounded-full font-bold hover:bg-[#5c4933] transition-transform transform hover:scale-105">
+                <button type="submit" className="bg-[#b49b6c] text-white px-6 py-3 rounded-full font-bold hover:bg-[#9f8758] transition-transform transform hover:scale-105">
                   Kirim Pesan
                 </button>
               </form>

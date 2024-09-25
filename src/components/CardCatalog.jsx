@@ -9,10 +9,11 @@ import {
 } from "@material-tailwind/react";
 import { ShoppingBagIcon, StarIcon } from '@heroicons/react/24/outline';
 
+
 const cards = [
     {
         id: 1,
-        image: "https://images.unsplash.com/photo-1513708920014-5e6a27ed98c7",
+        image: "/dashboardFt/Batik 1.png",
         title: "Batik Pekalongan",
         price: "Rp 350.000",
         description: "Pekalongan",
@@ -20,7 +21,7 @@ const cards = [
     },
     {
         id: 2,
-        image: "https://images.unsplash.com/photo-1574169208507-843761648e97",
+        image: "/dashboardFt/Kopi Gayo.png",
         title: "Kopi Gayo",
         price: "Rp 200.000",
         description: "Aceh",
@@ -28,7 +29,7 @@ const cards = [
     },
     {
         id: 3,
-        image: "https://images.unsplash.com/photo-1574169208507-843761648e97",
+        image: "/dashboardFt/Kerajinan Rotan.png",
         title: "Kerajinan Rotan",
         price: "Rp 180.000",
         description: "Cirebon",
@@ -36,22 +37,19 @@ const cards = [
     },
     {
         id: 4,
-        image: "https://images.unsplash.com/photo-1574169208507-843761648e97",
+        image: "/dashboardFt/4.png",
         title: "Tenun Ikat",
         price: "Rp 500.000",
         description: "Sumba",
         rating: 4.9,
     },
-    // Add more products as needed
+   
 ];
 
 const CardCatalog = () => {
     return (
         <section className="py-16 px-4 bg-[#ffffff]">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-4xl font-bold text-center mb-12 text-[#5c4933] font-serif">
-                    Produk UMKM Unggulan
-                </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {cards.map((card, index) => (
                         <Card

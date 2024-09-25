@@ -1,6 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../../components/CartContext';
 
+// Helper function to format numbers as Rupiah
+const formatPrice = (price) => {
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(price).replace('IDR', 'Rp').trim();
+};
+
 const Payment = () => {
   const { cartItems } = useContext(CartContext);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
@@ -19,9 +24,9 @@ const Payment = () => {
     e.preventDefault();
     if (selectedPaymentMethod) {
       alert(`Anda memilih metode pembayaran: ${selectedPaymentMethod}`);
-      // Logika untuk melanjutkan pembayaran (API call, redirect, dll.)
+      // Logic for processing the payment (API call, redirect, etc.)
     } else {
-      alert('Silakan pilih metode pembayaran terlebih dahulu.');
+      alert('Please select a payment method.');
     }
   };
 
@@ -34,10 +39,10 @@ const Payment = () => {
       <br />
 
       {cartItems.length === 0 ? (
-        <p className="text-gray-600">Keranjang Anda kosong.</p>
+        <p className="text-gray-600">Keranjang Anda Kosong</p>
       ) : (
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Produk di Keranjang : </h2>
+          <h2 className="text-2xl font-semibold mb-4">Keranjang Belanja Anda :</h2>
           <div className="border-b pb-4 mb-4">
             {cartItems.map((item, index) => (
               <div key={index} className="flex justify-between items-center border-b py-2">
@@ -48,16 +53,19 @@ const Payment = () => {
                     <p className="text-gray-600">Jumlah : {item.quantity}</p>
                   </div>
                 </div>
-                <span className="text-lg font-bold">${item.price * item.quantity}</span>
+                <span className="text-lg font-bold">{formatPrice(item.price * item.quantity)}</span>
               </div>
             ))}
           </div>
 
-          <h2 className="text-xl font-bold mb-4">Total: ${totalPrice}</h2>
+          {/* Align Total to the Right */}
+          <div className="flex justify-end">
+            <h2 className="text-xl font-bold mb-4">Total: {formatPrice(totalPrice)}</h2>
+          </div>
           <br />
 
           <form onSubmit={handlePaymentSubmit}>
-            <h3 className="text-xl font-semibold mb-4">Pilih Metode Pembayaran:</h3>
+            <h3 className="text-xl font-semibold mb-4">Pilih Metode Pembayaran :</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {paymentMethods.map((method) => (
                 <div

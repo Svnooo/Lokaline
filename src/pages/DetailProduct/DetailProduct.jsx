@@ -10,17 +10,16 @@ const ProductDetail = () => {
     const products = [
         {
             id: 1,
-            name: 'Laptop',
-            shortDescription: 'High-performance laptop with Intel i7 processor and 16GB RAM.',
-            fullDescription: 'Laptop ini menawarkan performa tinggi...',
-            price: 1200,
-            originalPrice: 1400,
-            discount: 10,
-            image: '/assets/download.jpeg',
+            image: "/dashboardFt/Batik 1.png",
+            title: "Batik Pekalongan",
+            price: 350000,
+            description: "Pekalongan",
+            rating: 4.8,
+            fullDescription: "Batik Pekalongan terkenal dengan coraknya yang beragam dan penggunaan warna yang kaya. Dibuat secara tradisional oleh pengrajin batik di Pekalongan, kain batik ini melambangkan budaya dan sejarah lokal yang mendalam. Cocok digunakan untuk berbagai acara, dari formal hingga kasual.",
             specifications: [
-                'Layar: 15.6 inch',
-                'Prosesor: Intel i7',
-                'RAM: 16GB',
+                'Bahan: Katun',
+                'Teknik: Tulis',
+                'Ukuran: 2 meter'
             ],
             variants: [
                 { name: 'Black', image: 'https://via.placeholder.com/100/000000' },
@@ -28,33 +27,36 @@ const ProductDetail = () => {
         },
         {
             id: 2,
-            name: 'Gaming Headset',
-            shortDescription: 'Surround sound gaming headset with noise cancellation.',
-            fullDescription: 'Gaming Headset ini cocok untuk...',
-            price: 150,
-            originalPrice: 180,
-            discount: 5,
-            image: 'https://via.placeholder.com/400',
+            image: "/dashboardFt/Kopi Gayo.png",
+            title: "Kopi Gayo",
+            price: 200000,
+            description: "Aceh",
+            rating: 4.9,
+            fullDescription: "Kopi Gayo adalah kopi Arabika premium yang ditanam di dataran tinggi Gayo, Aceh. Kopi ini memiliki cita rasa yang khas dengan sentuhan fruity dan sedikit aftertaste cokelat. Proses penanaman dan pengolahannya dilakukan secara organik oleh petani kopi lokal.",
             specifications: [
-                'Kualitas suara: Surround',
-                'Noise Cancellation: Ya',
+                'Jenis: Arabika',
+                'Berat: 1 kg',
+                'Metode Sangrai: Medium Roast'
             ],
             variants: [
-                { name: 'Black', image: 'https://via.placeholder.com/100/000000' },
+                { name: 'Giling Halus', image: '/dashboardFt/Kopi Gayo.png' },
+                { name: 'Giling Medium', image: '/dashboardFt/Kopi Gayo.png' },
+                { name: 'Giling Kasar', image: '/dashboardFt/Kopi Gayo.png' },
+                { name: 'BiJi Kopi', image: '/dashboardFt/Kopi Gayo.png' },
             ],
         },
         {
             id: 3,
-            name: 'Gaming Headset',
-            shortDescription: 'Surround sound gaming headset with noise cancellation.',
-            fullDescription: 'Gaming Headset ini cocok untuk...',
-            price: 150,
-            originalPrice: 180,
-            discount: 5,
-            image: 'https://via.placeholder.com/400',
+            image: "/dashboardFt/Kerajinan Rotan.png",
+            title: "Kerajinan Rotan",
+            price: 180000,
+            description: "Cirebon",
+            rating: 4.7,
+            fullDescription: "Kerajinan rotan asal Cirebon terkenal karena kekuatan dan keindahannya. Dibuat dengan tangan oleh pengrajin berpengalaman, produk rotan ini dapat digunakan sebagai dekorasi rumah atau furnitur fungsional yang tahan lama.",
             specifications: [
-                'Kualitas suara: Surround',
-                'Noise Cancellation: Ya',
+                'Bahan: Rotan Alami',
+                'Ukuran: 40cm x 40cm x 40cm',
+                'Warna: Natural Brown'
             ],
             variants: [
                 { name: 'Black', image: 'https://via.placeholder.com/100/000000' },
@@ -62,42 +64,23 @@ const ProductDetail = () => {
         },
         {
             id: 4,
-            name: 'Gaming Headset',
-            shortDescription: 'Surround sound gaming headset with noise cancellation.',
-            fullDescription: 'Gaming Headset ini cocok untuk...',
-            price: 150,
-            originalPrice: 180,
-            discount: 5,
-            image: 'https://via.placeholder.com/400',
+            image: "/dashboardFt/4.png",
+            title: "Tenun Ikat",
+            price: 500000,
+            description: "Sumba",
+            rating: 4.9,
+            fullDescription: "Tenun Ikat dari Sumba merupakan salah satu warisan budaya Indonesia yang sangat bernilai. Kain ini dibuat dengan teknik pewarnaan tradisional dan ditenun secara manual, menghasilkan motif yang unik dan kaya akan simbolisme budaya lokal. Ideal untuk koleksi fashion atau dekorasi interior.",
             specifications: [
-                'Kualitas suara: Surround',
-                'Noise Cancellation: Ya',
+                'Bahan: Benang Katun',
+                'Ukuran: 2 meter',
+                'Teknik: Pewarnaan Alami'
             ],
             variants: [
                 { name: 'Black', image: 'https://via.placeholder.com/100/000000' },
             ],
         },
-        {
-            id: 5,
-            name: 'Gaming Headset',
-            shortDescription: 'Surround sound gaming headset with noise cancellation.',
-            fullDescription: 'Gaming Headset ini cocok untuk...',
-            price: 150,
-            originalPrice: 180,
-            discount: 5,
-            image: 'https://via.placeholder.com/400',
-            specifications: [
-                'Kualitas suara: Surround',
-                'Noise Cancellation: Ya',
-            ],
-            variants: [
-                { name: 'Black', image: 'https://via.placeholder.com/100/000000' },
-            ],
-        },
-        
     ];
 
-    
     const product = products.find((p) => p.id === parseInt(productId));
     const [selectedImage, setSelectedImage] = useState(product.image);
     const [quantity, setQuantity] = useState(1);
@@ -114,27 +97,21 @@ const ProductDetail = () => {
     };
 
     return (
-        
         <div className="container mx-auto py-10 mt-16 animate-fade-in">
             <br />
-            {/* Breadcrumb Navigation */}
             <nav className="text-sm mb-6">
                 <a href="/" className="text-blue-600 hover:underline">Home</a> /
                 <a href="/Catalog" className="text-blue-600 hover:underline">Catalog</a> /
                 <span className="text-gray-500">{product.name}</span>
             </nav>
 
-            {/* Product Detail Section */}
-            <br />
-            <br />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Product Image with Zoom Effect */}
                 <div className="flex flex-col items-center">
-                    <div className="overflow-hidden rounded-lg shadow-lg">
+                    <div className="overflow-hidden rounded-lg shadow-lg w-80 h-80 md:w-96 md:h-96">
                         <img
                             src={selectedImage}
                             alt={product.name}
-                            className="w-full h-auto object-cover rounded-lg shadow-lg transform transition-transform duration-500 hover:scale-110"
+                            className="w-full h-full object-cover rounded-lg shadow-lg transform transition-transform duration-500 hover:scale-110"
                         />
                     </div>
                     <div className="mt-4 flex space-x-2">
@@ -150,20 +127,16 @@ const ProductDetail = () => {
                     </div>
                 </div>
 
-                {/* Product Information */}
                 <div className="p-6 bg-white rounded-lg shadow-lg">
                     <h1 className="text-3xl font-bold mb-4 text-gray-800">{product.name}</h1>
                     <p className="text-gray-600 mb-6">{product.shortDescription}</p>
                     
                     <div className="flex items-center mb-6">
-                        <span className="text-4xl font-bold text-red-600">${product.price}</span>
-                        <span className="ml-4 text-gray-500 line-through text-lg">${product.originalPrice}</span>
-                        <span className="ml-2 px-2 py-1 bg-green-100 text-green-600 rounded-full text-sm font-semibold">
-                            Save {product.discount}%
+                        <span className="text-4xl font-bold text-red-600">
+                            Rp {product.price.toLocaleString('id-ID')}
                         </span>
                     </div>
 
-                    {/* Product Variants */}
                     <div className="mb-6">
                         <label className="block text-sm font-medium text-gray-700 mb-2">Pilih Varian:</label>
                         <select
@@ -179,7 +152,6 @@ const ProductDetail = () => {
                         </select>
                     </div>
 
-                    {/* Quantity Selector */}
                     <div className="flex items-center mb-6">
                         <label className="block text-sm font-medium text-gray-700 mr-4">Jumlah:</label>
                         <input
@@ -191,7 +163,6 @@ const ProductDetail = () => {
                         />
                     </div>
 
-                    {/* Add to Cart Button */}
                     <button
                         onClick={handleAddToCart}
                         className="bg-blue-600 text-white px-6 py-3 rounded-lg w-full hover:bg-blue-700 transition-all shadow-md hover:shadow-lg"
@@ -201,7 +172,6 @@ const ProductDetail = () => {
                 </div>
             </div>
 
-            {/* Product Specifications */}
             <div className="mt-10 bg-gray-100 p-6 rounded-lg shadow-lg">
                 <h2 className="text-xl font-bold mb-4">Spesifikasi Produk</h2>
                 <ul className="list-disc list-inside text-gray-700">
@@ -211,7 +181,6 @@ const ProductDetail = () => {
                 </ul>
             </div>
 
-            {/* Product Details */}
             <div className="mt-10 p-6 bg-white rounded-lg shadow-lg">
                 <h2 className="text-xl font-bold mb-4">Detail Produk</h2>
                 <p className="text-gray-700">{product.fullDescription}</p>

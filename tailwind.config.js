@@ -22,7 +22,12 @@ module.exports = withMT({
           800: "#1E293B",
           900: "#0F172A",
         },
+        "nomad": '#BCB4A4',
+        "teak": '#B49B6C',
+        "indianKhaki": '#C3B48F',
+        "sorrellBrown": '#CCB592',
       },
+
     },
   },
 

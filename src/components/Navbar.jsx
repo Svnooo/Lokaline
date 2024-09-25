@@ -36,11 +36,20 @@ import { LanguageContext } from './Languagecontext';
 import { ThemeContext } from './Themecontext';
 
 // NavListMenu Component
-function NavListMenu() {
+function NavListMenu({ isDashboard, isWhite, isBeritaDanArtikel, isScrolled }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { translateText } = useContext(LanguageContext);
+
+  const getTextColor = () => {
+    if (isBeritaDanArtikel) {
+      return isScrolled ? 'text-gray-900' : 'text-white';
+    }
+    return isDashboard && !isWhite ? 'text-white' : 'text-gray-900';
+  };
+
+  const textColor = getTextColor();
 
   const navListMenuItems = [
     {
@@ -132,18 +141,18 @@ function NavListMenu() {
         <MenuHandler>
           <Typography as="div" variant="small" className="font-small">
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4 font-medium text-gray-900"
+              className={`flex items-center gap-2 py-2 pr-4 font-medium ${textColor}`}
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
               {translateText("Resources", "Sumber Daya")}
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""}`}
+                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""} ${textColor}`}
               />
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""}`}
+                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""} ${textColor}`}
               />
             </ListItem>
           </Typography>
@@ -160,14 +169,22 @@ function NavListMenu() {
     </React.Fragment>
   );
 }
-
 // NavList Component
-function NavList() {
+function NavList({ isWhite, isDashboard, isBeritaDanArtikel, isScrolled }) {
   const { translateText } = useContext(LanguageContext);
+
+  const getTextColor = () => {
+    if (isBeritaDanArtikel) {
+      return isScrolled ? 'text-gray-900' : 'text-white';
+    }
+    return isDashboard && !isWhite ? 'text-white' : 'text-gray-900';
+  };
+
+  const textColor = getTextColor();
 
   return (
     <div className="flex items-center justify-center w-full">
-      <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 text-gray-900">
+      <List className={`mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 ${textColor}`}>
         <Typography
           as={Link}
           to="/"
@@ -175,20 +192,20 @@ function NavList() {
           color="blue-gray"
           className="font-medium"
         >
-          <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900 hover:glow-effect">
+          <ListItem className={`flex items-center gap-2 py-2 pr-4 ${textColor} hover:glow-effect`}>
             {translateText("Home", "Beranda")}
           </ListItem>
         </Typography>
-        <NavListMenu />
+        <NavListMenu isDashboard={isDashboard} isWhite={isWhite} isBeritaDanArtikel={isBeritaDanArtikel} isScrolled={isScrolled} />
         <Typography
           as={Link}
-          to="/KontakdanLokasi"
+          to="/AboutUs"
           variant="small"
           color="blue-gray"
           className="font-medium"
         >
-          <ListItem className="flex items-center gap-2 py-2 pr-4 text-gray-900 hover:glow-effect">
-            {translateText("Contact Us", "Hubungi Kami")}
+          <ListItem className={`flex items-center gap-2 py-2 pr-4 ${textColor} hover:glow-effect`}>
+            {translateText("About Us", "Tentang Kami")}
           </ListItem>
         </Typography>
       </List>
@@ -339,19 +356,18 @@ export function NavbarWithMegaMenu() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const isDashboard = location.pathname === '/';
+  const isBeritaDanArtikel = location.pathname === '/BeritadanArtikel';
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPercentage = (window.scrollY / document.documentElement.scrollHeight) * 100;
+      const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
 
-      // If scroll is more than 5%, set navbar with border and text color
-      setIsScrolled(scrollPercentage > 5);
+      // If scroll is more than 10%, set navbar with border and text color
+      setIsScrolled(scrollPercentage > 10);
 
       // Set style based on scroll position
-      const contentStart = document.querySelector('.content-start');
-      if (contentStart) {
-        const contentStartPosition = contentStart.getBoundingClientRect().top;
-        setIsWhite(contentStartPosition <= 0 || scrollPercentage > 5);
-      }
+      setIsWhite(scrollPercentage > 10);
     };
 
     const handleResize = () => {
@@ -366,7 +382,6 @@ export function NavbarWithMegaMenu() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
 
   const openLoginModal = () => {
     setIsLoginModalOpen(true);
@@ -383,6 +398,13 @@ export function NavbarWithMegaMenu() {
   };
 
   const showCartIcon = ['/Catalog', '/cart', '/payment'].includes(location.pathname);
+
+  const getTextColor = () => {
+    if (isBeritaDanArtikel) {
+      return isScrolled ? 'text-black' : 'text-white';
+    }
+    return (isWhite || !isDashboard) ? 'text-black' : 'text-white';
+  };
 
   return (
     <>
@@ -414,7 +436,7 @@ export function NavbarWithMegaMenu() {
           </Typography>
           {/* Center nav items - hidden on mobile, visible on larger screens */}
           <div className="hidden lg:flex items-center justify-center flex-grow">
-            <NavList isWhite={isWhite} />
+            <NavList isWhite={isWhite} isDashboard={isDashboard} isBeritaDanArtikel={isBeritaDanArtikel} isScrolled={isScrolled} />
           </div>
 
           {/* Right side items */}
@@ -424,7 +446,7 @@ export function NavbarWithMegaMenu() {
               variant="text"
               size="sm"
               onClick={() => setSelectedLanguage(selectedLanguage === 'en' ? 'id' : 'en')}
-              className={`locale-text text-xs sm:text-sm ${isWhite ? 'text-black' : 'text-white'}`}
+              className={`locale-text text-xs sm:text-sm ${getTextColor()}`}
             >
               {selectedLanguage === 'en' ? 'ID' : 'EN'}
             </Button>
@@ -432,40 +454,39 @@ export function NavbarWithMegaMenu() {
             {showCartIcon && (
               <IconButton
                 variant="text"
-                color={isWhite ? "black" : "white"}
+                color={getTextColor() === 'text-black' ? "black" : "white"}
                 onClick={handleCartClick}
                 className="p-1 sm:p-2"
               >
-                <ShoppingBagIcon className="w-4 h-4 sm:w-6 sm:h-6" style={{ color: 'black' }} />
+                <ShoppingBagIcon className="w-4 h-4 sm:w-6 sm:h-6" style={{ color: getTextColor() === 'text-black' ? 'black' : 'white' }} />
               </IconButton>
             )}
 
             {/* Login button - hidden on mobile, visible on larger screens */}
             <Button
-  variant={isWhite ? "outlined" : "filled"}
-  size="sm"
-  fullWidth
-  onClick={openLoginModal}
-  className={`login-button ${
-    isWhite
-      ? 'bg-transparent text-[#B49B6C] border-[#B49B6C] hover:bg-[#B49B6C] hover:text-white'
-      : 'bg-[#B49B6C] text-white hover:bg-[#a08a5f]'
-  }`}
->
-  {translateText("Log In", "Masuk")}
-</Button>
+              variant={getTextColor() === 'text-black' ? "outlined" : "filled"}
+              size="sm"
+              fullWidth
+              onClick={openLoginModal}
+              className={`login-button ${getTextColor() === 'text-black'
+                  ? 'bg-transparent text-[#B49B6C] border-[#B49B6C] hover:bg-[#B49B6C] hover:text-white'
+                  : 'bg-[#B49B6C] text-white hover:bg-[#a08a5f]'
+                }`}
+            >
+              {translateText("Log In", "Masuk")}
+            </Button>
 
             {/* Mobile menu button */}
             <IconButton
               variant="text"
-              color={isWhite ? "black" : "white"}
+              color={getTextColor() === 'text-black' ? "black" : "white"}
               className="lg:hidden"
               onClick={() => setOpenNav(!openNav)}
             >
               {openNav ? (
-                <XMarkIcon className={`h-6 w-6 ${isWhite ? 'text-black' : 'text-white'}`} strokeWidth={2} />
+                <XMarkIcon className={`h-6 w-6 ${getTextColor()}`} strokeWidth={2} />
               ) : (
-                <Bars3Icon className={`h-6 w-6 ${isWhite ? 'text-black' : 'text-white'}`} strokeWidth={2} />
+                <Bars3Icon className={`h-6 w-6 ${getTextColor()}`} strokeWidth={2} />
               )}
             </IconButton>
           </div>
@@ -473,13 +494,13 @@ export function NavbarWithMegaMenu() {
 
         {/* Mobile menu */}
         <Collapse open={openNav}>
-          <NavList isWhite={isWhite} />
+          <NavList isWhite={isWhite} isDashboard={isDashboard} isBeritaDanArtikel={isBeritaDanArtikel} isScrolled={isScrolled} />
           <div className="flex flex-col w-full items-center gap-2 lg:hidden">
             <Button
               variant="text"
               size="sm"
               onClick={() => setSelectedLanguage(selectedLanguage === 'en' ? 'id' : 'en')}
-              className={`locale-text w-full ${isWhite ? 'text-black' : 'text-white'}`}
+              className={`locale-text w-full ${getTextColor()}`}
             >
               {selectedLanguage === 'en' ? 'Switch to Bahasa Indonesia' : 'Ganti ke Bahasa Inggris'}
             </Button>
@@ -497,7 +518,7 @@ export function NavbarWithMegaMenu() {
               size="sm"
               fullWidth
               onClick={openRegisterModal}
-              className={`${isWhite
+              className={`${getTextColor() === 'text-black'
                   ? 'border-black text-black hover:bg-black hover:text-white'
                   : 'border-white text-white hover:bg-white hover:text-black'
                 }`}

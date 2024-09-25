@@ -20,6 +20,7 @@ import ProfileUMKM from "./pages/ProfileUMKM/ProfileUMKM";
 import Register from "./pages/Register/Register";
 import Testimoni from "./pages/Testimoni/Testimoni";
 import { LanguageProvider } from './components/Languagecontext';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
                   <Route path="/Testimoni" element={<Testimoni />} />
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/Payment" element={<Payment />} />
+                  <Route path="/AboutUs" element={<AboutUs />} />
                 </Routes>
               </main>
               <Footer />

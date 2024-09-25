@@ -12,7 +12,7 @@ const Catalog = () => {
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#B49B6C] via-[#C3B48F] to-[#CCB592] opacity-25 z-0"></div>
 
                 {/* Hero section with search bar */}
-                <div className="relative z-10 bg-[#BCB4A4] rounded-lg shadow-lg mb-12 p-8 text-center transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border-2 border-[#B49B6C]">
+                <div className="relative z-10 bg-[#C3B48F] rounded-lg shadow-lg mb-12 p-8 text-center transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border-2 border-[#B49B6C]">
                     <h1 className="text-4xl font-bold text-dark mb-4 animate-fade-in">Temukan Produk Kami</h1>
                     <p className="text-lg text-dark mb-6">Jelajahi katalog kami dan temukan produk yang Anda butuhkan</p>
                     <div className="max-w-2xl mx-auto">

@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../components/CartContext';
 import { Checkbox, Button } from "@material-tailwind/react";
 
+// Helper function to format numbers as Rupiah
+const formatPrice = (price) => {
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(price).replace('IDR', 'Rp').trim();
+};
+
 const Cart = () => {
   const { cartItems, removeFromCart, updateCartItemQuantity } = useContext(CartContext);
   const navigate = useNavigate();
@@ -79,22 +84,19 @@ const Cart = () => {
                   <h2 className="text-xl font-bold text-gray-800">{item.name}</h2>
                   <p className="text-gray-600">Varian: <span className="font-medium">{item.variant}</span></p>
                   <p className="text-gray-600">
-                    Jumlah :
-
-                    <span className="font-semibold"> {item.quantity}</span>
-
+                    Jumlah: <span className="font-semibold"> {item.quantity}</span>
                   </p>
                 </div>
               </div>
               <div className="text-right">
-                <span className="text-2xl font-bold text-green-600">${(item.price * item.quantity).toFixed(2)}</span>
+                <span className="text-2xl font-bold text-green-600">{formatPrice(item.price * item.quantity)}</span>
               </div>
             </div>
           ))}
 
           <div className="mt-8 p-4 bg-gray-100 rounded-lg shadow-md flex justify-between items-center flex-wrap">
             <h2 className="text-3xl font-bold text-gray-800 mb-4 w-full">
-              Total Terpilih: <span className="text-green-600">${getSelectedItemsTotal().toFixed(2)}</span>
+              Total Terpilih: <span className="text-green-600">{formatPrice(getSelectedItemsTotal())}</span>
             </h2>
             <div className="flex flex-wrap gap-4 w-full">
               <Button

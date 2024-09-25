@@ -1,301 +1,232 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { MapPin, TrendingUp, Users, DollarSign, ChevronLeft, ChevronRight, Share2, Award, Globe } from 'lucide-react';
+import { CategoryScale, Chart as ChartJS, Legend, LineElement, LinearScale, PointElement, Title, Tooltip } from 'chart.js';
+import React from 'react';
+import { Line } from 'react-chartjs-2';
+import { FaChartLine, FaLaptop, FaUsers } from 'react-icons/fa';
 
-const islands = [
-  { name: "Jawa", color: "#ef4444", coords: { x: 60, y: 68 }, umkmCount: 1500000, gdpContribution: 60 },
-  { name: "Bali", color: "#f97316", coords: { x: 70, y: 72 }, umkmCount: 300000, gdpContribution: 5 },
-  { name: "Kalimantan", color: "#eab308", coords: { x: 50, y: 40 }, umkmCount: 500000, gdpContribution: 8 },
-  { name: "Papua", color: "#22c55e", coords: { x: 90, y: 50 }, umkmCount: 200000, gdpContribution: 2 },
-  { name: "Sulawesi", color: "#3b82f6", coords: { x: 70, y: 40 }, umkmCount: 400000, gdpContribution: 7 },
-  { name: "Sumatera", color: "#6366f1", coords: { x: 30, y: 40 }, umkmCount: 800000, gdpContribution: 15 },
-  { name: "NTT", color: "#a855f7", coords: { x: 80, y: 70 }, umkmCount: 150000, gdpContribution: 2 },
-  { name: "Maluku", color: "#ec4899", coords: { x: 85, y: 55 }, umkmCount: 100000, gdpContribution: 1 }
-];
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const products = [
-  { 
-    name: "Batik Pekalongan", 
-    island: "Jawa", 
-    description: "Batik tradisional dengan motif khas Pekalongan yang mendunia", 
-    image: "/api/placeholder/400/300",
-    annualRevenue: 50000000,
-    employeeCount: 5000,
-    exportDestinations: ["Jepang", "Amerika Serikat", "Eropa"],
-    awards: ["UNESCO Intangible Cultural Heritage", "Indonesian Creative Product of the Year 2023"],
-    sustainabilityInitiatives: ["Natural dye usage", "Eco-friendly packaging"],
-    socialImpact: "Empowers local artisans and preserves cultural heritage"
-  },
-  // ... (tambahkan produk lainnya sesuai kebutuhan)
-];
-
-const UMKMProfile = () => {
-  const [selectedIsland, setSelectedIsland] = useState(null);
-  const [currentProductIndex, setCurrentProductIndex] = useState(0);
-  const [islandHover, setIslandHover] = useState(null);
-  const [mapZoom, setMapZoom] = useState(1);
-  const [showExportChart, setShowExportChart] = useState(false);
-
-  
-  const handleIslandClick = (island) => {
-    setSelectedIsland(island);
-    setCurrentProductIndex(0);
-    setMapZoom(1.2);
-    setTimeout(() => setMapZoom(1), 500);
+const PelatihandanWebinar = () => {
+  const chartData = {
+    labels: ['2020', '2021', '2022', '2023', '2024'],
+    datasets: [{
+      label: 'Average SME Revenue Growth',
+      data: [100, 125, 160, 210, 280],
+      borderColor: '#BCB4A4', // 'nomad'
+      backgroundColor: 'rgba(188, 180, 164, 0.5)', // 'nomad' with transparency
+      tension: 0.1
+    }]
   };
 
-  const handleNextProduct = () => {
-    setCurrentProductIndex((prevIndex) => 
-      (prevIndex + 1) % products.filter(p => p.island === selectedIsland.name).length
-    );
+  const chartOptions = {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Revenue (in thousands $)',
+          color: '#C3B48F', // 'indianKhaki'
+        },
+        ticks: {
+          color: '#B49B6C', // 'teak'
+        }
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Year',
+          color: '#C3B48F', // 'indianKhaki'
+        },
+        ticks: {
+          color: '#B49B6C', // 'teak'
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+        labels: {
+          color: '#BCB4A4', // 'nomad'
+        }
+      },
+      title: {
+        display: true,
+        text: 'SME Growth After Program Participation',
+        color: '#CCB592', // 'sorrellBrown'
+        font: {
+          size: 16
+        }
+      }
+    }
   };
 
-  const handlePrevProduct = () => {
-    setCurrentProductIndex((prevIndex) => 
-      (prevIndex - 1 + products.filter(p => p.island === selectedIsland.name).length) % 
-      products.filter(p => p.island === selectedIsland.name).length
-    );
-  };
+  const programs = [
+    {
+      title: "Digital Transformation Masterclass",
+      description: "Learn how to leverage digital tools to streamline operations and boost productivity.",
+      icon: <FaLaptop className="text-5xl mb-4" style={{ color: '#B49B6C' }} />, // 'nomad'
+    },
+    {
+      title: "Financial Management for SMEs",
+      description: "Master the essentials of financial planning, budgeting, and cash flow management.",
+      icon: <FaChartLine className="text-5xl mb-4" style={{ color: '#B49B6C' }} />, // 'teak'
+    },
+    {
+      title: "Leadership & Team Building",
+      description: "Develop crucial leadership skills and learn strategies for effective team management.",
+      icon: <FaUsers className="text-5xl mb-4" style={{ color: '#B49B6C' }} />, // 'indianKhaki'
+    },
+  ];
 
-  const exportData = [
-    { name: "Jepang", value: 35 },
-    { name: "Amerika Serikat", value: 28 },
-    { name: "Eropa", value: 22 },
-    { name: "Australia", value: 15 }
+  const webinars = [
+    {
+      title: "Navigating the Post-Pandemic Market",
+      date: "June 15, 2024",
+      speaker: "Dr. Jane Smith, Market Analyst",
+      description: "Explore emerging trends and opportunities in the evolving business landscape.",
+    },
+    {
+      title: "Sustainable Practices for SMEs",
+      date: "July 2, 2024",
+      speaker: "John Doe, Sustainability Expert",
+      description: "Learn how to implement eco-friendly practices that benefit your business and the planet.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      company: "TechStart Solutions",
+      quote: "The Digital Transformation Masterclass revolutionized our operations. We've seen a 40% increase in efficiency!",
+    },
+    {
+      name: "Michael Chen",
+      company: "GreenGrow Farms",
+      quote: "Thanks to the financial management program, we've optimized our cash flow and expanded our business.",
+    },
+    {
+      name: "Ava Rodriguez",
+      company: "CreativeMind Agency",
+      quote: "The leadership program gave me the tools to build a more cohesive and productive team. It's been transformative!",
+    },
+  ];
+
+  const statistics = [
+    { label: "SMEs Empowered", value: "10,000+" },
+    { label: "Average Revenue Growth", value: "35%" },
+    { label: "Successful Graduates", value: "95%" },
+    { label: "Expert Mentors", value: "500+" },
   ];
 
   return (
-    <div className="container mx-auto p-4 bg-gradient-to-br from-yellow-50 to-amber-100 min-h-screen pt-20"> {/* Added pt-20 here */}
-      <motion.h1 
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-5xl font-bold text-center mb-8 text-yellow-800 glow-text"
-      >
-        <br />
-        <br />
-        Keajaiban UMKM Indonesia
-      </motion.h1>
-      
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Interactive Indonesia Map */}
-        <motion.div 
-          className="lg:w-1/2 relative"
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <div className="w-full aspect-[4/3] rounded-xl overflow-hidden relative shadow-lg">
-            <motion.div 
-              className="w-full h-full"
-              style={{
-                backgroundImage: "url('/public/peta.jpg')",
-                backgroundSize: "cover",
-                backgroundPosition: "center"
-              }}
-              animate={{ scale: mapZoom }}
-              transition={{ duration: 0.5 }}
-            >
-              {islands.map((island) => (
-                <motion.button
-                  key={island.name}
-                  className={`absolute rounded-full cursor-pointer transition-all duration-300 border-4 ${selectedIsland?.name === island.name ? 'border-yellow-400' : 'border-white'}`}
-                  style={{
-                    backgroundColor: island.color,
-                    left: `${island.coords.x}%`,
-                    top: `${island.coords.y}%`,
-                  }}
-                  initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.5, boxShadow: "0 0 15px rgba(255,255,255,0.8)" }}
-                  onClick={() => handleIslandClick(island)}
-                  onMouseEnter={() => setIslandHover(island)}
-                  onMouseLeave={() => setIslandHover(null)}
-                >
-                  <motion.div
-                    className="w-6 h-6 flex items-center justify-center text-white font-bold"
-                    animate={{ scale: selectedIsland?.name === island.name ? [1, 1.2, 1] : 1 }}
-                    transition={{ repeat: Infinity, duration: 1 }}
-                  >
-                    {island.name.charAt(0)}
-                  </motion.div>
-                </motion.button>
-              ))}
-            </motion.div>
+    <div className="min-h-screen bg-base-100 text-gray-100">
+      <main>
+        {/* Hero Section */}
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+          <video autoPlay loop muted className="absolute z-10 w-auto min-w-full min-h-full max-w-none">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="relative z-20 text-center px-4">
+            <h1 className="text-5xl md:text-7xl font-bold mb-4 gradient-text" style={{ color: '#BCB4A4' }}>
+              Transform Your SME
+            </h1>
+            <p className="text-xl md:text-2xl mb-8" style={{ color: '#C3B48F' }}>Join the movement. Innovate. Grow. Succeed.</p>
+            <a href="#programs" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+              Explore Programs
+            </a>
           </div>
-          <AnimatePresence>
-            {islandHover && (
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                className="absolute bg-white p-4 rounded-lg shadow-lg"
-                style={{ left: `${islandHover.coords.x}%`, top: `${islandHover.coords.y + 8}%` }}
-              >
-                <h3 className="font-bold text-xl mb-2 text-yellow-800">{islandHover.name}</h3>
-                <p className="flex items-center text-yellow-700"><Users className="mr-2" size={16} /> UMKM: {islandHover.umkmCount.toLocaleString()}</p>
-                <p className="flex items-center text-yellow-700"><DollarSign className="mr-2" size={16} /> Kontribusi PDB: {islandHover.gdpContribution}%</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+          <div className="custom-shape-divider-bottom-1685123647">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
+            </svg>
+          </div>
+        </section>
 
-        {/* Product Information and Statistics */}
-        <motion.div 
-          className="lg:w-1/2"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          {selectedIsland ? (
-            <Card className="w-full bg-white shadow-xl overflow-hidden border-2 border-yellow-500">
-              <CardHeader className="bg-gradient-to-r from-yellow-600 to-amber-600 text-white">
-                <CardTitle className="text-3xl">Keunggulan UMKM {selectedIsland.name}</CardTitle>
-                <CardDescription className="text-yellow-100 flex items-center">
-                  <MapPin className="inline-block mr-2" size={20} />
-                  {selectedIsland.name} - Pusat Kreativitas dan Inovasi
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-6 relative">
-                <AnimatePresence mode="wait">
-                  {products.filter(p => p.island === selectedIsland.name).map((product, index) => (
-                    index === currentProductIndex && (
-                      <motion.div
-                        key={product.name}
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -50 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-md mb-4" />
-                        <h3 className="text-xl font-semibold mb-2 text-yellow-800">{product.name}</h3>
-                        <p className="text-yellow-700">{product.description}</p>
-                        <p className="text-yellow-700 mt-2"><TrendingUp className="inline-block mr-2" size={16} /> Pendapatan Tahunan: Rp {product.annualRevenue.toLocaleString()}</p>
-                        <p className="text-yellow-700"><Users className="inline-block mr-2" size={16} /> Jumlah Karyawan: {product.employeeCount}</p>
-                        <p className="text-yellow-700"><Globe className="inline-block mr-2" size={16} /> Tujuan Ekspor: {product.exportDestinations.join(", ")}</p>
-                        <div className="mt-4 flex justify-between">
-                          <Button onClick={handlePrevProduct} variant="outline" className="text-yellow-600 border-yellow-600 hover:bg-yellow-100"><ChevronLeft /></Button>
-                          <Button onClick={handleNextProduct} variant="outline" className="text-yellow-600 border-yellow-600 hover:bg-yellow-100"><ChevronRight /></Button>
-                        </div>
-                      </motion.div>
-                    )
-                  ))}
-                </AnimatePresence>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="text-center text-yellow-800 mt-10">
-              <p>Pilih sebuah pulau untuk melihat detail UMKM.</p>
+        {/* Programs Section */}
+        <section id="programs" className="py-20 bg-base-100">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text" style={{ color: '#BCB4A4' }}>Our Transformative Programs</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {programs.map((program, index) => (
+                <div key={index} className="bg-[#BCB4A4] rounded-lg p-6 shadow-lg flex flex-col justify-between">
+                  {program.icon}
+                  <h3 className="text-2xl font-semibold mb-4 text-dark" >{program.title}</h3>
+                  <p className="text-dark">{program.description}</p>
+                  <div className="mt-auto">
+                    <a href="#" className="mt-4 inline-block text-dark hover:text-dark">Learn more →</a>
+                    <a href="#" className="mt-4 inline-block bg-dark hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">Enroll Now</a>
+                  </div>
+                </div>
+              ))}
             </div>
-          )}
-        </motion.div>
-      </div>
+          </div>
+        </section>
 
-      {/* Export Data Visualization */}
-      <motion.div 
-        className="mt-8"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.8 }}
-      >
-        <Card className="border-2 border-yellow-500">
-          <CardHeader className="bg-gradient-to-r from-yellow-600 to-amber-600 text-white">
-            <CardTitle className="flex items-center justify-between">
-              <span>Analisis Ekspor UMKM</span>
-              <Button 
-                onClick={() => setShowExportChart(!showExportChart)}
-                variant="outline"
-                className="text-white border-white hover:bg-yellow-500"
-              >
-                {showExportChart ? 'Sembunyikan' : 'Tampilkan'} Grafik
-              </Button>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <AnimatePresence>
-              {showExportChart && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={exportData}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend />
-                      <Bar dataKey="value" fill="#eab308" name="Persentase Ekspor" />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </CardContent>
-        </Card>
-      </motion.div>
+        {/* Webinars Section */}
+        <section className="py-20 bg-base-100">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text" style={{ color: '#BCB4A4' }}>Upcoming Webinars</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {webinars.map((webinar, index) => (
+                <div key={index} className="bg-[#C3B48F] rounded-lg p-6 shadow-lg flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-2">{webinar.title}</h3>
+                    <p className="text-gray-400 mb-1">{webinar.date} | {webinar.speaker}</p>
+                    <p className="text-dark mb-4">{webinar.description}</p>
+                  </div>
+                  <div className="mt-auto">
+                    <a href="#" className="inline-block bg-dark hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">Register</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      {/* Success Stories Section */}
-      <motion.div 
-        className="mt-8"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1 }}
-      >
-        <h2 className="text-3xl font-bold mb-4 text-center text-yellow-800">Kisah Sukses UMKM</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[1, 2, 3].map((i) => (
-            <Card key={i} className="overflow-hidden border-2 border-yellow-500">
-              <img src={`/api/placeholder/400/${300 + i * 10}`} alt={`Success Story ${i}`} className="w-full h-48 object-cover" />
-              <CardContent className="p-4">
-                <h3 className="text-xl font-semibold mb-2 text-yellow-800">UMKM Sukses {i}</h3>
-                <p className="text-yellow-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              </CardContent>
-              <CardFooter className="bg-yellow-100 p-4">
-                <Button variant="outline" className="w-full text-yellow-600 border-yellow-600 hover:bg-yellow-200">Baca Selengkapnya</Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      </motion.div>
+        {/* Testimonials Section */}
+        <section className="py-20 bg-base-100">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text" style={{ color: '#BCB4A4' }}>Success Stories</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="bg-[#BCB4A4] rounded-lg p-6 shadow-lg">
+                  <p className="italic mb-4">"{testimonial.quote}"</p>
+                  <p className="font-semibold">{testimonial.name}, {testimonial.company}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      {/* Call to Action Section */}
-      <motion.div 
-        className="mt-12 text-center"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.2 }}
-      >
-        <h2 className="text-4xl font-bold mb-4 text-yellow-800">Bergabunglah dalam Revolusi UMKM Indonesia!</h2>
-        <p className="text-xl mb-6 text-yellow-700">Temukan peluang, tingkatkan bisnis Anda, dan berkontribusi pada ekonomi nasional.</p>
-        <Button className="bg-gradient-to-r from-yellow-600 to-amber-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-yellow-700 hover:to-amber-700 transition-all duration-300">
-          Mulai Perjalanan UMKM Anda
-        </Button>
-      </motion.div>
+        {/* Statistics Section */}
+        <section className="py-20 bg-[#C3B48F]">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text" style={{ color: '#BCB4A4' }}>Our Impact</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {statistics.map((stat, index) => (
+                <div key={index} className="bg-[#BCB4A4] rounded-lg p-6 shadow-lg text-center">
+                  <h3 className="text-4xl font-bold mb-2" style={{ color: '#B49B6C' }}>{stat.value}</h3>
+                  <p className="text-dark">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      {/* Batik Pattern Background */}
-      <div className="fixed inset-0 z-[-1] opacity-5 pointer-events-none">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <defs>
-            <pattern id="batik" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-              <circle cx="50" cy="50" r="30" fill="none" stroke="#d97706" strokeWidth="2"/>
-              <circle cx="50" cy="50" r="20" fill="none" stroke="#d97706" strokeWidth="2"/>
-              <circle cx="50" cy="50" r="10" fill="#d97706"/>
-              <circle cx="0" cy="0" r="5" fill="#d97706"/>
-              <circle cx="100" cy="0" r="5" fill="#d97706"/>
-              <circle cx="0" cy="100" r="5" fill="#d97706"/>
-              <circle cx="100" cy="100" r="5" fill="#d97706"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#batik)"/>
-        </svg>
-      </div>
+        {/* Chart Section */}
+        <section className="py-20 bg-base-100">
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-bold mb-12 text-center gradient-text" style={{ color: '#BCB4A4' }}>Program Impact Over Time</h2>
+            <div className="bg-[#C3B48F] rounded-lg p-6 shadow-lg">
+              <Line data={chartData} options={chartOptions} />
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
   );
 };
 
-export default UMKMProfile;
+export default PelatihandanWebinar;

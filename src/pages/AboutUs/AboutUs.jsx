@@ -51,7 +51,7 @@ const AboutUs = () => {
                             <h2 className="text-3xl font-bold text-[#B49B6C] mb-3">Albertus Sonny Setiawan Rilman</h2>
                             <p className="text-[#4B423A] mb-4">CEO & Co-founder</p>
                             <p className="text-[#4B423A]">
-                                Berpengalaman lebih dari 15 tahun di industri teknologi, John adalah sosok
+                                Berpengalaman lebih dari 15 tahun di industri teknologi, Sonny adalah sosok
                                 visioner di balik strategi dan pertumbuhan Localine.
                             </p>
                         </div>
@@ -60,15 +60,15 @@ const AboutUs = () => {
                     {/* Founder 2 */}
                     <div className="bg-white bg-opacity-50 shadow-2xl rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
                         <img
-                            src="https://via.placeholder.com/500"
+                            src="/assets/Ariel.png"
                             alt="Founder 2"
-                            className="w-full h-60 object-cover"
+                            className="founder-img"
                         />
                         <div className="p-6 text-center">
-                            <h2 className="text-3xl font-bold text-[#B49B6C] mb-3">Jane Smith</h2>
+                            <h2 className="text-3xl font-bold text-[#B49B6C] mb-3">Ariel Stevano</h2>
                             <p className="text-[#4B423A] mb-4">CTO & Co-founder</p>
                             <p className="text-[#4B423A]">
-                                Jane adalah pemimpin teknologi dengan hasrat untuk menciptakan solusi yang scalable dan membawa inovasi ke setiap produk yang kami buat.
+                                Ariel adalah pemimpin teknologi dengan hasrat untuk menciptakan solusi yang scalable dan membawa inovasi ke setiap produk yang kami buat.
                             </p>
                         </div>
                     </div>
@@ -76,15 +76,15 @@ const AboutUs = () => {
                     {/* Founder 3 */}
                     <div className="bg-white bg-opacity-50 shadow-2xl rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
                         <img
-                            src="https://via.placeholder.com/500"
+                            src="/assets/Mateus.png"
                             alt="Founder 3"
-                            className="w-full h-60 object-cover"
+                            className="founder-img"
                         />
                         <div className="p-6 text-center">
-                            <h2 className="text-3xl font-bold text-[#B49B6C] mb-3">Michael Johnson</h2>
+                            <h2 className="text-3xl font-bold text-[#B49B6C] mb-3">Mateus Appuwan Situmorang</h2>
                             <p className="text-[#4B423A] mb-4">COO & Co-founder</p>
                             <p className="text-[#4B423A]">
-                                Michael memastikan semua operasi berjalan lancar dan efisien, memastikan Localine selalu melayani dengan kualitas terbaik.
+                                Mateus memastikan semua operasi berjalan lancar dan efisien, memastikan Localine selalu melayani dengan kualitas terbaik.
                             </p>
                         </div>
                     </div>
@@ -104,7 +104,7 @@ const AboutUs = () => {
 
             {/* Core Values Section */}
             <section className="container mx-auto py-10">
-                <h2 className="text-4xl font-bold text-[#B49B6C] text-center mb-10">Nilai-Nilai Kami</h2>
+                <h2 className="text-4xl font-bold text-dark text-center mb-10">Nilai-Nilai Kami</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                     <div className="bg-white shadow-2xl rounded-lg p-8 text-center">
                         <h3 className="text-2xl font-semibold text-[#B49B6C] mb-4">Inovasi</h3>

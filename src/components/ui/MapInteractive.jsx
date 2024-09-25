@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
 import { Icon } from 'leaflet';
 
 const customMapIcon = new Icon({
@@ -31,7 +30,7 @@ const MapInteractive = () => {
       <MapContainer
         center={[-2.548926, 118.0148634]}
         zoom={5}
-        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%' }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -69,34 +68,27 @@ const MapInteractive = () => {
             </Popup>
           </Marker>
         ))}
-
-        {selectedLocation && (
-          <div
-            className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 z-10"
-            style={{
-              position: 'absolute',
-              top: '4rem',
-              left: '4rem',
-              zIndex: 10,
-            }}
-          >
-            <h3 className="font-bold text-xl text-[#5c4933] mb-2">{selectedLocation.name}</h3>
-            <p className="text-gray-600 mb-4">Produk UMKM:</p>
-            <ul className="list-disc pl-4">
-              {selectedLocation.products.map((product, index) => (
-                <li key={index} className="text-[#886b4c]">
-                  {product}
-                </li>
-              ))}
-            </ul>
-            <div className="flex justify-end mt-4">
-              <button className="bg-[#886b4c] text-white px-4 py-2 rounded-full hover:bg-[#5c4933] transition">
-                Lihat Lebih Banyak
-              </button>
-            </div>
-          </div>
-        )}
       </MapContainer>
+
+      {/* Card untuk menampilkan informasi lokasi yang dipilih */}
+      {selectedLocation && (
+        <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-4 z-20" style={{ width: '300px' }}>
+          <h3 className="font-bold text-xl text-[#5c4933] mb-2">{selectedLocation.name}</h3>
+          <p className="text-gray-600 mb-4">Produk UMKM:</p>
+          <ul className="list-disc pl-4">
+            {selectedLocation.products.map((product, index) => (
+              <li key={index} className="text-[#886b4c]">
+                {product}
+              </li>
+            ))}
+          </ul>
+          <div className="flex justify-end mt-4">
+            <button className="bg-[#886b4c] text-white px-4 py-2 rounded-full hover:bg-[#5c4933] transition">
+              Lihat Lebih Banyak
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

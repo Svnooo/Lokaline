@@ -183,12 +183,11 @@ featuredProducts.map(product => (
 
 
 {/* Peta Interaktif Section */}
-{/* Peta Interaktif Section */}
 <section className="py-16 px-4">
   <div className="max-w-7xl mx-auto">
     <h2 className="text-4xl font-bold text-center mb-8 text-[#5c4933] font-serif">Jelajahi UMKM di Peta</h2>
     <div className="bg-white rounded-xl shadow-lg overflow-hidden p-8">
-      <div className="md:flex items-center">
+      <div className="md:flex">
         <div className="md:w-1/2 md:pr-8">
           <h3 className="text-2xl font-bold text-[#5c4933] mb-4">Temukan UMKM di Seluruh Nusantara</h3>
           <p className="text-gray-600 mb-6">
@@ -198,14 +197,15 @@ featuredProducts.map(product => (
             Lihat Semua Produk
           </button>
         </div>
-        <div className="md:w-1/2 md:pl-8">
-          <MapInteractive />
+        <div className="md:w-1/2 md:pl-8 relative"> {/* Pastikan relative */}
+          <div className="absolute inset-0 z-10">
+            <MapInteractive />
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 
 

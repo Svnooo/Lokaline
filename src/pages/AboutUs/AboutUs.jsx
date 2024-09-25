@@ -1,48 +1,54 @@
-import React from "react";
+import React, { useRef } from "react";
 
 const AboutUs = () => {
+    const containerRef = useRef(null);
+
+    const scrollDown = () => {
+        if (containerRef.current) {
+            const scrollAmount = window.innerHeight * 0.8; // 10% of the viewport height
+            window.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+        }
+    };
+
     return (
-        <div className="bg-gradient-to-r from-[#BCB4A4] via-[#B49B6C] to-[#CCB592] py-10 pt-24">
+        <div ref={containerRef} className="bg-gradient-to-r from-[#BCB4A4] via-[#B49B6C] to-[#CCB592] py-10 pt-24">
             {/* Hero Section */}
             <br />
             <br />
             <section className="container mx-auto text-center mb-12">
                 <div className="bg-white bg-opacity-30 p-12 rounded-lg shadow-lg">
-                    <h1 className="text-6xl font-extrabold text-dark mb-4">Welcome to Localine</h1>
-                    <p className="text-2xl text-[#4B423A] max-w-3xl mx-auto">
-                        Localine adalah platform e-commerce yang berkomitmen untuk mendukung dan mengembangkan UMKM lokal.
-                        Dengan dedikasi penuh untuk membawa produk-produk UMKM ke panggung internasional,
-                        kami percaya bahwa usaha kecil dapat memberikan dampak besar di dunia global.
+                    <h1 className="text-3xl sm:text-5xl font-extrabold mb-6 drop-shadow-lg shadow-black leading-tight font-serif">
+                        Localine
+                    </h1>
+                    <h3 className="text-xl sm:text-3xl font-extrabold mb-6 drop-shadow-lg shadow-black leading-tight font-serif">
+                        Sentuhan Nusantara di Ujung Jari Anda
+                    </h3>
+                    <p className="text-xl sm:text-xl mb-12 drop-shadow-lg shadow-black font-light max-w-3xl mx-auto italic">
+                        Localine adalah platform e-commerce yang didedikasikan untuk mendukung dan mengembangkan UMKM lokal.
+                        Dengan komitmen kuat untuk membawa produk UMKM ke panggung internasional, kami percaya bahwa usaha kecil dapat menciptakan dampak besar.
                     </p>
-                    <button className="mt-8 px-6 py-3 bg-[#C3B48F] text-white font-semibold rounded-lg hover:bg-[#B49B6C] transition-all">
-                        Explore Our Mission
+                    <button
+                        onClick={scrollDown}
+                        className="mt-8 px-6 py-3 bg-[#C3B48F] text-white font-semibold rounded-lg hover:bg-[#B49B6C] transition-all"
+                    >
+                        Berkenalan Lebih dalam dengan kami
                     </button>
                 </div>
             </section>
 
-            {/* About Us Section */}
-            <section className="container mx-auto text-center mb-12">
-                <h2 className="text-5xl font-extrabold text-dark mb-6">
-                    Tentang Kami
-                </h2>
-                <p className="text-xl text-[#4B423A] max-w-2xl mx-auto">
-                    Localine adalah platform e-commerce yang didedikasikan untuk mendukung dan mengembangkan UMKM lokal.
-                    Dengan komitmen kuat untuk membawa produk UMKM ke panggung internasional, kami percaya bahwa usaha kecil dapat menciptakan dampak besar.
-                </p>
-            </section>
-
             {/* Founders Section */}
-            <section className="container mx-auto">
+            <section className="container mx-auto pt-20">
+                
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {/* Founder 1 */}
                     <div className="bg-white bg-opacity-50 shadow-2xl rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
                         <img
-                            src="https://via.placeholder.com/500"
+                            src="/assets/Sonny.png"
                             alt="Founder 1"
-                            className="w-full h-60 object-cover"
+                            className="founder-img"
                         />
                         <div className="p-6 text-center">
-                            <h2 className="text-3xl font-bold text-[#B49B6C] mb-3">John Doe</h2>
+                            <h2 className="text-3xl font-bold text-[#B49B6C] mb-3">Albertus Sonny Setiawan Rilman</h2>
                             <p className="text-[#4B423A] mb-4">CEO & Co-founder</p>
                             <p className="text-[#4B423A]">
                                 Berpengalaman lebih dari 15 tahun di industri teknologi, John adalah sosok

@@ -69,11 +69,11 @@ body {
   height: 16rem;
 }
 
-.card-image {
+/* .card-image {
   height: 100%;
   width: 100%;
   object-fit: cover;
-}
+} */
 
 .button {
   background-color: rgba(38, 38, 38, 0.1);
@@ -220,4 +220,20 @@ body {
 .hover\:glow-effect:hover {
   text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
   transition: text-shadow 0.3s ease-in-out;
+}
+
+/* Ensure all images within the grid have the specified size */
+.founder-img {
+  width: 507px !important;
+  height: 240px !important;
+  object-fit: cover !important; /* Ensures the image fills the specified size while maintaining aspect ratio */
+}
+
+/* Optional: Adjust the layout for responsiveness */
+@media (max-width: 768px) {
+  /* On smaller screens, the images will be full width and height will remain 240px */
+  .founder-img {
+    width: 100%;
+    height: 240px;
+  }
 }

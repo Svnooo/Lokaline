@@ -75,11 +75,14 @@ const Cart = () => {
                   color="blue"
                   className="mr-4"
                 />
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-24 h-24 object-cover rounded-lg mr-6 transform hover:scale-110 transition-transform duration-500 shadow-md"
-                />
+                <div className="mr-6">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="object-cover rounded-lg shadow-md transform hover:scale-110 transition-transform duration-500"
+                    style={{ maxWidth: '200px', height: 'auto' }}
+                  />
+                </div>
                 <div>
                   <h2 className="text-xl font-bold text-gray-800">{item.name}</h2>
                   <p className="text-gray-600">Varian: <span className="font-medium">{item.variant}</span></p>

@@ -43,6 +43,38 @@ const cards = [
         description: "Sumba",
         rating: 4.9,
     },
+    {
+        id: 5,
+        image: "/dashboardFt/4.png",
+        title: "Tenun Ikat",
+        price: "Rp 500.000",
+        description: "Sumba",
+        rating: 4.9,
+    },
+    {
+        id: 6,
+        image: "/dashboardFt/4.png",
+        title: "Tenun Ikat",
+        price: "Rp 500.000",
+        description: "Sumba",
+        rating: 4.9,
+    },
+    {
+        id: 7,
+        image: "/dashboardFt/4.png",
+        title: "Tenun Ikat",
+        price: "Rp 500.000",
+        description: "Sumba",
+        rating: 4.9,
+    },
+    {
+        id: 8,
+        image: "/dashboardFt/4.png",
+        title: "Tenun Ikat",
+        price: "Rp 500.000",
+        description: "Sumba",
+        rating: 4.9,
+    },
    
 ];
 
@@ -56,11 +88,11 @@ const CardCatalog = () => {
                             key={index}
                             className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
                         >
-                            <CardHeader shadow={false} floated={false} className="h-48 p-0">
+                            <CardHeader shadow={false} floated={false} className="p-0">
                                 <img
                                     src={card.image}
                                     alt={card.title}
-                                    className="w-full h-full object-cover"
+                                    className="w-auto h-auto max-w-full max-h-48" // Ensure the image uses its real size
                                 />
                             </CardHeader>
                             <CardBody className="p-4">

@@ -47,7 +47,12 @@ const Payment = () => {
             {cartItems.map((item, index) => (
               <div key={index} className="flex justify-between items-center border-b py-2">
                 <div className="flex items-center">
-                  <img src={item.image} alt={item.name} className="w-16 h-16 object-cover mr-4" />
+                  <img 
+                    src={item.image} 
+                    alt={item.name} 
+                    className="object-cover mr-4 shadow-md"
+                    style={{ maxWidth: '150px', height: 'auto' }} // Adjusts to real image size
+                  />
                   <div>
                     <h3 className="text-lg font-bold">{item.name} ({item.variant})</h3>
                     <p className="text-gray-600">Jumlah : {item.quantity}</p>

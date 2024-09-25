@@ -92,7 +92,7 @@ const ProductDetail = () => {
 
     const handleAddToCart = () => {
         addToCart(product, quantity, selectedVariant);
-        alert(`Menambahkan ${quantity} unit dari ${product.name} (Varian: ${selectedVariant}) ke keranjang.`);
+        alert(`Menambahkan ${quantity} unit dari ${product.title} (Varian: ${selectedVariant}) ke keranjang.`);
         navigate('/cart');
     };
 
@@ -102,16 +102,16 @@ const ProductDetail = () => {
             <nav className="text-sm mb-6">
                 <a href="/" className="text-blue-600 hover:underline">Home</a> /
                 <a href="/Catalog" className="text-blue-600 hover:underline">Catalog</a> /
-                <span className="text-gray-500">{product.name}</span>
+                <span className="text-gray-500">{product.title}</span>
             </nav>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="flex flex-col items-center">
-                    <div className="overflow-hidden rounded-lg shadow-lg w-80 h-80 md:w-96 md:h-96">
+                    <div className="overflow-hidden rounded-lg shadow-lg w-auto h-auto">
                         <img
                             src={selectedImage}
-                            alt={product.name}
-                            className="w-full h-full object-cover rounded-lg shadow-lg transform transition-transform duration-500 hover:scale-110"
+                            alt={product.title}
+                            className="w-auto h-auto max-w-full max-h-96" // Ensure real size and limit the max height
                         />
                     </div>
                     <div className="mt-4 flex space-x-2">
@@ -128,8 +128,8 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="p-6 bg-white rounded-lg shadow-lg">
-                    <h1 className="text-3xl font-bold mb-4 text-gray-800">{product.name}</h1>
-                    <p className="text-gray-600 mb-6">{product.shortDescription}</p>
+                    <h1 className="text-3xl font-bold mb-4 text-gray-800">{product.title}</h1>
+                    <p className="text-gray-600 mb-6">{product.description}</p>
                     
                     <div className="flex items-center mb-6">
                         <span className="text-4xl font-bold text-red-600">

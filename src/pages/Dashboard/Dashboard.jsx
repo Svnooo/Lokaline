@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import MapInteractive from "../../components/ui/MapInteractive";
 import { Search, ShoppingBag, MapPin, TrendingUp, Info, Users, Zap, ChevronDown, Star, Shield } from 'lucide-react';
 import { ArrowRight, Bookmark, Share2 } from 'lucide-react';
@@ -72,6 +73,7 @@ const LandingPage = () => {
   const [showText, setShowText] = useState(false);
 
   const firstSectionRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -90,6 +92,10 @@ const LandingPage = () => {
   const handleScrollToFirstSection = () => {
     firstSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+  const handleSeeAllProducts = () => {
+    navigate('/catalog'); // Navigasi ke halaman Catalog
+  };
+
 
   const featuredProducts = [
     { name: 'Batik Pekalongan', origin: 'Pekalongan', price: 'Rp 350.000', image: '/dashboardFt/Batik 1.png', rating: 4.8 },
@@ -291,7 +297,10 @@ const LandingPage = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <button className="bg-[#886b4c] text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-[#5c4933] transition">
+          <button 
+              className="bg-[#886b4c] text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-[#5c4933] transition"
+              onClick={handleSeeAllProducts} 
+            >
               Lihat Semua Produk
             </button>
           </div>

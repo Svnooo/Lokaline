@@ -51,8 +51,7 @@ const AboutUs = () => {
                             <h2 className="text-3xl font-bold text-[#B49B6C] mb-3">Albertus Sonny Setiawan Rilman</h2>
                             <p className="text-[#4B423A] mb-4">CEO & Co-founder</p>
                             <p className="text-[#4B423A]">
-                                Berpengalaman lebih dari 15 tahun di industri teknologi, Sonny adalah sosok
-                                visioner di balik strategi dan pertumbuhan Localine.
+                              "Albertus Sonny Setiawan Rilman memimpin Localine dengan fokus pada inovasi untuk membantu UMKM lokal menjangkau pasar global."
                             </p>
                         </div>
                     </div>
@@ -68,7 +67,7 @@ const AboutUs = () => {
                             <h2 className="text-3xl font-bold text-[#B49B6C] mb-3">Ariel Stevano</h2>
                             <p className="text-[#4B423A] mb-4">CTO & Co-founder</p>
                             <p className="text-[#4B423A]">
-                                Ariel adalah pemimpin teknologi dengan hasrat untuk menciptakan solusi yang scalable dan membawa inovasi ke setiap produk yang kami buat.
+                              "Ariel Stevano mengelola teknologi di Localine, menciptakan solusi efisien untuk mendukung pertumbuhan UMKM."
                             </p>
                         </div>
                     </div>
@@ -84,7 +83,7 @@ const AboutUs = () => {
                             <h2 className="text-3xl font-bold text-[#B49B6C] mb-3">Mateus Appuwan Situmorang</h2>
                             <p className="text-[#4B423A] mb-4">COO & Co-founder</p>
                             <p className="text-[#4B423A]">
-                                Mateus memastikan semua operasi berjalan lancar dan efisien, memastikan Localine selalu melayani dengan kualitas terbaik.
+                              "Mateus Appuwan Situmorang memastikan operasional Localine berjalan lancar dan mendukung perkembangan UMKM."
                             </p>
                         </div>
                     </div>

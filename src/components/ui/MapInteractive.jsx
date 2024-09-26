@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 
 const customMapIcon = new Icon({
-  iconUrl: '/public/assets/location-icon.svg',
+  iconUrl: '/public/location.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
@@ -13,16 +13,66 @@ const MapInteractive = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const locations = [
-    { lat: -6.1751, lng: 106.8650, name: 'Jakarta', products: ['Batik', 'Kerajinan Rotan'] },
-    { lat: -8.6095, lng: 115.1139, name: 'Bali', products: ['Ukiran Kayu', 'Keramik'] },
-    { lat: -7.7958, lng: 110.3695, name: 'Yogyakarta', products: ['Batik', 'Perak'] },
-    { lat: 2.9199, lng: 99.0722, name: 'Medan', products: ['Kopi Gayo', 'Ulos'] },
-    { lat: -2.5223, lng: 140.7111, name: 'Papua', products: ['Noken', 'Kayu Cendana'] },
-    { lat: -5.1443, lng: 119.4213, name: 'Makassar', products: ['Phinisi', 'Tapis'] },
-    { lat: -3.6909, lng: 128.1855, name: 'Ambon', products: ['Tenun Ikat', 'Kerajinan Kulit'] },
-    { lat: -0.7893, lng: 113.9213, name: 'Palangkaraya', products: ['Anyaman Rotan', 'Kain Sasirangan'] },
-    { lat: -5.3464, lng: 105.2551, name: 'Lampung', products: ['Kopi Lampung', 'Keramik Lampung'] },
-    { lat: -0.0235, lng: 109.3375, name: 'Pontianak', products: ['Batik Megamendung', 'Tenun Ikat'] },
+    { 
+      lat: -6.1751, 
+      lng: 106.8650, 
+      name: 'Jakarta', 
+      products: ['Batik', 'Kerajinan Rotan', 'Aksesoris Fashion', 'Produk Kecantikan', 'Kuliner Betawi']
+    },
+    { 
+      lat: -8.6095, 
+      lng: 115.1139, 
+      name: 'Bali', 
+      products: ['Ukiran Kayu', 'Keramik', 'Tenun Ikat', 'Perhiasan Perak', 'Lukisan Tradisional']
+    },
+    { 
+      lat: -7.7958, 
+      lng: 110.3695, 
+      name: 'Yogyakarta', 
+      products: ['Batik', 'Perak', 'Kerajinan Kulit', 'Gerabah', 'Makanan Tradisional']
+    },
+    { 
+      lat: 2.9199, 
+      lng: 99.0722, 
+      name: 'Medan', 
+      products: ['Kopi Gayo', 'Ulos', 'Kerajinan Rotan', 'Dodol', 'Roti Ganda']
+    },
+    { 
+      lat: -2.5223, 
+      lng: 140.7111, 
+      name: 'Papua', 
+      products: ['Noken', 'Kayu Cendana', 'Ukiran Asmat', 'Koteka', 'Sagu']
+    },
+    { 
+      lat: -5.1443, 
+      lng: 119.4213, 
+      name: 'Makassar', 
+      products: ['Phinisi', 'Tapis', 'Sutera', 'Markisa', 'Kerajinan Kerang']
+    },
+    { 
+      lat: -3.6909, 
+      lng: 128.1855, 
+      name: 'Ambon', 
+      products: ['Tenun Ikat', 'Kerajinan Kulit', 'Minyak Kayu Putih', 'Pala', 'Kerajinan Kerang']
+    },
+    { 
+      lat: -0.7893, 
+      lng: 113.9213, 
+      name: 'Palangkaraya', 
+      products: ['Anyaman Rotan', 'Kain Sasirangan', 'Getah Nyatu', 'Kerajinan Manik', 'Madu Hutan']
+    },
+    { 
+      lat: -5.3464, 
+      lng: 105.2551, 
+      name: 'Lampung', 
+      products: ['Kopi Lampung', 'Keramik Lampung', 'Tapis', 'Sulam Usus', 'Pisang Sale']
+    },
+    { 
+      lat: -0.0235, 
+      lng: 109.3375, 
+      name: 'Pontianak', 
+      products: ['Batik Megamendung', 'Tenun Ikat', 'Kerupuk Amplang', 'Lidah Buaya', 'Kerajinan Kayu']
+    },
   ];
 
   return (
@@ -36,7 +86,7 @@ const MapInteractive = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-
+        
         {locations.map((location, index) => (
           <Marker
             key={index}

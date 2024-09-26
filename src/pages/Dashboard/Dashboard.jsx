@@ -256,9 +256,12 @@ const LandingPage = () => {
                 <p className="text-gray-600 mb-6">
                   Peta interaktif ini memudahkan Anda menjelajahi ribuan produk UMKM unik yang tersebar di berbagai wilayah Indonesia. Klik pada ikon marker untuk melihat detail produk UMKM di daerah tersebut.
                 </p>
-                <button className="bg-[#886b4c] text-white px-6 py-3 rounded-full font-bold hover:bg-[#5c4933] transition-transform transform hover:scale-105">
-                  Lihat Semua Produk
-                </button>
+                 <button 
+              className="bg-[#886b4c] text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-[#5c4933] transition"
+              onClick={handleSeeAllProducts} 
+            >
+              Lihat Semua Produk
+            </button>
               </div>
               <div className="md:w-1/2 md:pl-8 relative">
                 <div className="absolute inset-0 z-10">

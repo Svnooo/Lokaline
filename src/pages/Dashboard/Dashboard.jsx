@@ -315,10 +315,7 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-4 font-serif">Punya UMKM? Bergabunglah dengan Kami!</h2>
           <p className="text-2xl mb-8">Tingkatkan jangkauan bisnis Anda dan temukan pelanggan baru di seluruh Indonesia</p>
-          <button className="bg-[#886b4c] text-white px-10 py-4 rounded-full font-bold text-xl hover:bg-[#5c4933] transition flex items-center mx-auto">
-            <TrendingUp size={24} className="mr-2" />
-            Daftarkan UMKM Anda
-          </button>
+          
         </div>
       </section>
     </div>

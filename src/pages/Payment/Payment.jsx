@@ -26,7 +26,7 @@ const Payment = () => {
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
     if (selectedPaymentMethod) {
-      setModalMessage(`Anda memilih metode pembayaran: ${selectedPaymentMethod}`);
+      setModalMessage(`Pembayaran dengan  ${selectedPaymentMethod} Berhasil!`);
     } else {
       setModalMessage('Silakan pilih metode pembayaran.');
     }

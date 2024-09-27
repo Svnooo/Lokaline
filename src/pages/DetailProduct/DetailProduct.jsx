@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CartContext } from '../../components/CartContext';
+import { Modal } from 'flowbite-react'; // Import Modal component
 
 const ProductDetail = () => {
     const { productId } = useParams();
@@ -182,12 +183,31 @@ const ProductDetail = () => {
             ],
         }
     ];
-    
 
+    // Find the product by matching productId with product data
     const product = products.find((p) => p.id === parseInt(productId));
+
+    // If product is undefined, show error or fallback UI
+    if (!product) {
+        return (
+            <div className="container mx-auto py-10 mt-16 text-center">
+                <h2 className="text-3xl font-bold text-red-600">Product not found</h2>
+                <p className="text-gray-600">The product you're looking for does not exist.</p>
+                <button
+                    className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                    onClick={() => navigate('/catalog')}
+                >
+                    Back to Catalog
+                </button>
+            </div>
+        );
+    }
+
     const [selectedImage, setSelectedImage] = useState(product.image);
     const [quantity, setQuantity] = useState(1);
     const [selectedVariant, setSelectedVariant] = useState(product.variants[0].name);
+    const [showModal, setShowModal] = useState(false); // Modal state
+    const [modalMessage, setModalMessage] = useState(''); // Modal message
 
     const changeImage = (imageUrl) => {
         setSelectedImage(imageUrl);
@@ -195,8 +215,8 @@ const ProductDetail = () => {
 
     const handleAddToCart = () => {
         addToCart(product, quantity, selectedVariant);
-        alert(`Menambahkan ${quantity} unit dari ${product.title} (Varian: ${selectedVariant}) ke keranjang.`);
-        navigate('/cart');
+        setModalMessage(`Menambahkan ${quantity} unit dari ${product.title} (Varian: ${selectedVariant}) ke keranjang.`);
+        setShowModal(true); // Show modal
     };
 
     return (
@@ -214,7 +234,7 @@ const ProductDetail = () => {
                         <img
                             src={selectedImage}
                             alt={product.title}
-                            className="w-auto h-auto max-w-full max-h-96" // Ensure real size and limit the max height
+                            className="w-auto h-auto max-w-full max-h-96"
                         />
                     </div>
                     <div className="mt-4 flex space-x-2">
@@ -233,7 +253,7 @@ const ProductDetail = () => {
                 <div className="p-6 bg-white rounded-lg shadow-lg">
                     <h1 className="text-3xl font-bold mb-4 text-gray-800">{product.title}</h1>
                     <p className="text-gray-600 mb-6">{product.description}</p>
-                    
+
                     <div className="flex items-center mb-6">
                         <span className="text-4xl font-bold text-red-600">
                             Rp {product.price.toLocaleString('id-ID')}
@@ -274,6 +294,26 @@ const ProductDetail = () => {
                     </button>
                 </div>
             </div>
+
+            <Modal show={showModal} onClose={() => setShowModal(false)}>
+                <Modal.Header>Berhasil!</Modal.Header>
+                <Modal.Body>
+                    <div className="text-center">
+                        <p>{modalMessage}</p>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <button
+                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                        onClick={() => {
+                            setShowModal(false);
+                            navigate('/cart'); // Redirect to cart page
+                        }}
+                    >
+                        Lihat Keranjang
+                    </button>
+                </Modal.Footer>
+            </Modal>
 
             <div className="mt-10 bg-gray-100 p-6 rounded-lg shadow-lg">
                 <h2 className="text-xl font-bold mb-4">Spesifikasi Produk</h2>

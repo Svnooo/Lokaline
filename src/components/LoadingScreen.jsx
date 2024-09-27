@@ -5,7 +5,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
 
   useEffect(() => {
     const video = videoRef.current;
-    
+
     const handleVideoEnd = () => {
       onLoadingComplete();
     };
@@ -28,15 +28,14 @@ const LoadingScreen = ({ onLoadingComplete }) => {
   }, [onLoadingComplete]);
 
   return (
-    <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
       <video 
         ref={videoRef}
-        className="max-w-full max-h-full object-cover"
+        className="w-screen h-screen object-cover" // Gaya di sini untuk fullscreen
         muted
         playsInline
       >
-        {/* <source src="/assets/Localie logo.mov" type="video/quicktime" /> */}
-        <source src="/assets/Localine Logo.mp4" type="video/mp4" />
+        <source src="/assets/Localine Loading Animated.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>

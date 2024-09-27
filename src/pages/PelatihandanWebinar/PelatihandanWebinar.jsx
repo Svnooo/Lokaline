@@ -130,12 +130,13 @@ const PelatihandanWebinar = () => {
           </video>
           <div className="relative z-20 text-center px-4">
             <h1 className="text-5xl md:text-7xl font-bold mb-4 gradient-text" style={{ color: '#BCB4A4' }}>
-              Transformasi UKM Anda
+              Transformasi UMKM Anda
             </h1>
             <p className="text-xl md:text-2xl mb-8" style={{ color: '#C3B48F' }}>Bergabunglah dalam gerakan. Berinovasi. Berkembang. Sukses.</p>
-            <a href="#programs" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-              Jelajahi Program
-            </a>
+<a href="#programs" className="bg-[#b49b6c] hover:bg-[#a2895a] text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+  Jelajahi Program
+</a>
+
           </div>
           <div className="custom-shape-divider-bottom-1685123647">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">

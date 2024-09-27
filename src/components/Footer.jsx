@@ -2,34 +2,43 @@
 "use client";
 import { Footer } from "flowbite-react";
 import React from "react";
-import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
+import {
+  BsDribbble,
+  BsFacebook,
+  BsGithub,
+  BsInstagram,
+  BsTwitter,
+} from "react-icons/bs";
 
 export default function FooterComponent() {
   return (
     <Footer container>
       <div className="w-full">
         <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
-        <div className="flex justify-start"> {/* Wrapping div to control layout */}
-  <img
-    src="assets/Logo-Localine.png"
-    alt="Localine Logo"
-    style={{ width: '150px', height: 'auto' }} // Ensure size is set here
-  />
-</div>
+          <div className="flex justify-start">
+            {" "}
+            {/* Wrapping div to control layout */}
+            <img
+              src="assets/Logo-Localine.png"
+              alt="Localine Logo"
+              style={{ width: "150px", height: "auto" }} // Ensure size is set here
+            />
+          </div>
 
           <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
+            <div>
+              <Footer.Title title="Follow us" />
+              <Footer.LinkGroup col>
+                <Footer.Link href="https://github.com/Svnooo/Lokaline">
+                  Github
+                </Footer.Link>
+                <Footer.Link href="#">Discord</Footer.Link>
+              </Footer.LinkGroup>
+            </div>
             <div>
               <Footer.Title title="About" />
               <Footer.LinkGroup col>
                 <Footer.Link href="#">Localine</Footer.Link>
-                <Footer.Link href="#">Tailwind CSS</Footer.Link>
-              </Footer.LinkGroup>
-            </div>
-            <div>
-              <Footer.Title title="Follow us" />
-              <Footer.LinkGroup col>
-                <Footer.Link href="#">Github</Footer.Link>
-                <Footer.Link href="#">Discord</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>

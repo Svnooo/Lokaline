@@ -112,17 +112,12 @@ const HelpAndSupport = () => {
           <h2 className="text-3xl font-semibold text-[#b49b6c] mb-6">Kontak Kami</h2>
           <p className="text-gray-600 mb-4">Jika Anda membutuhkan bantuan lebih lanjut, jangan ragu untuk menghubungi kami:</p>
           <ul className="list-disc list-inside text-gray-700 mb-4">
-            <li>Email: <a href="mailto:support@example.com" className="text-blue-600 underline">support@example.com</a></li>
-            <li>Telepon: <span className="text-gray-800">123-456-7890</span></li>
+            <li>Email: <a href="mailto:support@example.com" className="text-blue-600 underline">info@localine-jogja.id</a></li>
+            <li>Telepon: <span className="text-gray-800">+62 274 123456</span></li>
           </ul>
           <p className="text-gray-600">Kami akan berusaha menjawab secepat mungkin. Terima kasih atas kesabaran Anda!</p>
         </section>
       </div>
-      
-      {/* Tombol Kembali ke Atas */}
-      <a href="#" className="fixed bottom-5 right-5 bg-[#b49b6c] text-white p-3 rounded-full shadow-lg hover:bg-[#a68e55] transition duration-300">
-        <FaArrowUp size={20} />
-      </a>
     </div>
   );
 };

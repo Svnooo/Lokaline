@@ -16,8 +16,10 @@ import {
 } from "@heroicons/react/24/solid";
 import {
   Button,
+  Checkbox,
   Collapse,
   IconButton,
+  Input,
   List,
   ListItem,
   Menu,
@@ -25,15 +27,12 @@ import {
   MenuItem,
   MenuList,
   Navbar,
-  Typography,
-  Input,
-  Checkbox
+  Typography
 } from "@material-tailwind/react";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../index.css";
 import { LanguageContext } from './Languagecontext';
-import { ThemeContext } from './Themecontext';
 
 // NavListMenu Component
 function NavListMenu({ isDashboard, isWhite, isBeritaDanArtikel, isScrolled }) {
@@ -158,7 +157,7 @@ function NavListMenu({ isDashboard, isWhite, isBeritaDanArtikel, isScrolled }) {
           </Typography>
         </MenuHandler>
         <MenuList className="hidden max-w-screen-xl rounded-xl lg:block">
-          <ul className="grid grid-cols-3 gap-y-2 outline-none outline-0">
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {renderItems}
           </ul>
         </MenuList>
@@ -359,6 +358,13 @@ export function NavbarWithMegaMenu() {
   const isDashboard = location.pathname === '/';
   const isBeritaDanArtikel = location.pathname === '/BeritadanArtikel';
 
+  const getLanguageButtonStyle = () => {
+    if (isDashboard || isBeritaDanArtikel) {
+      return isScrolled ? 'text-black' : 'text-white';
+    }
+    return 'text-dark';
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
@@ -446,7 +452,7 @@ export function NavbarWithMegaMenu() {
               variant="text"
               size="sm"
               onClick={() => setSelectedLanguage(selectedLanguage === 'en' ? 'id' : 'en')}
-              className={`locale-text text-xs sm:text-sm ${getTextColor()}`}
+              className={`locale-text text-xs sm:text-sm ${getLanguageButtonStyle()} hover:bg-[#B49B6C] hover:text-dark`}
             >
               {selectedLanguage === 'en' ? 'ID' : 'EN'}
             </Button>
@@ -464,14 +470,11 @@ export function NavbarWithMegaMenu() {
 
             {/* Login button - hidden on mobile, visible on larger screens */}
             <Button
-              variant={getTextColor() === 'text-black' ? "outlined" : "filled"}
+              variant="filled"
               size="sm"
               fullWidth
               onClick={openLoginModal}
-              className={`login-button ${getTextColor() === 'text-black'
-                  ? 'bg-transparent text-[#B49B6C] border-[#B49B6C] hover:bg-[#B49B6C] hover:text-white'
-                  : 'bg-[#B49B6C] text-white hover:bg-[#a08a5f]'
-                }`}
+              className="login-button bg-[#B49B6C] text-white hover:bg-[#a08a5f]"
             >
               {translateText("Log In", "Masuk")}
             </Button>
@@ -496,20 +499,20 @@ export function NavbarWithMegaMenu() {
         <Collapse open={openNav}>
           <NavList isWhite={isWhite} isDashboard={isDashboard} isBeritaDanArtikel={isBeritaDanArtikel} isScrolled={isScrolled} />
           <div className="flex flex-col w-full items-center gap-2 lg:hidden">
-            <Button
+          <Button
               variant="text"
               size="sm"
               onClick={() => setSelectedLanguage(selectedLanguage === 'en' ? 'id' : 'en')}
-              className={`locale-text w-full ${getTextColor()}`}
+              className={`locale-text w-full ${getLanguageButtonStyle()} hover:bg-[#B49B6C] hover:text-dark`}
             >
               {selectedLanguage === 'en' ? 'Switch to Bahasa Indonesia' : 'Ganti ke Bahasa Inggris'}
             </Button>
             <Button
-              variant="gradient"
+              variant="filled"
               size="sm"
               fullWidth
               onClick={openLoginModal}
-              className="login-button"
+              className="login-button bg-[#B49B6C] text-white hover:bg-[#a08a5f]"
             >
               {translateText("Log In", "Masuk")}
             </Button>

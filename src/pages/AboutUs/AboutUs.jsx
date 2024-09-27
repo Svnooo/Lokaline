@@ -11,7 +11,7 @@ const AboutUs = () => {
     };
 
     return (
-        <div ref={containerRef} className="bg-gradient-to-r from-[#BCB4A4] via-[#B49B6C] to-[#CCB592] py-10 pt-24">
+        <div ref={containerRef} className="bg-base-100 py-10 pt-24">
             {/* Hero Section */}
             <br />
             <br />

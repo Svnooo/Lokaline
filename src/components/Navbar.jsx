@@ -65,13 +65,13 @@ function NavListMenu({ isDashboard, isWhite, isBeritaDanArtikel, isScrolled }) {
     },
     {
       title: translateText("Catalog", "Katalog"),
-      description: translateText("Find the perfect solution for your needs.", "Temukan solusi sempurna untuk kebutuhan Anda."),
+      description: translateText("Find a good stuff that you need!", "Temukan barang-barang yang anda butuhkan!"),
       icon: Bars4Icon,
       path: "/Catalog",
     },
     {
       title: translateText("Discussion Forum", "Forum Diskusi"),
-      description: translateText("Meet and learn about our dedication", "Bertemu dan pelajari tentang dedikasi kami"),
+      description: translateText("Sharing and Exploring about new knowledge", "Berbagi dan menjelajahi pengetahuan baru "),
       icon: UserGroupIcon,
       path: "/ForumDiskusi",
     },
@@ -89,13 +89,13 @@ function NavListMenu({ isDashboard, isWhite, isBeritaDanArtikel, isScrolled }) {
     },
     {
       title: translateText("UMKM Profile", "Profil UMKM"),
-      description: translateText("Explore limited-time deals and bundles", "Jelajahi penawaran dan paket terbatas waktu"),
+      description: translateText("Find local UMKM that you want!", "Temukan UMKM daerah yang anda inginkan!"),
       icon: UserIcon,
       path: "/ProfileUMKM",
     },
     {
       title: translateText("Testimonials", "Testimoni"),
-      description: translateText("Find the perfect solution for your needs.", "Temukan solusi sempurna untuk kebutuhan Anda."),
+      description: translateText("Knowing us more from people experience", "Kenali kami lebih dalam dengan pengalaman para pengguna"),
       icon: ChatBubbleOvalLeftIcon,
       path: "/Testimoni",
     },

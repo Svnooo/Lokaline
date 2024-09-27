@@ -1,6 +1,6 @@
 import 'leaflet/dist/leaflet.css';
 import React, { useState, useCallback, useEffect } from "react";
-import { Route, BrowserRouter as Router, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import './App.css';
 import { CartProvider } from "./components/CartContext";
 import Footer from "./components/Footer";
@@ -32,13 +32,18 @@ const PageWrapper = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    setIsLoading(true);
-    // Simulate a delay to ensure the loading screen shows
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // 2 seconds delay, adjust if your video is different
+    // Cek apakah saat ini bukan di halaman dashboard ("/")
+    if (location.pathname !== '/') {
+      setIsLoading(true);
+      // Simulasi penundaan untuk memastikan layar loading terlihat
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 2000); // 2 detik penundaan, bisa disesuaikan dengan kebutuhan
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    } else {
+      setIsLoading(false); // Jangan tampilkan loading screen di halaman dashboard
+    }
   }, [location]);
 
   return (

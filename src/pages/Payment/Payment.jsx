@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../../components/CartContext';
+import { Modal } from 'flowbite-react'; // Import Modal component
 
 // Helper function to format numbers as Rupiah
 const formatPrice = (price) => {
@@ -9,6 +10,8 @@ const formatPrice = (price) => {
 const Payment = () => {
   const { cartItems } = useContext(CartContext);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [modalMessage, setModalMessage] = useState(''); // State to store the message for modal
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const paymentMethods = [
@@ -23,11 +26,11 @@ const Payment = () => {
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
     if (selectedPaymentMethod) {
-      alert(`Anda memilih metode pembayaran: ${selectedPaymentMethod}`);
-      // Logic for processing the payment (API call, redirect, etc.)
+      setModalMessage(`Anda memilih metode pembayaran: ${selectedPaymentMethod}`);
     } else {
-      alert('Please select a payment method.');
+      setModalMessage('Silakan pilih metode pembayaran.');
     }
+    setShowModal(true); // Show modal
   };
 
   return (
@@ -51,7 +54,7 @@ const Payment = () => {
                     src={item.image} 
                     alt={item.name} 
                     className="object-cover mr-4 shadow-md"
-                    style={{ maxWidth: '150px', height: 'auto' }} // Adjusts to real image size
+                    style={{ maxWidth: '150px', height: 'auto' }} 
                   />
                   <div>
                     <h3 className="text-lg font-bold">{item.name} ({item.variant})</h3>
@@ -63,7 +66,6 @@ const Payment = () => {
             ))}
           </div>
 
-          {/* Align Total to the Right */}
           <div className="flex justify-end">
             <h2 className="text-xl font-bold mb-4">Total: {formatPrice(totalPrice)}</h2>
           </div>
@@ -100,6 +102,24 @@ const Payment = () => {
               Bayar Sekarang
             </button>
           </form>
+
+          {/* Modal for alerts */}
+          <Modal show={showModal} onClose={() => setShowModal(false)}>
+            <Modal.Header>Pemberitahuan</Modal.Header>
+            <Modal.Body>
+              <div className="text-center">
+                <p>{modalMessage}</p>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <button
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                onClick={() => setShowModal(false)}
+              >
+                OK
+              </button>
+            </Modal.Footer>
+          </Modal>
         </div>
       )}
     </div>

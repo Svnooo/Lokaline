@@ -13,3 +13,10 @@ Localine adalah sebuah platform yang didedikasikan untuk mendukung UMKM lokal di
   - npm Install 
 * Jalankan Lokal Development Server
   - npm run dev
+ 
+  # Developer :
+  * Albertus Sonny Setiawan Rilman (215314123)
+  * Mateus Appuwan Situmorang (215314128)
+  * Ariel Stevano (215314138)
+ 
+    # Enjoy Your Journey With Localine!

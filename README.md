@@ -19,4 +19,6 @@ Localine adalah sebuah platform yang didedikasikan untuk mendukung UMKM lokal di
   * Mateus Appuwan Situmorang (215314128)
   * Ariel Stevano (215314138)
  
-    # Enjoy Your Journey With Localine!
+
+
+  # Enjoy Your Journey With Localine!

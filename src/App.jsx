@@ -1,6 +1,6 @@
 import 'leaflet/dist/leaflet.css';
-import React from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import React, { useState, useCallback, useEffect } from "react";
+import { Route, BrowserRouter as Router, Routes, useLocation, useNavigate } from "react-router-dom";
 import './App.css';
 import { CartProvider } from "./components/CartContext";
 import Footer from "./components/Footer";
@@ -21,15 +21,43 @@ import Register from "./pages/Register/Register";
 import Testimoni from "./pages/Testimoni/Testimoni";
 import { LanguageProvider } from './components/Languagecontext';
 import AboutUs from './pages/AboutUs/AboutUs';
+import LoadingScreen from './components/LoadingScreen'; 
+
+const PageWrapper = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
+
+  const handleLoadingComplete = useCallback(() => {
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    // Simulate a delay to ensure the loading screen shows
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 seconds delay, adjust if your video is different
+
+    return () => clearTimeout(timer);
+  }, [location]);
+
+  return (
+    <>
+      {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
+      {children}
+    </>
+  );
+};
 
 function App() {
   return (
     <CartProvider>
-        <LanguageProvider>
-          <Router>
-            <div id="root">
-              <NavbarWithMegaMenu />
-              <main>
+      <LanguageProvider>
+        <Router>
+          <div id="root">
+            <NavbarWithMegaMenu />
+            <main>
+              <PageWrapper>
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/Login" element={<Login />} />
@@ -47,11 +75,12 @@ function App() {
                   <Route path="/Payment" element={<Payment />} />
                   <Route path="/AboutUs" element={<AboutUs />} />
                 </Routes>
-              </main>
-              <Footer />
-            </div>
-          </Router>
-        </LanguageProvider>
+              </PageWrapper>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </LanguageProvider>
     </CartProvider>
   );
 }

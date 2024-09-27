@@ -42,7 +42,7 @@ const ProductDetail = () => {
                 { name: 'Giling Halus', image: '/dashboardFt/Kopi Gayo.png' },
                 { name: 'Giling Medium', image: '/dashboardFt/Kopi Gayo.png' },
                 { name: 'Giling Kasar', image: '/dashboardFt/Kopi Gayo.png' },
-                { name: 'BiJi Kopi', image: '/dashboardFt/Kopi Gayo.png' },
+                { name: 'Biji Kopi', image: '/dashboardFt/Kopi Gayo.png' },
             ],
         },
         {
@@ -79,7 +79,110 @@ const ProductDetail = () => {
                 { name: 'Black', image: 'https://via.placeholder.com/100/000000' },
             ],
         },
+        {
+            id: 5,
+            image: "/assets/Kain Songke Manggarai.png",
+            title: "Kain Songket",
+            price: 500000,
+            description: "Manggarai",
+            rating: 4.9,
+            fullDescription: "Kain Songket dari Manggarai adalah salah satu jenis kain tradisional yang dibuat dengan teknik tenun yang rumit dan menggunakan benang emas atau perak. Motifnya yang indah dan penuh makna sering dipakai pada acara-acara adat atau upacara penting.",
+            specifications: [
+                'Bahan: Benang Sutra dan Emas',
+                'Ukuran: 2.5 meter',
+                'Warna: Emas dan Hitam'
+            ],
+            variants: [
+                { name: 'Gold', image: '/assets/Kain Songke Manggarai.png' },
+            ],
+        },
+        {
+            id: 6,
+            image: "/assets/Bakpia.png",
+            title: "Bakpia",
+            price: 35000,
+            description: "Yogyakarta",
+            rating: 4.9,
+            fullDescription: "Bakpia adalah kue khas Yogyakarta yang terkenal dengan isian kacang hijau yang lembut dan kulit yang renyah. Cocok untuk dijadikan oleh-oleh saat berkunjung ke Yogyakarta.",
+            specifications: [
+                'Bahan: Tepung Terigu, Kacang Hijau',
+                'Isi: 20 Kue',
+                'Penyimpanan: Maksimal 1 Minggu'
+            ],
+            variants: [
+                { name: 'Original', image: '/assets/Bakpia.png' },
+            ],
+        },
+        {
+            id: 7,
+            image: "/assets/Bali.png",
+            title: "Patung",
+            price: 350000,
+            description: "Bali",
+            rating: 4.9,
+            fullDescription: "Patung Bali merupakan karya seni yang diukir dengan tangan oleh para pengrajin lokal di Bali. Motif-motifnya terinspirasi dari budaya Hindu Bali dan sering kali digunakan sebagai dekorasi rumah atau pelengkap upacara adat.",
+            specifications: [
+                'Bahan: Kayu Jati',
+                'Ukuran: 30cm x 15cm',
+                'Warna: Coklat Tua'
+            ],
+            variants: [
+                { name: 'Natural', image: '/assets/Bali.png' },
+            ],
+        },
+        {
+            id: 8,
+            image: "/assets/Syal Kalimantan.png",
+            title: "Syal Dayak",
+            price: 100000,
+            description: "Kalimantan Barat",
+            rating: 4.9,
+            fullDescription: "Syal Dayak adalah aksesori tradisional yang dibuat dengan teknik tenun khas suku Dayak di Kalimantan Barat. Motifnya yang kaya akan simbolisme adat menjadikan syal ini tidak hanya indah tetapi juga bermakna.",
+            specifications: [
+                'Bahan: Benang Katun',
+                'Ukuran: 180cm x 30cm',
+                'Warna: Merah dan Hitam'
+            ],
+            variants: [
+                { name: 'Red', image: '/assets/Syal Kalimantan.png' },
+            ],
+        },
+        {
+            id: 9,
+            image: "/assets/Tas Noken Papua.png",
+            title: "Tas Noken",
+            price: 150000,
+            description: "Papua",
+            rating: 4.9,
+            fullDescription: "Tas Noken merupakan tas tradisional yang dibuat dari serat kulit kayu oleh suku-suku di Papua. Tas ini tidak hanya digunakan untuk membawa barang tetapi juga memiliki makna simbolis dalam budaya Papua.",
+            specifications: [
+                'Bahan: Serat Kulit Kayu',
+                'Ukuran: 50cm x 40cm',
+                'Warna: Coklat Muda'
+            ],
+            variants: [
+                { name: 'Natural', image: '/assets/Tas Noken Papua.png' },
+            ],
+        },
+        {
+            id: 10,
+            image: "/assets/Ulos.png",
+            title: "Ulos",
+            price: 600000,
+            description: "Sumatera Utara",
+            rating: 4.9,
+            fullDescription: "Ulos adalah kain tradisional Batak dari Sumatera Utara yang biasanya digunakan dalam upacara adat atau sebagai hadiah dalam acara-acara penting. Kain ini ditenun dengan teknik khusus yang diwariskan turun temurun.",
+            specifications: [
+                'Bahan: Benang Katun',
+                'Ukuran: 2 meter',
+                'Warna: Merah dan Hitam'
+            ],
+            variants: [
+                { name: 'Red', image: '/assets/Ulos.png' },
+            ],
+        }
     ];
+    
 
     const product = products.find((p) => p.id === parseInt(productId));
     const [selectedImage, setSelectedImage] = useState(product.image);
